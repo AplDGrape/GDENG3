@@ -228,6 +228,7 @@
     <ClInclude Include="VertexMesh.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="Wireframe.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AComponent.cpp" />
@@ -301,6 +302,7 @@
     <ClCompile Include="VertexMesh.cpp" />
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="Wireframe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="PixelMeshLayoutShader.hlsl">

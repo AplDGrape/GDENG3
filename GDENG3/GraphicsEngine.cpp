@@ -235,3 +235,14 @@ void GraphicsEngine::destroy()
 {
 	if(sharedInstance != NULL)sharedInstance->release();
 }
+
+//wireframe
+ID3D11Device* GraphicsEngine::getD3DDevice()
+{
+	return m_d3d_device;
+}
+
+ID3D11DeviceContext* GraphicsEngine::getD3DDeviceContext()
+{
+	return m_imm_context;
+}

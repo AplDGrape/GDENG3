@@ -13,6 +13,9 @@ AppWindow::~AppWindow()
 void AppWindow::initialize()
 {
 	sharedInstance = new AppWindow();
+
+	GraphicsEngine::initialize();
+
 	sharedInstance->init();
 }
 
@@ -20,12 +23,15 @@ void AppWindow::onCreate()
 {
 	Window::onCreate();
 	InputSystem::initialize();
+
+	m_wireframe = new Wireframe(GraphicsEngine::getInstance()->getD3Ddevice());
+
 	BaseSystem::initialize();
 }
 
 void AppWindow::initializeEngine()
 {
-	GraphicsEngine::initialize();
+	//GraphicsEngine::initialize();
 	EngineTime::initialize();
 	EngineBackEnd::initialize();
 	SceneCameraHandler::initialize();
@@ -88,6 +94,8 @@ void AppWindow::onUpdate()
 
 	UIManager::getInstance()->drawAllUI();
 
+	m_wireframe->set(GraphicsEngine::getInstance()->getD3DDeviceContext());
+
 	m_swap_chain->present(true);
 }
 
@@ -95,6 +103,7 @@ void AppWindow::onDestroy()
 {
 	Window::onDestroy();
 	InputSystem::destroy();
+	delete m_wireframe;
 	m_swap_chain->release();
 	GraphicsEngine::getInstance()->release();
 	TextureManager::destroy();
@@ -113,6 +122,10 @@ void AppWindow::onKillFocus()
 
 void AppWindow::onKeyDown(int key)
 {
+	if (key == 'T' && m_wireframe != nullptr)
+	{
+		m_wireframe->toggle();
+	}
 	if (key == VK_ESCAPE)
 	{
 		// Safely close the window

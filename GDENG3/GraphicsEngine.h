@@ -55,6 +55,10 @@ private:
 	~GraphicsEngine();
 	GraphicsEngine(GraphicsEngine const&){};
 	GraphicsEngine&operator=(GraphicsEngine const&){};
+//wireframe
+public:
+	ID3D11Device* getD3DDevice();
+	ID3D11DeviceContext* getD3DDeviceContext();
 private:
 	static GraphicsEngine* sharedInstance;
 private:

@@ -237,6 +237,9 @@
     <ClCompile Include="Texture.cpp">
       <Filter>GameEngine\GraphicsEngine\ResourceManager\TextureManager\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Wireframe.cpp">
+      <Filter>GameEngine\Challenges</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -466,6 +469,9 @@
     </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>GameEngine\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Wireframe.h">
+      <Filter>GameEngine\Challenges</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

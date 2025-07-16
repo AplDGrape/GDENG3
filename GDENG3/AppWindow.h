@@ -29,7 +29,7 @@
 #include "BaseSystem.h"
 #include "EngineBackEnd.h"
 #include "ActionHistory.h"
-
+#include "Wireframe.h"
 
 
 class AppWindow : public Window, public InputListener
@@ -54,7 +54,7 @@ public:
 	void initializeEngine();
 	void createInterface();
 
-
+	Wireframe* m_wireframe = nullptr;
 public:
 	static void initialize();
 	static AppWindow* getInstance();
