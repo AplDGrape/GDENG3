@@ -3,6 +3,7 @@
 
 UIManager* UIManager::sharedInstance = NULL;
 
+ImVec4 UIManager::logoTint = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 UIManager::UIManager(HWND windowHandle)
 {
@@ -17,9 +18,9 @@ UIManager::UIManager(HWND windowHandle)
 	ImGui_ImplDX11_Init(GraphicsEngine::getInstance()->getD3Ddevice(), GraphicsEngine::getInstance()->getImmediateDeviceContext()->getContext());
 
 	UINames uiNames;
-	ProfilerScreen* profilerScreen = new ProfilerScreen();
+	/*ProfilerScreen* profilerScreen = new ProfilerScreen();
 	this->uiTable[uiNames.PROFILER_SCREEN] = profilerScreen;
-	this->uiList.push_back(profilerScreen);
+	this->uiList.push_back(profilerScreen);*/
 
 	MenuScreen* menuScreen = new MenuScreen();
 	this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
@@ -41,7 +42,7 @@ UIManager::UIManager(HWND windowHandle)
 	this->uiTable[uiNames.COLORPICKER_SCREEN] = colorPickerScreen;
 	this->uiList.push_back(colorPickerScreen);
 
-	ScreenPlayBack* playBackScreen = new ScreenPlayBack();
+	/*ScreenPlayBack* playBackScreen = new ScreenPlayBack();
 	this->uiTable[uiNames.PLAYBACK_SCREEN] = playBackScreen;
 	this->uiList.push_back(playBackScreen);
 
@@ -51,7 +52,7 @@ UIManager::UIManager(HWND windowHandle)
 
 	DebugConsoleScreen* debugConsoleScreen = new DebugConsoleScreen();
 	this->uiTable[uiNames.DEBUG_CONSOLE_SCREEN] = debugConsoleScreen;
-	this->uiList.push_back(debugConsoleScreen);
+	this->uiList.push_back(debugConsoleScreen);*/
 }
 
 void UIManager::initialize(HWND windowHandle)

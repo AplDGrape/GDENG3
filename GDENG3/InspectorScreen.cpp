@@ -38,55 +38,56 @@ void InspectorScreen::generateEditor()
 
 		if (enabled)
 		{
-			if (ImGui::Button("Select Texture"))
+			/*if (ImGui::Button("Select Texture"))
 			{
 				this->textureDialogue->Open();
-			}
+			}*/
 
 			ImGui::Text("Selected Object: %s", GameObjectManager::getInstance()->getSelectedObject()->getName().c_str());
 			this->TransformUpdate();
 			if (ImGui::DragFloat3("Position", this->SelectedObjectposition, 0.01f))
 			{
 				this->TransformSelected(GameObjectManager::getInstance()->getSelectedObject());
-		  }
-		  if (ImGui::DragFloat3("Rotation", this->SelectedObjectRotation, 3))
-		  {
-			  this->TransformSelected(GameObjectManager::getInstance()->getSelectedObject());
-		  }
-		  if (ImGui::DragFloat3("Scale", this->SelectedObjectScale, 3))
-		  {
-			  this->TransformSelected(GameObjectManager::getInstance()->getSelectedObject());
-		  }
+			}
+			if (ImGui::DragFloat3("Rotation", this->SelectedObjectRotation, 3))
+			{
+				this->TransformSelected(GameObjectManager::getInstance()->getSelectedObject());
+			}
+			if (ImGui::DragFloat3("Scale", this->SelectedObjectScale, 3))
+			{
+				this->TransformSelected(GameObjectManager::getInstance()->getSelectedObject());
+			}
 
-		  if ((PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component") == NULL)
-		  {
-			  if (ImGui::Button("Attach Rigidody"))
-			  {
-				  GameObjectManager::getInstance()->getSelectedObject()->ComputeLocalMatrix();
-				  GameObjectManager::getInstance()->getSelectedObject()->attachComponent(new PhysicsComponent(("Physics Component"), GameObjectManager::getInstance()->getSelectedObject()));
-			  }
-		  }
-		  /*else
-		  {
-			  if (ImGui::Button("Detach Rigidody"))
-			  {
-				  GameObjectManager::getInstance()->getSelectedObject()->ComputeLocalMatrix();
-				  PhysicsComponent* componentAttached = (PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component");
-				  GameObjectManager::getInstance()->getSelectedObject()->detachComponent((PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component"));
-				  delete componentAttached;
-				  delete (PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component");
-			  }
-		  }*/
+			/*if ((PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component") == NULL)
+			{
+				if (ImGui::Button("Attach Rigidody"))
+				{
+					GameObjectManager::getInstance()->getSelectedObject()->ComputeLocalMatrix();
+					GameObjectManager::getInstance()->getSelectedObject()->attachComponent(new PhysicsComponent(("Physics Component"), GameObjectManager::getInstance()->getSelectedObject()));
+				}
+			}*/
+			/*else
+			{
+				if (ImGui::Button("Detach Rigidody"))
+				{
+					GameObjectManager::getInstance()->getSelectedObject()->ComputeLocalMatrix();
+					PhysicsComponent* componentAttached = (PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component");
+					GameObjectManager::getInstance()->getSelectedObject()->detachComponent((PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component"));
+					delete componentAttached;
+					delete (PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component");
+				}
+			}*/
 		
-		  if (ImGui::Button("Delete", ImVec2(70.0f, 0.0f)))
-		  {
-			  GameObjectManager::getInstance()->deleteObjectByName(GameObjectManager::getInstance()->getSelectedObject()->getName());
-			  GameObjectManager::getInstance()->setSelectedObject(NULL);
+			if (ImGui::Button("Delete", ImVec2(70.0f, 0.0f)))
+			{
+				GameObjectManager::getInstance()->deleteObjectByName(GameObjectManager::getInstance()->getSelectedObject()->getName());
+				GameObjectManager::getInstance()->setSelectedObject(NULL);
 			}
 		}
 
 	}
-	else {
+	else 
+	{
 		ImGui::Text("No object selected");
 	}
 	this->textureDialogue->Display();

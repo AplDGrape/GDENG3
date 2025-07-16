@@ -25,7 +25,7 @@ MenuScreen::MenuScreen():AUIScreen("Menu Screen")
 void MenuScreen::drawUI()
 {
 	if (ImGui::BeginMainMenuBar()) {
-		if (ImGui::BeginMenu("File")) {
+		/*if (ImGui::BeginMenu("File")) {
 			if (ImGui::MenuItem("Open..", "Ctrl+O")) {
 				this->openSceneDialog->Open();
 			}
@@ -36,26 +36,26 @@ void MenuScreen::drawUI()
 				this->saveSceneDialog->Open();
 			}
 			ImGui::EndMenu();
-		}
+		}*/
 		if (ImGui::BeginMenu("Game Object")) {
 			if (ImGui::MenuItem("Create Cube")) { GameObjectManager::getInstance()->createObject(GameObjectManager::CUBE); }
 			if (ImGui::MenuItem("Create Textured Cube")) { GameObjectManager::getInstance()->createObject(GameObjectManager::TEXTURED_CUBE); }
-			if (ImGui::MenuItem("Create Physics Cube")) { GameObjectManager::getInstance()->createObject(GameObjectManager::PrimitiveType::PHYSICS_CUBE); }
+			/*if (ImGui::MenuItem("Create Physics Cube")) { GameObjectManager::getInstance()->createObject(GameObjectManager::PrimitiveType::PHYSICS_CUBE); }
 			if (ImGui::MenuItem("Create Sphere")) { GameObjectManager::getInstance()->createObject(GameObjectManager::SPHERE); }
-			if (ImGui::MenuItem("Create Capsule")) { GameObjectManager::getInstance()->createObject(GameObjectManager::CAPSULE); }
+			if (ImGui::MenuItem("Create Capsule")) { GameObjectManager::getInstance()->createObject(GameObjectManager::CAPSULE); }*/
 			if (ImGui::MenuItem("Create Plane")) { GameObjectManager::getInstance()->createObject(GameObjectManager::PLANE); }
-			if (ImGui::MenuItem("Create Physics Plane")) { GameObjectManager::getInstance()->createObject(GameObjectManager::PrimitiveType::PHYSICS_PLANE); }
+			/*if (ImGui::MenuItem("Create Physics Plane")) { GameObjectManager::getInstance()->createObject(GameObjectManager::PrimitiveType::PHYSICS_PLANE); }
 			if(ImGui::MenuItem("Create Cylinder")){ GameObjectManager::getInstance()->createObject(GameObjectManager::CYLINDER);}
 			if (ImGui::MenuItem("Generate 20 Physics Cubes")) { GameObjectManager::getInstance()->generatePhysicsCube(); }
-			if (ImGui::MenuItem("10000 Cubes")) { GameObjectManager::getInstance()->hundreadCubes(); }
+			if (ImGui::MenuItem("10000 Cubes")) { GameObjectManager::getInstance()->hundreadCubes(); }*/
 			ImGui::EndMenu();
 		}
-		if(ImGui::BeginMenu("OBJ Model"))
+		/*if(ImGui::BeginMenu("OBJ Model"))
 		{
 			if (ImGui::MenuItem("Select OBJ Model")) { this->objDialog->Open(); }
 			ImGui::EndMenu();
-		}
-		if (ImGui::MenuItem("Color Picker")) { UIManager::getInstance()->showColorPickerScreen(); }
+		}*/
+		if (ImGui::MenuItem("Colour Picker")) { UIManager::getInstance()->showColorPickerScreen(); }
 		if (ImGui::BeginMenu("About")) {
 			if (ImGui::MenuItem("Credits")) { UIManager::getInstance()->showCreditsScreen(); }
 			ImGui::EndMenu();

@@ -63,7 +63,7 @@ void AppWindow::onUpdate()
 	this->ticks += EngineTime::getDeltaTime() * 1.0f;
 	InputSystem::getInstance()->update();
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-		0, 0, 0.5, 0.5);
+		0.01, 0.01, 0.01, 0.01);
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 

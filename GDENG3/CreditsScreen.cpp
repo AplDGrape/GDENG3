@@ -11,33 +11,42 @@ CreditsScreen::CreditsScreen():AUIScreen("Credits Screen")
 
 void CreditsScreen::drawUI()
 {
-	ImGuiStyle& style = ImGui::GetStyle();
+    ImGuiStyle& style = ImGui::GetStyle();
 
+    if (ImGui::Begin("Credits"))
+    {
 
-	if(ImGui::Begin("Credits"))
-	{
-		
-		float width = ImGui::GetWindowSize().x;
-		float centre_position_for_button = (width - ImVec2(70.0f, 0.0f).x) / 2;
-		ImGui::SetCursorPosX(centre_position_for_button);
+        float width = ImGui::GetWindowSize().x;
+        float centre_position_for_button = (width - ImVec2(70.0f, 0.0f).x) / 2;
+        ImGui::SetCursorPosX(centre_position_for_button);
 
-		ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 1125, 25));
-		ImGui::SetWindowSize(ImVec2(550, UIManager::WINDOW_HEIGHT - 450));
-		ImGui::Text("About:\n");
-		ImGui::Text("Scene Editor: v0.01\n");
-		ImGui::Text("Developer: Francis Apolinar\n");
-		ImGui::Text("Acknowledgement: \nPardcode & Sir Neil Gallego.\nThe ImGui API is from 'https://github.com/ocornut/imgui'");
-		ImGui::Image((void*)my_texture, ImVec2(my_image_width, my_image_height));
-       
-		if (ImGui::Button("Close", ImVec2(70.0f, 0.0f)))
-		{
+        ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 1125, 25));
+        ImGui::SetWindowSize(ImVec2(550, UIManager::WINDOW_HEIGHT - 450));
+        //ImGui::Image((void*)my_texture, ImVec2(my_image_width, my_image_height));
+        ImGui::Image((void*)my_texture, ImVec2(my_image_width, my_image_height), ImVec2(0, 0), ImVec2(1, 1), UIManager::logoTint);
+        ImGui::Text("About");
+        ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing();
+        ImGui::Text("Scene Editor v2.1");
+        ImGui::Text("Developed by: Francis Raphael D. Apolinar");
+        ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing();
+        ImGui::Text("Acknowledgements:");
+        ImGui::Separator();
+        ImGui::Text("PardCode Game Engine Tutorial");
+        ImGui::Text("Sir Neil's GAMENG3 Course");
+        ImGui::Text("The ImGui API is from 'https://github.com/ocornut/imgui'");
+        ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing();
+        ImGui::Spacing();
 
-			UIManager::getInstance()->hideCreditsScreen();
-		}
+        ImGui::Separator();
+        ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 10.0f);
+        ImGui::SetCursorPosX((ImGui::GetWindowSize().x - 80.0f) / 2.0f); // center button
+        /*if (ImGui::Button("Close", ImVec2(80, 0)))
+        {
+            //m_showCredits = false;
+            UIManager::getInstance()->hideCreditsScreen();
+        }*/
+    }
 
-	}
-
-	
 	ImGui::End();
 }
 

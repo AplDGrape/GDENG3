@@ -44,5 +44,7 @@ private:
 	UITable uiTable;
 	bool showCredits = false;
 	bool showColorPicker = false;
+public:
+	static ImVec4 logoTint;
 };
 
