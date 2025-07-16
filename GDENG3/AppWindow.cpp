@@ -115,7 +115,11 @@ void AppWindow::onKillFocus()
 
 void AppWindow::onKeyDown(int key)
 {
-
+	if (key == VK_ESCAPE)
+	{
+		// Safely close the window
+		PostMessage(this->m_hwnd, WM_CLOSE, 0, 0);
+	}
 }
 
 void AppWindow::onKeyUp(int key)

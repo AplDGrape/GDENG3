@@ -12,30 +12,27 @@ Camera::Camera(String name):AGameObject(name, AGameObject::CAMERA)
 
 void Camera::updateViewMatrix()
 {
-
 	Matrix4x4 worldCam;
-	Matrix4x4 lookAt;
 	worldCam.setIdentity();
 
 	Matrix4x4 temp;
+
+	// Apply pitch (X) and yaw (Y) rotation
 	temp.setIdentity();
-
-	Vector3D localRot = this->getLocalRotation();
-
-	temp.setRotationX(localRot.x);
+	temp.setRotationX(pitch);
 	worldCam = worldCam.mulMatrix(temp);
 
-	temp.setRotationY(localRot.y);
+	temp.setIdentity();
+	temp.setRotationY(yaw);
 	worldCam = worldCam.mulMatrix(temp);
 
+	// Apply position
+	temp.setIdentity();
 	temp.setTranslation(this->getLocalPosition());
 	worldCam = worldCam.mulMatrix(temp);
 
+	// Invert to get view matrix
 	worldCam.getInverse();
-
-	//lookAt = Matrix4x4::lookAt(this->Position, this->Position + this->cameraFront, this->cameraUp);
-	
-	
 	this->LocalMatrix = worldCam;
 }
 
@@ -162,43 +159,37 @@ void Camera::LeftViewMode(float rate, float x, float y, float z)
 
 void Camera::update(float deltaTime)
 {
-	Vector3D localPos = this->getLocalPosition();
-	float x = localPos.x;
-	float y = localPos.y;
-	float z = localPos.z;
-	float moveSpeed = 10.0f;
+	float speed = 5.0f * deltaTime;
 
-	if (defaultBool) {
+	// Get orientation-based vectors
+	Matrix4x4 rot;
+	rot.setIdentity();
 
-		this->defaultmode(deltaTime * moveSpeed, x, y, z);
-	}
-	
-	if (this->getLocalRotation().y >= 0.07f) {
-		defaultBool = false;
-		this->RightViewMode(deltaTime * moveSpeed, x, y, z);
-	}
+	Matrix4x4 temp;
+	temp.setIdentity();
+	temp.setRotationX(pitch);
+	rot = rot.mulMatrix(temp);
 
-	else if (this->getLocalRotation().y <= -0.07f) {
-		defaultBool = false;
-		this->LeftViewMode(deltaTime * moveSpeed, x, y, z);
-	}
+	temp.setIdentity();
+	temp.setRotationY(yaw);
+	rot = rot.mulMatrix(temp);
 
-	else {
-		
-		defaultBool = true;
-	}
+	Vector3D forward = rot.getZDirection() * -1.0f; // Forward is -Z
+	Vector3D right = rot.getXDirection();           // Right is +X
+	Vector3D up = Vector3D(0, 1, 0);                // World up
 
-	if (this->getLocalRotation().x <= -0.05f) {
-		defaultBool = false;
-		this->AerialMode(deltaTime * moveSpeed, x, y, z);
-	}
+	Vector3D pos = this->getLocalPosition();
 
-	else {
-		defaultBool = true;
-	}
+	// Movement
+	if (InputSystem::getInstance()->isKeyDown('W')) pos = pos - forward * speed;
+	if (InputSystem::getInstance()->isKeyDown('S')) pos = pos + forward * speed;
+	if (InputSystem::getInstance()->isKeyDown('A')) pos = pos - right * speed;
+	if (InputSystem::getInstance()->isKeyDown('D')) pos = pos + right * speed;
+	if (InputSystem::getInstance()->isKeyDown(VK_SPACE)) pos = pos + up * speed;
+	if (InputSystem::getInstance()->isKeyDown(VK_CONTROL)) pos = pos - up * speed;
 
-
-	
+	this->setPosition(pos);
+	this->updateViewMatrix();
 }
 
 void Camera::draw(int width, int height)
@@ -223,26 +214,16 @@ void Camera::onKeyUp(int key)
 
 void Camera::onMouseMove(const Point& deltaMousePos)
 {
-	if(this->RightMouseDown)
+	if (RightMouseDown)
 	{
-		Vector3D localRotation = this->getLocalRotation();
-		float x = localRotation.x;
-		float y = localRotation.y;
-		float z = localRotation.z;
+		float sensitivity = 0.002f;
+		yaw += deltaMousePos.x * sensitivity;
+		pitch += deltaMousePos.y * sensitivity;
 
-		float speed = 0.005f;
-		x += deltaMousePos.y * speed;
-		y += deltaMousePos.x * speed;
-		
-		
-		
-		this->setRotation(x, y, z);
-
-
-		this->updateViewMatrix();
+		// Clamp pitch to avoid flipping
+		if (pitch > 1.5f) pitch = 1.5f;
+		if (pitch < -1.5f) pitch = -1.5f;
 	}
-	
-	
 }
 
 void Camera::onLeftMouseDown(const Point& mousePosition)

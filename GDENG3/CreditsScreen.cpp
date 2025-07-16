@@ -25,8 +25,8 @@ void CreditsScreen::drawUI()
 		ImGui::SetWindowSize(ImVec2(550, UIManager::WINDOW_HEIGHT - 450));
 		ImGui::Text("About:\n");
 		ImGui::Text("Scene Editor: v0.01\n");
-		ImGui::Text("Developer: Marco Malabag\n");
-		ImGui::Text("Acknowledgement: Most of the code is gotten from \npardcode and sir Neil Gallego.\nThe ImGui API is from 'https://github.com/ocornut/imgui'");
+		ImGui::Text("Developer: Francis Apolinar\n");
+		ImGui::Text("Acknowledgement: \nPardcode & Sir Neil Gallego.\nThe ImGui API is from 'https://github.com/ocornut/imgui'");
 		ImGui::Image((void*)my_texture, ImVec2(my_image_width, my_image_height));
        
 		if (ImGui::Button("Close", ImVec2(70.0f, 0.0f)))
