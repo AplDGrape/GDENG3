@@ -1,7 +1,8 @@
 #pragma once
 #include <d3d11.h>
 
-class Wireframe {
+class Wireframe 
+{
 public:
     Wireframe(ID3D11Device* device);
     ~Wireframe();
