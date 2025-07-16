@@ -5,9 +5,7 @@
 Texture::Texture(const wchar_t* full_path): Resource(full_path)
 {
 	DirectX::ScratchImage imageData;
-	HRESULT res = DirectX::LoadFromWICFile(full_path,
-		DirectX::WIC_FLAGS_NONE,
-		nullptr, imageData);
+	HRESULT res = DirectX::LoadFromWICFile(full_path, DirectX::WIC_FLAGS_NONE, nullptr, imageData);
 
 	if(SUCCEEDED(res))
 	{
@@ -19,8 +17,7 @@ Texture::Texture(const wchar_t* full_path): Resource(full_path)
 		desc.Texture2D.MipLevels = (UINT)imageData.GetMetadata().mipLevels;
 		desc.Texture2D.MostDetailedMip = 0;
 
-		GraphicsEngine::getInstance()->getD3Ddevice()->CreateShaderResourceView(m_texture, &desc,
-			&shaderResView);
+		GraphicsEngine::getInstance()->getD3Ddevice()->CreateShaderResourceView(m_texture, &desc, &shaderResView);
 	}
 	else
 	{
@@ -33,4 +30,3 @@ Texture::~Texture()
 	this->m_texture->Release();
 	this->shaderResView->Release();
 }
-

@@ -1,7 +1,6 @@
 #include "AppWindow.h"
 #include "Debug.h"
 
-
 AppWindow* AppWindow::sharedInstance = NULL;
 AppWindow::AppWindow()
 {
@@ -40,7 +39,6 @@ void AppWindow::initializeEngine()
 	GameObjectManager::initialize();
 	GraphicsEngine* graphEngine = GraphicsEngine::getInstance();
 
-
 	m_swap_chain = graphEngine->createSwapChain();
 
 	RECT rc = this->getClientWindowRect();
@@ -61,6 +59,7 @@ void AppWindow::onUpdate()
 {
 	Window::onUpdate();
 	this->ticks += EngineTime::getDeltaTime() * 1.0f;
+
 	InputSystem::getInstance()->update();
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
 		0.01, 0.01, 0.01, 0.01);
@@ -84,13 +83,12 @@ void AppWindow::onUpdate()
 		}
 	}
 
-
 	SceneCameraHandler::getInstance()->update();
 	GameObjectManager::getInstance()->renderAll(rc.right - rc.left, rc.bottom - rc.top);
-	UIManager::getInstance()->drawAllUI();
-	m_swap_chain->present(true);
 
-	
+	UIManager::getInstance()->drawAllUI();
+
+	m_swap_chain->present(true);
 }
 
 void AppWindow::onDestroy()

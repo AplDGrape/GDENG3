@@ -35,7 +35,6 @@ public:
 
 	ID3D11DeviceContext* getContext();
 	~DeviceContext();
-
 public:
 	void setVertexShader(VertexShader* vertex_shader);
 	void setConstantBuffer(VertexShader* vertex_shader, ConstantBuffer* constant_buffer);
@@ -44,14 +43,9 @@ public:
 	void setPixelShader(PixelShader* pixel_shader);
 	void setConstantBuffer(PixelShader* pixel_shader, ConstantBuffer* constant_buffer);
 	void setTexture(PixelShader* pixel_shader, Texture* texture);
-
 private:
-	ID3D11DeviceContext* Devicecontext;
-
+	ID3D11DeviceContext* m_device_context;
 private:
 	friend class ConstantBuffer;
-
-
-	
 };
 

@@ -70,15 +70,11 @@ Mesh::Mesh(const wchar_t* full_path): Resource(full_path)
 		}
 	}
 
-	Shaderlibrary::getInstance()->requestVertexShaderData(names.MESHLAYOUT_VERTEX_SHADER_NAME, 
-		&dataShader.shaderByteCode,
-		&dataShader.sizeShader);
+	Shaderlibrary::getInstance()->requestVertexShaderData(names.MESHLAYOUT_VERTEX_SHADER_NAME, &dataShader.shaderByteCode, &dataShader.sizeShader);
 	this->vertexBuffer = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
-	this->vertexBuffer->load(&list_vertices[0], sizeof(VertexMesh),
-		(UINT)list_vertices.size(), dataShader.shaderByteCode, dataShader.sizeShader);
+	this->vertexBuffer->load(&list_vertices[0], sizeof(VertexMesh), (UINT)list_vertices.size(), dataShader.shaderByteCode, dataShader.sizeShader);
 	this->indexBuffer = GraphicsEngine::getInstance()->createIndexBuffer();
 	this->indexBuffer->load(&list_indices[0], (UINT)list_indices.size());
-
 }
 
 VertexBufferTextured* Mesh::getVertexBuffer()
@@ -94,5 +90,3 @@ IndexBuffer* Mesh::getIndexBuffer()
 Mesh::~Mesh()
 {
 }
-
-

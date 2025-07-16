@@ -1,7 +1,8 @@
 #pragma once
 #include <d3d11.h>
-#include "GraphicsEngine.h"
 #include <iostream>
+
+#include "GraphicsEngine.h"
 #include "DeviceContext.h"
 
 class DeviceContext;
@@ -14,16 +15,10 @@ public:
 	UINT getSizeIndexList();
 	bool release();
 	~IndexBuffer();
-
 private:
-	UINT SizeList;
-
+	UINT m_size_list;
 private:
 	ID3D11Buffer* m_buffer;
-
 private:
 	friend class DeviceContext;
-
-
 };
-

@@ -2,8 +2,6 @@
 #include <iostream>
 #include <string>
 
-
-
 class Resource
 {
 public:
@@ -13,4 +11,3 @@ public:
 protected:
 	std::wstring fullPath;
 };
-

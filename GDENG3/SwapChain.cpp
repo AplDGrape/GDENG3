@@ -24,7 +24,7 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
     desc.SampleDesc.Quality = 0;
     desc.Windowed = TRUE;
 
-
+    //Create the swap chain for the window indicated by HWND parameter
     HRESULT hr = GraphicsEngine::getInstance()->getFactory()->CreateSwapChain(device, &desc, &m_swap_chain);
 
     if(FAILED(hr))
@@ -32,6 +32,10 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
         std::cout << "Failed to create swap chain";
         return false;
     }
+
+    //DepthStencil
+    //HRESULT depthStencilResult = this->directXDevice->CreateDepthStencilView(buffer, NULL, &this->depthView);
+    //LogUtils::PrintHResult(depthStencilResult);
 
     ID3D11Texture2D* buffer = NULL;
     hr = m_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&buffer);
@@ -42,7 +46,7 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
         return false;
     }
 
-    hr = device->CreateRenderTargetView(buffer, NULL, &this->RenderTargetView);
+    hr = device->CreateRenderTargetView(buffer, NULL, &this->m_rtv);
     buffer->Release();
 
     if (FAILED(hr))
@@ -50,6 +54,25 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
         std::cout << "Failed to create render target view";
         return false;
     }
+
+    // Create Depth Buffer
+    //D3D11_TEXTURE2D_DESC depthDesc = {};
+    //depthDesc.Width = width;
+    //depthDesc.Height = height;
+    //depthDesc.MipLevels = 1;
+    //depthDesc.ArraySize = 1;
+    //depthDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+    //depthDesc.SampleDesc.Count = 1;
+    //depthDesc.SampleDesc.Quality = 0;
+    //depthDesc.Usage = D3D11_USAGE_DEFAULT;
+    //depthDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+
+    //hr = device->CreateTexture2D(&depthDesc, nullptr, &m_depth_buffer);
+    //if (FAILED(hr)) return false;
+
+    //// Create Depth Stencil View
+    //hr = device->CreateDepthStencilView(m_depth_buffer, nullptr, &m_dsv);
+    //if (FAILED(hr)) return false;
 
     D3D11_TEXTURE2D_DESC texDesc = {};
     texDesc.Width = width;
@@ -70,7 +93,7 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
         std::cout << "Failed to create depth result" << "\n";
     }
 
-    hr = device->CreateDepthStencilView(buffer, NULL, &this->DepthView);
+    hr = device->CreateDepthStencilView(buffer, NULL, &this->m_dsv);
     if (FAILED(hr))
     {
         std::cout << "Failed to create depth stencil view" << "\n";
@@ -90,17 +113,23 @@ bool SwapChain::present(bool vsync)
 
 ID3D11RenderTargetView* SwapChain::getRenderTargetView()
 {
-    return this->RenderTargetView;
+    return this->m_rtv;
 }
 
 ID3D11DepthStencilView* SwapChain::getDepthStencilView()
 {
-    return this->DepthView;
+    return this->m_dsv;
 }
 
 bool SwapChain::release()
 {
     m_swap_chain->Release();
+
+    //if (m_dsv) m_dsv->Release();
+    //if (m_depth_buffer) m_depth_buffer->Release();
+    //if (m_rtv) m_rtv->Release();
+    //if (m_swap_chain) m_swap_chain->Release();
+
     delete this;
     return true;
 }

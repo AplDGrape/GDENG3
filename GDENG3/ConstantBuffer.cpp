@@ -4,16 +4,16 @@ ConstantBuffer::ConstantBuffer()
 {
 }
 
-bool ConstantBuffer::load(void* buffer, UINT sizeBuffer)
+bool ConstantBuffer::load(void* buffer, UINT size_buffer)
 {
-	if(this->Buffer)
+	if(this->m_buffer)
 	{
-		this->Buffer->Release();
+		this->m_buffer->Release();
 	}
 
 	D3D11_BUFFER_DESC buff_desc = {};
 	buff_desc.Usage = D3D11_USAGE_DEFAULT;
-	buff_desc.ByteWidth = sizeBuffer;
+	buff_desc.ByteWidth = size_buffer;
 	buff_desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	buff_desc.CPUAccessFlags = 0;
 	buff_desc.MiscFlags = 0;
@@ -21,7 +21,7 @@ bool ConstantBuffer::load(void* buffer, UINT sizeBuffer)
 	D3D11_SUBRESOURCE_DATA init_data = {};
 	init_data.pSysMem = buffer;
 
-	if (FAILED(GraphicsEngine::getInstance()->getD3Ddevice()->CreateBuffer(&buff_desc, &init_data, &this->Buffer)))
+	if (FAILED(GraphicsEngine::getInstance()->getD3Ddevice()->CreateBuffer(&buff_desc, &init_data, &this->m_buffer)))
 	{
 		std::cout << "Failed to create constant buffer";
 		return false;
@@ -32,14 +32,14 @@ bool ConstantBuffer::load(void* buffer, UINT sizeBuffer)
 
 void ConstantBuffer::update(DeviceContext* context, void* buffer)
 {
-	context->Devicecontext->UpdateSubresource(this->Buffer, NULL, NULL, buffer, NULL, NULL);
+	context->m_device_context->UpdateSubresource(this->m_buffer, NULL, NULL, buffer, NULL, NULL);
 }
 
 bool ConstantBuffer::release()
 {
-	if(this->Buffer)
+	if(this->m_buffer)
 	{
-		this->Buffer->Release();
+		this->m_buffer->Release();
 		delete this;
 	}
 

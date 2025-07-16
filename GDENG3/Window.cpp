@@ -1,17 +1,20 @@
+#ifndef UNICODE
+#define UNICODE
+#endif
+
 #include "Window.h"
 #include <iostream>
 #include "IMGUI/imgui.h"
 
 using namespace std;
 
+//Declared for handling mouse and key events in IMGUI
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 //Window* window = nullptr;
 Window::Window()
 {
 }
-
-
 
 LRESULT CALLBACK wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
@@ -22,40 +25,44 @@ LRESULT CALLBACK wndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	{
 		case WM_CREATE:
 		{
-				Window* window = (Window*)((LPCREATESTRUCT)lparam)->lpCreateParams;
-				SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)window);
-				window->setHWND(hwnd);
+			//Event fired when the window is created
+			//Collected here..
+			Window* window = (Window*)((LPCREATESTRUCT)lparam)->lpCreateParams;
+			//..and then stored for later lookup
+			SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)window);
+			window->setHWND(hwnd);
 
-				window->onCreate();
-				break;
+			window->onCreate();
+			break;
 		}
 		case WM_DESTROY:
 		{
+			//Event fired when the window is destroyed
 			Window* window = (Window*) GetWindowLongPtr(hwnd, GWLP_USERDATA);
 			window->onDestroy();
 			::PostQuitMessage(0);
 			break;
 		}
-
 		case WM_SETFOCUS:
 		{
+			//Event fired when the window get focus
 			Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 			window->onFocus();
+			//::PostQuitMessage(0);
 			break;
 		}
-
 		case WM_KILLFOCUS:
 		{
+			//Event fired when the window lost focus
 			Window* window = (Window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 			window->onKillFocus();
+			//::PostQuitMessage(0);
 			break;
 		}
-
 		default:
 		{
 			return ::DefWindowProc(hwnd, msg, wparam, lparam);
 		}
-
 	}
 
 	return NULL;
@@ -72,39 +79,38 @@ bool Window::init()
 	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	wc.hInstance = NULL;
-	wc.lpszClassName = L"GDENG - 2 Project";
+	wc.lpszClassName = L"MyWindowClass";
 	wc.lpszMenuName = L"";
 	wc.style = NULL;
 	wc.lpfnWndProc = &wndProc;
 
-	if (!::RegisterClassEx(&wc))
-	{
-
+	if (!::RegisterClassEx(&wc)) // If the registration of class will fail, the function will return false
 		return false;
-	}
 
-	
+	//Creation of window
+	this->m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"DirectX Application", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1440, 900, NULL, NULL, NULL, this);
+	//this->m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"DirectX Application", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768, NULL, NULL, NULL, this);
 
-	this->m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"GDENG - 2 Project", L"DirectX Application", WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, 1440, 900, NULL, NULL, NULL, this);
-
+	//If the creation fail returns false
 	if (!this->m_hwnd)
-	{
-		std::cout << "Not working";
 		return false;
-	}
 
+	//Show up the window
 	::ShowWindow(this->m_hwnd, SW_SHOW);
 	::UpdateWindow(this->m_hwnd);
 
+	/*if (!window)
+		window = this;*/
 
-	m_isRunning = true;
+	//Set this flag ro true to indicate that the window is initialized and running
+	m_is_run = true;
 
 	return true;
 }
 
 bool Window::broadcast()
 {
+	//EngineTime::LogFrameStart();
 
 	MSG msg;
 	EngineTime::LogFrameStart();
@@ -116,26 +122,27 @@ bool Window::broadcast()
 		DispatchMessage(&msg);
 	}
 
-	
+	//this->onUpdate();
 
 	Sleep(1);
+
 	EngineTime::LogFrameEnd();
+
 	return true;
 }
 
 bool Window::release()
 {
+	//Destroy the window
 	if (!::DestroyWindow(this->m_hwnd))
-	{
 		return false;
-	}
 
 	return true;
 }
 
 bool Window::isRun()
 {
-	return m_isRunning;
+	return m_is_run;
 }
 
 HWND Window::gethwnd()
@@ -156,10 +163,6 @@ void Window::setHWND(HWND hwnd)
 	this->m_hwnd = hwnd;
 }
 
-Window::~Window()
-{
-}
-
 void Window::onCreate()
 {
 }
@@ -170,7 +173,7 @@ void Window::onUpdate()
 
 void Window::onDestroy()
 {
-	m_isRunning = false;
+	m_is_run = false;
 }
 
 void Window::onFocus()
@@ -179,4 +182,9 @@ void Window::onFocus()
 
 void Window::onKillFocus()
 {
+}
+
+Window::~Window()
+{
+
 }

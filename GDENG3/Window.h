@@ -1,5 +1,8 @@
 #pragma once
+
+#pragma comment(lib,"d3d11.lib")
 #define NOMINMAX
+
 #include <Windows.h>
 #include "EngineTime.h"
 
@@ -7,8 +10,12 @@ class Window
 {
 public:
 	Window();
+
+	//Initialize the window
 	bool init();
 	bool broadcast();
+
+	//Release the window
 	bool release();
 	bool isRun();
 
@@ -16,9 +23,7 @@ public:
 	RECT getClientWindowRect();
 	void setHWND(HWND hwnd);
 
-	
-
-	//virtual methods
+	//EVENTS
 	virtual void onCreate();
 	virtual void onUpdate();
 	virtual void onDestroy();
@@ -27,10 +32,8 @@ public:
 	virtual void onKillFocus();
 
 	~Window();
-
 protected:
 	HWND m_hwnd;
-	bool m_isRunning;
-
+	bool m_is_run;
 };
 

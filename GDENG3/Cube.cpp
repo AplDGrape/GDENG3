@@ -61,9 +61,6 @@ Cube::Cube(String name, AGameObject::PrimitiveType type):AGameObject(name, type)
 	cc.time = 0;
 	this->constantbuffer = GraphicsEngine::getInstance()->createConstantBuffer();
 	this->constantbuffer->load(&cc, sizeof(constant));
-
-	
-	
 }
 
 void Cube::setTexturesVertexBuffer()
@@ -92,8 +89,6 @@ void Cube::setTexturesVertexBuffer()
 		{ Vector2D(1.0f,0.0f) },
 		{ Vector2D(1.0f,1.0f) }
 	};
-
-
 
 	Vertex vertex_list[] =
 	{
@@ -130,10 +125,7 @@ void Cube::setTexturesVertexBuffer()
 		{ position_list[6],texcoord_list[0] },
 		{ position_list[1],texcoord_list[2] },
 		{ position_list[0],texcoord_list[3] }
-
-
 	};
-
 
 	this->textureVertexBuffer = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
 	this->textureVertexBuffer->load(vertex_list, sizeof(Vertex), ARRAYSIZE(vertex_list), shaderdataTexture.shaderByteCode, shaderdataTexture.sizeShader);
@@ -172,10 +164,8 @@ void Cube::setTexturesVertexBuffer()
 
 void Cube::update(float deltaTime)
 {
-	
-	
-}
 
+}
 
 void Cube::draw(int width, int height)
 {
@@ -185,13 +175,11 @@ void Cube::draw(int width, int height)
 	{
 		this->vertex_shader = Shaderlibrary::getInstance()->getVertexShader(namesShader.BASE_VERTEX_SHADER_NAME);
 		this->pixel_shader = Shaderlibrary::getInstance()->getPixelShader(namesShader.BASE_PIXEL_SHADER_NAME);
-
 	}
 	else
 	{
 		this->vertex_shader = Shaderlibrary::getInstance()->getVertexShader(namesShader.TEXTURED_VERTEX_SHADER_NAME);
 		this->pixel_shader = Shaderlibrary::getInstance()->getPixelShader(namesShader.TEXTURED_PIXEL_SHADER_NAME);
-
 	}
 	
 	if(this->overrideMatrix)
@@ -239,7 +227,6 @@ void Cube::draw(int width, int height)
 
 		device->drawIndexedTriangleList(this->IndexBufferTexture->getSizeIndexList(), 0, 0);
 	}
-
 }
 
 void Cube::setAnimSpeed(float speed)
