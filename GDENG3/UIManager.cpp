@@ -18,9 +18,9 @@ UIManager::UIManager(HWND windowHandle)
 	ImGui_ImplDX11_Init(GraphicsEngine::getInstance()->getD3Ddevice(), GraphicsEngine::getInstance()->getImmediateDeviceContext()->getContext());
 
 	UINames uiNames;
-	/*ProfilerScreen* profilerScreen = new ProfilerScreen();
+	ProfilerScreen* profilerScreen = new ProfilerScreen();
 	this->uiTable[uiNames.PROFILER_SCREEN] = profilerScreen;
-	this->uiList.push_back(profilerScreen);*/
+	this->uiList.push_back(profilerScreen);
 
 	MenuScreen* menuScreen = new MenuScreen();
 	this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
@@ -42,11 +42,11 @@ UIManager::UIManager(HWND windowHandle)
 	this->uiTable[uiNames.COLORPICKER_SCREEN] = colorPickerScreen;
 	this->uiList.push_back(colorPickerScreen);
 
-	/*ScreenPlayBack* playBackScreen = new ScreenPlayBack();
+	ScreenPlayBack* playBackScreen = new ScreenPlayBack();
 	this->uiTable[uiNames.PLAYBACK_SCREEN] = playBackScreen;
 	this->uiList.push_back(playBackScreen);
 
-	ScreenActions* ActionsScreen = new ScreenActions();
+	/*ScreenActions* ActionsScreen = new ScreenActions();
 	this->uiTable[uiNames.ACTIONS_SCREEN] = ActionsScreen;
 	this->uiList.push_back(ActionsScreen);
 
