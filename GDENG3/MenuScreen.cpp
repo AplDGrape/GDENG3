@@ -56,6 +56,7 @@ void MenuScreen::drawUI()
 			if (ImGui::MenuItem("Create Utah Teapot")) { GameObjectManager::getInstance()->generateTeapotOBJ(); }
 			if (ImGui::MenuItem("Create Bunny")) { GameObjectManager::getInstance()->generateBunnyObj(); }
 			if (ImGui::MenuItem("Create Armadillo")) { GameObjectManager::getInstance()->generateArmadilloOBJ(); }
+			if (ImGui::MenuItem("Generate All 3")) { GameObjectManager::getInstance()->generateAllOBJ(); }
 
 			ImGui::EndGroup();
 			ImGui::EndMenu();

@@ -65,6 +65,7 @@ public:
 	void generateBunnyObj();
 	void generateArmadilloOBJ();
 	void generateTeapotOBJ();
+	void generateAllOBJ();
 
 	void createObjectFromFile(String name, AGameObject::PrimitiveType type, Vector3D position, Vector3D rotation, Vector3D scale, bool rigidBody);
 	

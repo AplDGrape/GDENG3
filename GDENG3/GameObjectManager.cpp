@@ -272,9 +272,15 @@ void GameObjectManager::generateTeapotOBJ()
 		OutputDebugStringA("Failed to load teapot.obj\n");
 	}
 	else {
+		
 		Texture* teapotTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
 		//Texture* bunnyTex = nullptr;
 		GameObjectManager::getInstance()->createOBJMODEL(teapotMesh, "Utah Teapot", teapotTex);
+
+		AGameObject* obj = findObjectByName("Utah Teapot");
+		if (obj) {
+			obj->setScale(Vector3D(5.0f, 5.0f, 5.0f));
+		}
 	}
 }
 
@@ -290,7 +296,12 @@ void GameObjectManager::generateBunnyObj()
 	else {
 		Texture* bunnyTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
 		//Texture* bunnyTex = nullptr;
-		GameObjectManager::getInstance()->createOBJMODEL(bunnyMesh, "StanfordBunny", bunnyTex);
+		GameObjectManager::getInstance()->createOBJMODEL(bunnyMesh, "Stanford Bunny", bunnyTex);
+
+		AGameObject* obj = findObjectByName("Stanford Bunny");
+		if (obj) {
+			obj->setScale(Vector3D(20.0f, 20.0f, 20.0f));
+		}
 	}
 }
 
@@ -306,7 +317,67 @@ void GameObjectManager::generateArmadilloOBJ()
 	else {
 		Texture* armdailloTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
 		//Texture* armdailloTex = nullptr;
-		GameObjectManager::getInstance()->createOBJMODEL(armadilloMesh, "StanfordArmadillo", armdailloTex);
+		GameObjectManager::getInstance()->createOBJMODEL(armadilloMesh, "Armadillo", armdailloTex);
+	}
+}
+
+void GameObjectManager::generateAllOBJ()
+{
+	// Load teapot mesh
+	std::wstring teapotPath = L"Assets/Meshes/OBJ/teapot.obj";
+	Mesh* teapotMesh = MeshManager::getInstance()->createMeshFromFile(teapotPath.c_str());
+
+	if (!teapotMesh) {
+		OutputDebugStringA("Failed to load teapot.obj\n");
+	}
+	else {
+
+		Texture* teapotTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
+		//Texture* bunnyTex = nullptr;
+		GameObjectManager::getInstance()->createOBJMODEL(teapotMesh, "OBJ 1", teapotTex);
+
+		AGameObject* obj = findObjectByName("OBJ 1");
+		if (obj) {
+			obj->setPosition(Vector3D(-10.0f, 0.0f, 0.0f));
+			obj->setScale(Vector3D(5.0f, 5.0f, 5.0f));
+		}
+	}
+
+	// Load bunny mesh
+	std::wstring bunnyPath = L"Assets/Meshes/OBJ/bunny.obj";
+	Mesh* bunnyMesh = MeshManager::getInstance()->createMeshFromFile(bunnyPath.c_str());
+
+	if (!bunnyMesh) {
+		OutputDebugStringA("Failed to load bunny.obj\n");
+	}
+	else {
+		Texture* bunnyTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
+		//Texture* bunnyTex = nullptr;
+		GameObjectManager::getInstance()->createOBJMODEL(bunnyMesh, "OBJ 2", bunnyTex);
+
+		AGameObject* obj = findObjectByName("OBJ 2");
+		if (obj) {
+			obj->setPosition(Vector3D(0.0f, 0.0f, 0.0f));
+			obj->setScale(Vector3D(20.0f, 20.0f, 20.0f));
+		}
+	}
+
+	// Load armadillo mesh
+	std::wstring armadilloPath = L"C:Assets/Meshes/OBJ/armadillo.obj";
+	Mesh* armadilloMesh = MeshManager::getInstance()->createMeshFromFile(armadilloPath.c_str());
+
+	if (!armadilloMesh) {
+		OutputDebugStringA("Failed to load armadillo.obj\n");
+	}
+	else {
+		Texture* armdailloTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
+		//Texture* armdailloTex = nullptr;
+		GameObjectManager::getInstance()->createOBJMODEL(armadilloMesh, "OBJ 3", armdailloTex);
+
+		AGameObject* obj = findObjectByName("OBJ 3");
+		if (obj) {
+			obj->setPosition(Vector3D(10.0f, 0.0f, 0.0f));
+		}
 	}
 }
 
