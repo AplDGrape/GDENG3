@@ -28,12 +28,26 @@ Mesh* MeshManager::createMeshFromFile(const wchar_t* file_path)
 
 Resource* MeshManager::createResourceFromFileConcrete(const wchar_t* file_path)
 {
-	Mesh* mesh = nullptr;
+	/*Mesh* mesh = nullptr;
 	try
 	{
 		mesh = new Mesh(file_path);
 	}
-	catch (...) {}
+	catch (...) {}*/
+	Mesh* mesh = nullptr;
+	try
+	{
+		mesh = new Mesh(file_path);
+		OutputDebugStringA("Successfully created Mesh instance.\n");
+	}
+	catch (const std::exception& e)
+	{
+		OutputDebugStringA(("Exception while loading mesh: " + std::string(e.what()) + "\n").c_str());
+	}
+	catch (...)
+	{
+		OutputDebugStringA("Unknown error while creating Mesh\n");
+	}
 
 	return mesh;
 }

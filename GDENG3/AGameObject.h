@@ -28,7 +28,8 @@ public:
 		PHYSICS_CUBE,
 		PHYSICS_PLANE,
 		OBJ,
-		CYLINDER
+		CYLINDER,
+		BUNNY_OBJ
 	};
 
 	struct AQuaternion {

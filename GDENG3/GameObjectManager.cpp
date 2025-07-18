@@ -262,6 +262,54 @@ void GameObjectManager::hundreadCubes()
 
 }
 
+void GameObjectManager::generateTeapotOBJ()
+{
+	// Load mesh
+	std::wstring teapotPath = L"Assets/Meshes/OBJ/teapot.obj";
+	Mesh* teapotMesh = MeshManager::getInstance()->createMeshFromFile(teapotPath.c_str());
+
+	if (!teapotMesh) {
+		OutputDebugStringA("Failed to load teapot.obj\n");
+	}
+	else {
+		Texture* teapotTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
+		//Texture* bunnyTex = nullptr;
+		GameObjectManager::getInstance()->createOBJMODEL(teapotMesh, "Utah Teapot", teapotTex);
+	}
+}
+
+void GameObjectManager::generateBunnyObj()
+{
+	// Load mesh
+	std::wstring bunnyPath = L"Assets/Meshes/OBJ/bunny.obj";
+	Mesh* bunnyMesh = MeshManager::getInstance()->createMeshFromFile(bunnyPath.c_str());
+
+	if (!bunnyMesh) {
+		OutputDebugStringA("Failed to load bunny.obj\n");
+	}
+	else {
+		Texture* bunnyTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
+		//Texture* bunnyTex = nullptr;
+		GameObjectManager::getInstance()->createOBJMODEL(bunnyMesh, "StanfordBunny", bunnyTex);
+	}
+}
+
+void GameObjectManager::generateArmadilloOBJ()
+{
+	// Load mesh
+	std::wstring armadilloPath = L"C:Assets/Meshes/OBJ/armadillo.obj";
+	Mesh* armadilloMesh = MeshManager::getInstance()->createMeshFromFile(armadilloPath.c_str());
+
+	if (!armadilloMesh) {
+		OutputDebugStringA("Failed to load armadillo.obj\n");
+	}
+	else {
+		Texture* armdailloTex = TextureManager::getInstance()->createTextureFromFile(L"Assets/Textures/brick.png");
+		//Texture* armdailloTex = nullptr;
+		GameObjectManager::getInstance()->createOBJMODEL(armadilloMesh, "StanfordArmadillo", armdailloTex);
+	}
+}
+
 void GameObjectManager::createObjectFromFile(String name, AGameObject::PrimitiveType type, Vector3D position, Vector3D rotation, Vector3D scale, bool rigidBody)
 {
 	if(rotation.y == 90.0f)

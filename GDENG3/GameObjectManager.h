@@ -36,7 +36,8 @@ public:
 		CAPSULE,
 		TEXTURED_CUBE,
 		PHYSICS_CUBE,
-		PHYSICS_PLANE
+		PHYSICS_PLANE,
+		BUNNY_OBJ
 	};
 
 	static GameObjectManager* getInstance();
@@ -61,6 +62,9 @@ public:
 	void saveEditStates();
 	void restoreEditStates();
 	void applyEditorAction(EditorAction* action);
+	void generateBunnyObj();
+	void generateArmadilloOBJ();
+	void generateTeapotOBJ();
 
 	void createObjectFromFile(String name, AGameObject::PrimitiveType type, Vector3D position, Vector3D rotation, Vector3D scale, bool rigidBody);
 	

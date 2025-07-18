@@ -3,7 +3,7 @@
 #include "Resource.h"
 #include "DeviceContext.h"
 
-class DevviceContext;
+class DeviceContext;
 
 class Texture: public Resource
 {

@@ -64,7 +64,16 @@ void DeviceContext::setConstantBuffer(VertexShader* vertex_shader, ConstantBuffe
 
 void DeviceContext::setTexture(VertexShader* vertex_shader, Texture* texture)
 {
-	this->m_device_context->VSSetShaderResources(0, 1, &texture->shaderResView);
+	//this->m_device_context->VSSetShaderResources(0, 1, &texture->shaderResView);
+	if (texture)
+	{
+		this->m_device_context->VSSetShaderResources(0, 1, &texture->shaderResView);
+	}
+	else
+	{
+		ID3D11ShaderResourceView* nullSRV[1] = { nullptr };
+		this->m_device_context->VSSetShaderResources(0, 1, nullSRV);
+	}
 }
 
 void DeviceContext::setPixelShader(PixelShader* pixel_shader)
@@ -79,7 +88,16 @@ void DeviceContext::setConstantBuffer(PixelShader* pixel_shader, ConstantBuffer*
 
 void DeviceContext::setTexture(PixelShader* pixel_shader, Texture* texture)
 {
-	this->m_device_context->PSSetShaderResources(0, 1, &texture->shaderResView);
+	//this->m_device_context->PSSetShaderResources(0, 1, &texture->shaderResView);
+	if (texture)
+	{
+		this->m_device_context->PSSetShaderResources(0, 1, &texture->shaderResView);
+	}
+	else
+	{
+		ID3D11ShaderResourceView* nullSRV[1] = { nullptr };
+		this->m_device_context->PSSetShaderResources(0, 1, nullSRV);
+	}
 }
 
 void DeviceContext::setViewportSize(UINT width, UINT height)
