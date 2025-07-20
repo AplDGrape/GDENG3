@@ -96,21 +96,6 @@
     <ClCompile Include="VertexMesh.cpp">
       <Filter>GameEngine\Math\VertexMesh</Filter>
     </ClCompile>
-    <ClCompile Include="Vector4D.cpp">
-      <Filter>GameEngine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector3D.cpp">
-      <Filter>GameEngine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector2D.cpp">
-      <Filter>GameEngine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Point.cpp">
-      <Filter>GameEngine\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix4x4.cpp">
-      <Filter>GameEngine\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>

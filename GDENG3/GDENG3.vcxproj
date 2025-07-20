@@ -264,7 +264,6 @@
     <ClCompile Include="InspectorScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math.cpp" />
-    <ClCompile Include="Matrix4x4.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshManager.cpp" />
@@ -275,7 +274,6 @@
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Plane.cpp" />
-    <ClCompile Include="Point.cpp" />
     <ClCompile Include="ProfilerScreen.cpp" />
     <ClCompile Include="pugixml-1.13\src\pugixml.cpp" />
     <ClCompile Include="Rectangle.cpp" />
@@ -294,9 +292,6 @@
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="UIManager.cpp" />
-    <ClCompile Include="Vector2D.cpp" />
-    <ClCompile Include="Vector3D.cpp" />
-    <ClCompile Include="Vector4D.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexBufferTextured.cpp" />
     <ClCompile Include="VertexMesh.cpp" />
