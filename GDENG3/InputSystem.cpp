@@ -60,9 +60,9 @@ void InputSystem::update()
 		this->oldMousePosition = Point(currentMousePosition.x, currentMousePosition.y);
 	}
 
-	if (currentMousePosition.x != oldMousePosition.x || currentMousePosition.y != oldMousePosition.y)
+	if (currentMousePosition.x != oldMousePosition.m_x || currentMousePosition.y != oldMousePosition.m_y)
 	{
-		Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.x, currentMousePosition.y - oldMousePosition.y);
+		Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.m_x, currentMousePosition.y - oldMousePosition.m_y);
 		this->callOnMouseMove(deltaPosition);
 	}
 
@@ -76,12 +76,12 @@ void InputSystem::update()
 			{
 				if(i == VK_LBUTTON && m_keys_state[i] != m_old_keys_state[i])
 				{
-					Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.x, currentMousePosition.y - oldMousePosition.y);
+					Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.m_x, currentMousePosition.y - oldMousePosition.m_y);
 					this->callOnLeftMouseDown(deltaPosition);
 				}
 				else if (i == VK_RBUTTON && m_keys_state[i] != m_old_keys_state[i])
 				{
-					Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.x, currentMousePosition.y - oldMousePosition.y);
+					Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.m_x, currentMousePosition.y - oldMousePosition.m_y);
 					this->callOnRightMouseDown(deltaPosition);
 				}
 				else
@@ -93,12 +93,12 @@ void InputSystem::update()
 			{
 				if (i == VK_LBUTTON && m_keys_state[i] != m_old_keys_state[i])
 				{
-					Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.x, currentMousePosition.y - oldMousePosition.y);
+					Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.m_x, currentMousePosition.y - oldMousePosition.m_y);
 					this->callOnLeftMouseUp(deltaPosition);
 				}
 				else if (i == VK_RBUTTON && m_keys_state[i] != m_old_keys_state[i])
 				{
-					Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.x, currentMousePosition.y - oldMousePosition.y);
+					Point deltaPosition = Point(currentMousePosition.x - oldMousePosition.m_x, currentMousePosition.y - oldMousePosition.m_y);
 					this->callOnRightMouseUp(deltaPosition);
 				}
 				else
@@ -114,7 +114,7 @@ void InputSystem::update()
 
 void InputSystem::setCursorPosition(const Point& position)
 {
-	::SetCursorPos(position.x, position.y);
+	::SetCursorPos(position.m_x, position.m_y);
 }
 
 void InputSystem::showCursor(bool show)

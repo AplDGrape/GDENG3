@@ -20,16 +20,16 @@ void Camera::updateViewMatrix()
 	// Apply pitch (X) and yaw (Y) rotation
 	temp.setIdentity();
 	temp.setRotationX(pitch);
-	worldCam = worldCam.mulMatrix(temp);
+	worldCam = worldCam.multiplyTo(temp);
 
 	temp.setIdentity();
 	temp.setRotationY(yaw);
-	worldCam = worldCam.mulMatrix(temp);
+	worldCam = worldCam.multiplyTo(temp);
 
 	// Apply position
 	temp.setIdentity();
 	temp.setTranslation(this->getLocalPosition());
-	worldCam = worldCam.mulMatrix(temp);
+	worldCam = worldCam.multiplyTo(temp);
 
 	// Invert to get view matrix
 	worldCam.getInverse();
@@ -168,11 +168,11 @@ void Camera::update(float deltaTime)
 	Matrix4x4 temp;
 	temp.setIdentity();
 	temp.setRotationX(pitch);
-	rot = rot.mulMatrix(temp);
+	rot = rot.multiplyTo(temp);
 
 	temp.setIdentity();
 	temp.setRotationY(yaw);
-	rot = rot.mulMatrix(temp);
+	rot = rot.multiplyTo(temp);
 
 	Vector3D forward = rot.getZDirection() * -1.0f; // Forward is -Z
 	Vector3D right = rot.getXDirection();           // Right is +X
@@ -217,8 +217,8 @@ void Camera::onMouseMove(const Point& deltaMousePos)
 	if (RightMouseDown)
 	{
 		float sensitivity = 0.002f;
-		yaw += deltaMousePos.x * sensitivity;
-		pitch += deltaMousePos.y * sensitivity;
+		yaw += deltaMousePos.m_x * sensitivity;
+		pitch += deltaMousePos.m_y * sensitivity;
 
 		// Clamp pitch to avoid flipping
 		if (pitch > 1.5f) pitch = 1.5f;

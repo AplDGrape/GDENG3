@@ -81,7 +81,7 @@ void AGameObject::setLocalMatrix(float matrix[16])
 	translate.setIdentity();
 	translate.setTranslation(this->Position);
 
-	this->LocalMatrix = scale.mulMatrix(translate.mulMatrix(coordinate));
+	this->LocalMatrix = scale.multiplyTo(translate.multiplyTo(coordinate));
 	this->overrideMatrix = true;
 	
 }
@@ -187,9 +187,9 @@ void AGameObject::ComputeLocalMatrix()
 	this->RotationGl.setRotationY(rotation.m_y);
 
 	this->RotationTotal.setIdentity();
-	this->RotationTotal = this->RotationTotal.mulMatrix(RotationF.mulMatrix(RotationGl.mulMatrix(RotationZ)));
-	this->Summation = this->Summation.mulMatrix(ScaleMatrix.mulMatrix(this->RotationTotal));
-	this->Summation = this->Summation.mulMatrix(this->translate);
+	this->RotationTotal = this->RotationTotal.multiplyTo(RotationF.multiplyTo(RotationGl.multiplyTo(RotationZ)));
+	this->Summation = this->Summation.multiplyTo(ScaleMatrix.multiplyTo(this->RotationTotal));
+	this->Summation = this->Summation.multiplyTo(this->translate);
 	this->LocalMatrix = this->Summation;
 }
 
@@ -222,12 +222,12 @@ float* AGameObject::getPhysicsLocalMatrix()
 
 	Matrix4x4 rotationMatrix;
 	rotationMatrix.setIdentity();
-	rotationMatrix.mulMatrix(xMatrix.mulMatrix(yMatrix.mulMatrix(zMatrix)));
+	rotationMatrix.multiplyTo(xMatrix.multiplyTo(yMatrix.multiplyTo(zMatrix)));
 
-	MatrixAll = MatrixAll.mulMatrix(scaleMatrix.mulMatrix(rotationMatrix));
-	MatrixAll = MatrixAll.mulMatrix(translationMatrix);
+	MatrixAll = MatrixAll.multiplyTo(scaleMatrix.multiplyTo(rotationMatrix));
+	MatrixAll = MatrixAll.multiplyTo(translationMatrix);
 
-	return *MatrixAll.Matrix;
+	return *MatrixAll.m_mat;
 }
 
 void AGameObject::attachComponent(AComponent* component)

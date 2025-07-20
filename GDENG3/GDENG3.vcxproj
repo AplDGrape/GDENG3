@@ -294,7 +294,6 @@
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexBufferTextured.cpp" />
-    <ClCompile Include="VertexMesh.cpp" />
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="Wireframe.cpp" />

@@ -93,9 +93,6 @@
     <ClCompile Include="Math.cpp">
       <Filter>GameEngine\Math</Filter>
     </ClCompile>
-    <ClCompile Include="VertexMesh.cpp">
-      <Filter>GameEngine\Math\VertexMesh</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>GameEngine\Window</Filter>
     </ClCompile>
