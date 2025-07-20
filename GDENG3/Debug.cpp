@@ -30,9 +30,7 @@ std::vector<Debug::DebugMessage> Debug::GetMessageList(LogLevel level)
 	return filteredMessageList;
 }
 
-Debug::Debug() :
-	m_MessageList{ std::vector<DebugMessage>() },
-	m_MessageCountLimit{50}
+Debug::Debug() :m_MessageList{ std::vector<DebugMessage>() }, m_MessageCountLimit{50}
 {
 	m_MessageList.reserve(m_MessageCountLimit);
 }

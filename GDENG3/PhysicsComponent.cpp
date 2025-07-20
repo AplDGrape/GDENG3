@@ -54,7 +54,6 @@ void PhysicsComponent::perform(float deltaTime)
 	transform.getOpenGLMatrix(Matrix);
 
 	this->getOwner()->setLocalMatrix(Matrix);
-	
 }
 
 RigidBody* PhysicsComponent::getRigidBody()

@@ -5,7 +5,6 @@ ActionHistory* ActionHistory::sharedInstance = NULL;
 
 ActionHistory::ActionHistory()
 {
-	
 }
 
 ActionHistory* ActionHistory::getInstance()
@@ -85,23 +84,22 @@ EditorAction* ActionHistory::redoAction()
 
 void ActionHistory::clear()
 {
-	while (this->hasRemainingUndoActions()) {
+	while (this->hasRemainingUndoActions()) 
+	{
 		EditorAction* action = this->actionsPerformed.top();
 		delete action;
 		this->actionsPerformed.pop();
 	}
 
-	while (this->hasRemainingRedoActions()) {
+	while (this->hasRemainingRedoActions()) 
+	{
 		EditorAction* action = this->actionsCancelled.top();
 		delete action;
 		this->actionsCancelled.pop();
 	}
 }
 
-
 ActionHistory::~ActionHistory()
 {
 	this->clear();
 }
-
-

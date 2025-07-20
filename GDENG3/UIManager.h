@@ -32,7 +32,6 @@ public:
 
 	static const int WINDOW_WIDTH = 1440;
 	static const int WINDOW_HEIGHT = 900;
-
 private:
 	UIManager(HWND windowHandle);
 	~UIManager();
@@ -42,9 +41,9 @@ private:
 
 	UIList uiList;
 	UITable uiTable;
+
 	bool showCredits = false;
-	bool showColorPicker = false;
+	bool showColourPicker = false;
 public:
 	static ImVec4 logoTint;
 };
-

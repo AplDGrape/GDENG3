@@ -1,11 +1,12 @@
 #include "Camera.h"
 #include <iostream>
 
-Camera::Camera(String name):AGameObject(name, AGameObject::CAMERA)
+Camera::Camera(String name) :AGameObject(name, AGameObject::CAMERA)
 {
 	this->setPosition(0.0f, 2.0f, -2.0f);
 	//this->cameraFront = Vector3D(0.0f, 0.0f, -1.0f);
 	//this->cameraUp = Vector3D(0.0f, 1.0f, 0.0f);
+
 	InputSystem::getInstance()->addListener(this);
 	this->updateViewMatrix();
 }
@@ -17,6 +18,14 @@ void Camera::updateViewMatrix()
 
 	Matrix4x4 temp;
 
+	//cc.m_world.setTranslation(Vector3D::lerp(Vector3D(-2, -2, 0), Vector3D(2, 2, 0), m_delta_pos));
+	
+	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0), Vector3D(1.0f, 1.0f, 0), (sin(m_delta_scale)+1.0f)/2.0f));
+
+	//temp.setTranslation(Vector3D::lerp(Vector3D(-1.5f, -1.5f, 0), Vector3D(1.5f, 1.5f, 0), m_delta_pos));
+
+	//cc.m_world *= temp;
+	
 	// Apply pitch (X) and yaw (Y) rotation
 	temp.setIdentity();
 	temp.setRotationX(pitch);
@@ -31,30 +40,41 @@ void Camera::updateViewMatrix()
 	temp.setTranslation(this->getLocalPosition());
 	worldCam = worldCam.multiplyTo(temp);
 
+	/*m_world_cam = world_cam;
+
+	world_cam.getInverse();*/
+
 	// Invert to get view matrix
 	worldCam.getInverse();
 	this->LocalMatrix = worldCam;
+
+	//m_cameraViewMatrix = m_camera.getViewMatrix();
+	//m_cameraProjMatrix = m_camera.getProjectionMatrix();
 }
 
 void Camera::defaultmode(float rate, float x, float y, float z)
 {
-	if (InputSystem::getInstance()->isKeyDown('W')) {
+	if (InputSystem::getInstance()->isKeyDown('W')) 
+	{
 		z += rate;
 	
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('S')) {
+	else if (InputSystem::getInstance()->isKeyDown('S')) 
+	{
 		z -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('A')) {
+	else if (InputSystem::getInstance()->isKeyDown('A')) 
+	{
 		x -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('D')) {
+	else if (InputSystem::getInstance()->isKeyDown('D')) 
+	{
 		x += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
@@ -63,22 +83,26 @@ void Camera::defaultmode(float rate, float x, float y, float z)
 
 void Camera::AerialMode(float rate, float x, float y, float z)
 {
-	if (InputSystem::getInstance()->isKeyDown('W')) {
+	if (InputSystem::getInstance()->isKeyDown('W')) 
+	{
 		y += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('S')) {
+	else if (InputSystem::getInstance()->isKeyDown('S'))
+	{
 		y -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('A')) {
+	else if (InputSystem::getInstance()->isKeyDown('A')) 
+	{
 		x -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('D')) {
+	else if (InputSystem::getInstance()->isKeyDown('D')) 
+	{
 		x += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
@@ -87,22 +111,26 @@ void Camera::AerialMode(float rate, float x, float y, float z)
 
 void Camera::DownWardMode(float rate, float x, float y, float z)
 {
-	if (InputSystem::getInstance()->isKeyDown('W')) {
+	if (InputSystem::getInstance()->isKeyDown('W')) 
+	{
 		y -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('S')) {
+	else if (InputSystem::getInstance()->isKeyDown('S')) 
+	{
 		y += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('A')) {
+	else if (InputSystem::getInstance()->isKeyDown('A')) 
+	{
 		x -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('D')) {
+	else if (InputSystem::getInstance()->isKeyDown('D'))
+	{
 		x += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
@@ -111,22 +139,26 @@ void Camera::DownWardMode(float rate, float x, float y, float z)
 
 void Camera::RightViewMode(float rate, float x, float y, float z)
 {
-	if (InputSystem::getInstance()->isKeyDown('W')) {
+	if (InputSystem::getInstance()->isKeyDown('W')) 
+	{
 		x += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('S')) {
+	else if (InputSystem::getInstance()->isKeyDown('S'))
+	{
 		x -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('A')) {
+	else if (InputSystem::getInstance()->isKeyDown('A')) 
+	{
 		z += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('D')) {
+	else if (InputSystem::getInstance()->isKeyDown('D')) 
+	{
 		z -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
@@ -135,22 +167,26 @@ void Camera::RightViewMode(float rate, float x, float y, float z)
 
 void Camera::LeftViewMode(float rate, float x, float y, float z)
 {
-	if (InputSystem::getInstance()->isKeyDown('W')) {
+	if (InputSystem::getInstance()->isKeyDown('W')) 
+	{
 		x -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('S')) {
+	else if (InputSystem::getInstance()->isKeyDown('S')) 
+	{
 		x += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('A')) {
+	else if (InputSystem::getInstance()->isKeyDown('A')) 
+	{
 		z -= rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();
 	}
-	else if (InputSystem::getInstance()->isKeyDown('D')) {
+	else if (InputSystem::getInstance()->isKeyDown('D')) 
+	{
 		z += rate;
 		this->setPosition(x, y, z);
 		this->updateViewMatrix();

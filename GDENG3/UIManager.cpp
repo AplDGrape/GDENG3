@@ -77,7 +77,7 @@ void UIManager::drawAllUI()
 		{
 			continue;
 		}
-		else if(this->uiList[i]->getName() == "Color Picker" && !showColorPicker)
+		else if(this->uiList[i]->getName() == "Color Picker" && !showColourPicker)
 		{
 			continue;
 		}
@@ -106,12 +106,12 @@ void UIManager::showCreditsScreen()
 
 void UIManager::hideColorPickerScreen()
 {
-	this->showColorPicker = false;
+	this->showColourPicker = false;
 }
 
 void UIManager::showColorPickerScreen()
 {
-	this->showColorPicker = true;
+	this->showColourPicker = true;
 }
 
 UIManager* UIManager::getInstance()
@@ -119,9 +119,6 @@ UIManager* UIManager::getInstance()
 	return sharedInstance;
 }
 
-
 UIManager::~UIManager()
 {
 }
-
-

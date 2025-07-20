@@ -26,21 +26,16 @@ public:
 	~Debug() = default;
 
 	template <typename... Args>
-	static void Log(std::string_view message,
-					Args&&... args);
+	static void Log(std::string_view message, Args&&... args);
 
 	template <typename... Args>
-	static void LogError(bool assertTrue,
-						 std::string_view message, 
-						 Args&&... args);
+	static void LogError(bool assertTrue, std::string_view message, Args&&... args);
 
 	std::vector<DebugMessage> GetMessageList(LogLevel level);
 private:
-
 	Debug();
 
-	void StoreMessage(const LogLevel& level,
-					  const std::string& message);
+	void StoreMessage(const LogLevel& level, const std::string& message);
 
 	std::vector<DebugMessage> m_MessageList;
 
@@ -48,8 +43,7 @@ private:
 };
 
 template<typename ...Args>
-inline void Debug::Log(std::string_view message,
-	Args&&... args)
+inline void Debug::Log(std::string_view message, Args&&... args)
 {
 	std::string debugString = std::vformat(message, std::make_format_args(args...));
 	std::string logString = std::format("{0}\n", debugString);
@@ -60,9 +54,7 @@ inline void Debug::Log(std::string_view message,
 }
 
 template<typename ...Args>
-inline void Debug::LogError(bool assertTrue,
-						    std::string_view message,
-						    Args&&... args)
+inline void Debug::LogError(bool assertTrue, std::string_view message, Args&&... args)
 {
 	if (assertTrue)
 	{

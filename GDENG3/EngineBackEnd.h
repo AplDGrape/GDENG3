@@ -21,17 +21,17 @@ public:
 	void Start();
 	void Stop();
 	EditorMode getMode();
-
 private:
 	EngineBackEnd();
 	~EngineBackEnd();
+
 	EngineBackEnd(EngineBackEnd const&){};
 	EngineBackEnd& operator=(EngineBackEnd const&) {};
 
 	static EngineBackEnd* sharedInstance;
 
 	EditorMode editorMode = EditorMode::EDITOR;
+
 	bool frameStepping = false;
 	bool isStopped = false;
 };
-

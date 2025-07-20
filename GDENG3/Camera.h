@@ -2,11 +2,9 @@
 #include "AGameObject.h"
 #include "InputListener.h"
 #include "InputSystem.h"
+#include "EngineTime.h"
 #include "Math.h"
 #include <cmath>
-#include "EngineTime.h"
-
-
 
 class Camera: public AGameObject, public InputListener
 {
@@ -24,8 +22,11 @@ public:
 	void RightViewMode(float rate, float x, float y, float z);
 	void LeftViewMode(float rate, float x, float y, float z);
 
+	// Input Keys
 	virtual void onKeyDown(int key) override;
 	virtual void onKeyUp(int key) override;
+
+	// Mouse Inputs
 	virtual void onMouseMove(const Point& deltaMousePos) override;
 	virtual void onLeftMouseDown(const Point& mousePosition) override;
 	virtual void onLeftMouseUp(const Point& mousePosition) override;
@@ -33,19 +34,21 @@ public:
 	virtual void onRightMouseUp(const Point& mousePosition) override;
 
 	void updateViewMatrix();
-
 private:
 	Matrix4x4 LocalMatrix;
+
 	bool RightMouseDown;
 	float rate;
+
 	Vector3D cameraFront;
 	Vector3D cameraUp;
+
 	float yaw = -90.0f;	
 	float pitch = 0.0f;
+
 	Vector3D center;
 
 	bool defaultBool = true;
 	bool AerialBool = false;
 	bool RightBool = false;
 };
-

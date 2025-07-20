@@ -1,6 +1,7 @@
 #pragma once
 #include "VertexShader.h"
 #include "PixelShader.h"
+
 #include <unordered_map>
 
 class VertexShader;
@@ -23,7 +24,8 @@ public:
 class Shaderlibrary
 {
 public:
-	class ShaderData{
+	class ShaderData
+	{
 	public:
 		void* shaderByteCode = NULL;
 		size_t sizeShader = 0;
@@ -39,12 +41,13 @@ public:
 
 	void requestVertexShaderData(String vertexShaderName, void** shaderByteCode, size_t* sizeShader);
 	void requestPixelShaderData(String pixelShaderName, void** shaderByteCode, size_t* sizeShader);
+
 	VertexShader* getVertexShader(String vertexShaderName);
 	PixelShader* getPixelShader(String pixelShaderName);
-
 private:
 	Shaderlibrary();
 	~Shaderlibrary();
+
 	Shaderlibrary(Shaderlibrary const&) {};
 	Shaderlibrary& operator=(Shaderlibrary const&) {};
 	static Shaderlibrary* sharedInstance;
@@ -54,6 +57,4 @@ private:
 
 	unsigned char m_mesh_layout_byte_code[1024];
 	size_t m_mesh_layout_size = 0;
-
 };
-

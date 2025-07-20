@@ -5,7 +5,6 @@
 #include "pugixml-1.13/src/pugixml.hpp"
 #include "pugixml-1.13/src/pugiconfig.hpp"
 
-
 SceneWriter::SceneWriter(String directory)
 {
 	this->directory = directory;
@@ -14,7 +13,8 @@ SceneWriter::SceneWriter(String directory)
 void SceneWriter::writeToFile()
 {
 	String fileDir = this->directory + ".xml";
-	if (this->directory.find(".xml") != String::npos) {
+	if (this->directory.find(".xml") != String::npos) 
+	{
 		fileDir = this->directory;
 	}
 
@@ -41,7 +41,6 @@ void SceneWriter::writeToFile()
 			hasRigidBody = false;
 		}
 
-
 		sceneFile << "<GameObject>" << std::endl;
 		sceneFile << "<Name>" + gameObject->getName() + "</Name>" << std::endl;
 		sceneFile << "<Type>" + std::to_string(gameObject->getType()) + "</Type>" << std::endl;
@@ -65,7 +64,6 @@ void SceneWriter::writeToFile()
 	}
 	sceneFile << "</GameObjects>" << std::endl;
 	sceneFile.close();
-	
 }
 
 SceneWriter::~SceneWriter()

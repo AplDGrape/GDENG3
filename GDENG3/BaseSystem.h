@@ -15,11 +15,12 @@ public:
 
 private:
 	BaseSystem();
-	~BaseSystem();
+	
 	BaseSystem(BaseSystem const&) {};
 	BaseSystem& operator=(BaseSystem const&) {};
 	static BaseSystem* sharedInstance;
 
 	PhysicsSystem* physicsSystem;
-};
 
+	~BaseSystem();
+};

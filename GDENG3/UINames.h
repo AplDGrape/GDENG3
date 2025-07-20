@@ -1,14 +1,15 @@
 #pragma once
+#include "Window.h"
+#include "AUIScreen.h"
+
+#include "IMGUI/imgui.h"
+#include "IMGUI/imgui_impl_dx11.h"
+#include "IMGUI/imgui_impl_win32.h"
+
 #include <iostream>
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include "IMGUI/imgui.h"
-#include "IMGUI/imgui_impl_dx11.h"
-#include "IMGUI/imgui_impl_win32.h"
-#include "Window.h"
-#include "AUIScreen.h"
-
 
 class UINames
 {
@@ -23,4 +24,3 @@ public:
 	const String ACTIONS_SCREEN = "ACTIONS_SCREEN";
 	const String DEBUG_CONSOLE_SCREEN = "DEBUG_CONSOLE_SCREEN";
 };
-

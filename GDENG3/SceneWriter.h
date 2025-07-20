@@ -11,11 +11,11 @@ public:
 	typedef std::string String;
 
 	SceneWriter(String directory);
+
 	void writeCoordinatesToFile(FileWriter file, Vector3D transform);
 	void writeToFile();
-	~SceneWriter();
 
+	~SceneWriter();
 private:
 	String directory;
 };
-

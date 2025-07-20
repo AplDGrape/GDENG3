@@ -2,7 +2,6 @@
 
 ProfilerScreen::ProfilerScreen(): AUIScreen("Profile Screen")
 {
-
 }
 
 void ProfilerScreen::drawUI()

@@ -1,7 +1,6 @@
 #include "HierarchyScreen.h"
 #include "GameObjectManager.h"
 
-
 HierarchyScreen::HierarchyScreen():AUIScreen("HierarchyScreen")
 {
 }
@@ -32,7 +31,4 @@ void HierarchyScreen::generateButtons()
 		}
 		
 	}
-	
 }
-
-

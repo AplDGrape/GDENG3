@@ -15,7 +15,6 @@ void CreditsScreen::drawUI()
 
     if (ImGui::Begin("Credits"))
     {
-
         float width = ImGui::GetWindowSize().x;
         float centre_position_for_button = (width - ImVec2(70.0f, 0.0f).x) / 2;
         ImGui::SetCursorPosX(centre_position_for_button);
@@ -26,7 +25,7 @@ void CreditsScreen::drawUI()
         ImGui::Image((void*)my_texture, ImVec2(my_image_width, my_image_height), ImVec2(0, 0), ImVec2(1, 1), UIManager::logoTint);
         ImGui::Text("About");
         ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing();
-        ImGui::Text("Scene Editor v2.1");
+        ImGui::Text("Scene Editor v2.2");
         ImGui::Text("Developed by: Francis Raphael D. Apolinar");
         ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing();
         ImGui::Text("Acknowledgements:");
@@ -55,6 +54,7 @@ bool CreditsScreen::LoadTextureFromFile(const char* filename, ID3D11ShaderResour
 	int image_width = 0;
 	int image_height = 0;
 	unsigned char* image_data = stbi_load(filename, &image_width, &image_height, NULL, 4);
+
     if (image_data == NULL)
     {
         std::cout << "Failed to get image\n";
@@ -99,10 +99,6 @@ bool CreditsScreen::LoadTextureFromFile(const char* filename, ID3D11ShaderResour
     return true;
 }
 
-
-
 CreditsScreen::~CreditsScreen()
 {
 }
-
-

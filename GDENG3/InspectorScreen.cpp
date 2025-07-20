@@ -90,6 +90,7 @@ void InspectorScreen::generateEditor()
 	{
 		ImGui::Text("No object selected");
 	}
+
 	this->textureDialogue->Display();
 
 	if(this->textureDialogue->HasSelected())
@@ -101,7 +102,6 @@ void InspectorScreen::generateEditor()
 		this->textureDialogue->ClearSelected();
 		this->textureDialogue->Close();
 	}
-	
 }
 
 void InspectorScreen::TransformUpdate()

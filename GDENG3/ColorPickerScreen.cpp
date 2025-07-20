@@ -2,7 +2,6 @@
 
 ColorPickerScreen::ColorPickerScreen(): AUIScreen("Color Picker")
 {
-	
 }
 
 void ColorPickerScreen::drawUI()
@@ -33,7 +32,6 @@ void ColorPickerScreen::drawUI()
 
 	ImGui::End();
 }
-
 
 ColorPickerScreen::~ColorPickerScreen()
 {

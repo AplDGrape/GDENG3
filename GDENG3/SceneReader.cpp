@@ -3,7 +3,6 @@
 #include <fstream>
 #include "GameObjectManager.h"
 
-
 typedef std::fstream FileReader;
 
 SceneReader::SceneReader(String directory)
@@ -33,6 +32,7 @@ void SceneReader::readFromFile()
 		std::cout << "Parse error: " << result.description()
 			<< ", character pos= " << result.offset;
 	}
+
 	// A valid XML document must have a single root node
 	pugi::xml_node root = doc.first_child();
 	
@@ -59,11 +59,9 @@ void SceneReader::readFromFile()
 			{
 				rigidBody = true;
 			}
-			
 
 			GameObjectManager::getInstance()->createObjectFromFile(objectName, objectType, position, rotation, scale, rigidBody);
 		}
-		
 	}
 }
 
@@ -72,6 +70,7 @@ Vector3D SceneReader::GetTransformFromXML(pugi::xml_node transform)
 	float x = std::stof(transform.child("x").child_value());
 	float y = std::stof(transform.child("y").child_value());
 	float z = std::stof(transform.child("z").child_value());
+
 	return Vector3D(x, y, z);
 }
 
@@ -80,7 +79,9 @@ std::vector<std::string> SceneReader::split(const std::string& s, char delim)
 	std::stringstream ss(s);
 	std::string item;
 	std::vector<std::string> elems;
-	while (std::getline(ss, item, delim)) {
+
+	while (std::getline(ss, item, delim)) 
+	{
 		elems.push_back(item);
 	}
 

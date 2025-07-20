@@ -1,10 +1,10 @@
 #pragma once
 #include <string>
 
-
 typedef std::string String;
 
 class UIManager;
+
 class AUIScreen
 {
 protected:
@@ -20,4 +20,3 @@ protected:
 
 	friend class UIManager;
 };
-

@@ -73,5 +73,3 @@ PhysicsSystem::~PhysicsSystem()
 	this->physicsCommon = nullptr;
 	this->physicsWorld = nullptr;
 }
-
-

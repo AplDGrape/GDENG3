@@ -11,12 +11,11 @@ class PhysicsComponent;
 class PhysicsSystem
 {
 public:
+	PhysicsSystem();
+
 	typedef std::string String;
 	typedef std::unordered_map<String, PhysicsComponent*> ComponentTable;
 	typedef std::vector <PhysicsComponent*> ComponentList;
-
-	PhysicsSystem();
-	~PhysicsSystem();
 
 	void registerComponent(PhysicsComponent* component);
 	void unregisterComponent(PhysicsComponent* component);
@@ -27,12 +26,13 @@ public:
 	PhysicsWorld* getPhysicsWorld();
 	PhysicsCommon* getPhysicsCommon();
 
+	~PhysicsSystem();
 private:
 	ComponentTable componentTable;
 	ComponentList componentList;
 
 	PhysicsCommon* physicsCommon;
 	PhysicsWorld* physicsWorld;
+
 	float ticks = 0.0f;
 };
-

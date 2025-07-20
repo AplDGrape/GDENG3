@@ -1,4 +1,5 @@
 #pragma once
+//Class for storing of frame ticks
 #include <iostream>
 #include <chrono>
 #include <ctime>
@@ -11,10 +12,18 @@ public:
 	static void initialize();
 	static double getDeltaTime();
 
+	/*static void update();
+	static double getTime();
+
+	static void increaseTime(double seconds);
+	static void decreaseTime(double seconds);*/
 private:
 	EngineTime();
 	~EngineTime();
+
+	//copy constructor is private
 	EngineTime(EngineTime const&) {};
+	//assignment operator is private
 	EngineTime& operator=(EngineTime const&) {};
 
 	static EngineTime* sharedInstance;
@@ -24,10 +33,10 @@ private:
 
 	double deltaTime = 0.0;
 
+	double simulatedTime = 0.0;
+
 	static void LogFrameStart();
 	static void LogFrameEnd();
 
 	friend class Window;
-
 };
-

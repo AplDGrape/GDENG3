@@ -40,6 +40,3 @@ void AComponent::perform(float deltaTime)
 AComponent::~AComponent()
 {
 }
-
-
-

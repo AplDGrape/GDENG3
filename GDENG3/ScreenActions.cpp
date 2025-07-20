@@ -9,15 +9,20 @@ void ScreenActions::drawUI()
 	ImGui::Begin("Actions");
 	ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 1425, 155));
 	ImGui::SetWindowSize(ImVec2(290, UIManager::WINDOW_HEIGHT - 800));
-	if (ImGui::Button("Undo")) {
-		if (ActionHistory::getInstance()->hasRemainingUndoActions()) {
+
+	if (ImGui::Button("Undo")) 
+	{
+		if (ActionHistory::getInstance()->hasRemainingUndoActions())
+		{
 			GameObjectManager::getInstance()->applyEditorAction(ActionHistory::getInstance()->undoAction());
 		}
 
 	}
 	ImGui::SameLine();
-	if (ImGui::Button("Redo")) {
-		if (ActionHistory::getInstance()->hasRemainingRedoActions()) {
+	if (ImGui::Button("Redo")) 
+	{
+		if (ActionHistory::getInstance()->hasRemainingRedoActions())
+		{
 			GameObjectManager::getInstance()->applyEditorAction(ActionHistory::getInstance()->redoAction());
 		}
 	}
@@ -26,6 +31,4 @@ void ScreenActions::drawUI()
 
 ScreenActions::~ScreenActions()
 {
-	
 }
-

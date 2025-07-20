@@ -7,7 +7,6 @@ EngineBackEnd* EngineBackEnd::sharedInstance = NULL;
 
 EngineBackEnd::EngineBackEnd()
 {
-	
 }
 
 EngineBackEnd* EngineBackEnd::getInstance()
@@ -23,6 +22,7 @@ void EngineBackEnd::initialize()
 void EngineBackEnd::setMode(EditorMode mode)
 {
 	this->editorMode = mode;
+
 	if(this->editorMode == EditorMode::PLAY)
 	{
 		GameObjectManager::getInstance()->saveEditStates();
@@ -71,5 +71,3 @@ void EngineBackEnd::destroy()
 EngineBackEnd::~EngineBackEnd()
 {
 }
-
-
