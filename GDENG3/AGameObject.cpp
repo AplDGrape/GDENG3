@@ -105,9 +105,9 @@ void AGameObject::setRotation(Vector3D rot)
 {
 	//this->Rotation = rot;
 	this->orientation = {};
-	this->orientation.x = rot.x;
-	this->orientation.y = rot.y;
-	this->orientation.z = rot.z;
+	this->orientation.x = rot.m_x;
+	this->orientation.y = rot.m_y;
+	this->orientation.z = rot.m_z;
 	this->overrideMatrix = false;
 }
 
@@ -178,13 +178,13 @@ void AGameObject::ComputeLocalMatrix()
 	rotation = Vector3D(this->getLocalRotation());
 
 	this->RotationZ.setIdentity();
-	this->RotationZ.setRotationZ(rotation.z);
+	this->RotationZ.setRotationZ(rotation.m_z);
 
 	this->RotationF.setIdentity();
-	this->RotationF.setRotationX(rotation.x);
+	this->RotationF.setRotationX(rotation.m_x);
 
 	this->RotationGl.setIdentity();
-	this->RotationGl.setRotationY(rotation.y);
+	this->RotationGl.setRotationY(rotation.m_y);
 
 	this->RotationTotal.setIdentity();
 	this->RotationTotal = this->RotationTotal.mulMatrix(RotationF.mulMatrix(RotationGl.mulMatrix(RotationZ)));
@@ -210,15 +210,15 @@ float* AGameObject::getPhysicsLocalMatrix()
 
 	Matrix4x4 xMatrix;
 	xMatrix.setIdentity();
-	xMatrix.setRotationX(rotation.x);
+	xMatrix.setRotationX(rotation.m_x);
 
 	Matrix4x4 yMatrix;
 	yMatrix.setIdentity();
-	yMatrix.setRotationY(rotation.y);
+	yMatrix.setRotationY(rotation.m_y);
 
 	Matrix4x4 zMatrix;
 	zMatrix.setIdentity();
-	zMatrix.setRotationY(rotation.z);
+	zMatrix.setRotationY(rotation.m_z);
 
 	Matrix4x4 rotationMatrix;
 	rotationMatrix.setIdentity();

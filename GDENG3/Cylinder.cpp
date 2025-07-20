@@ -34,8 +34,8 @@ Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 		{
 			Vector3D UnitVertex = this->CircleVertices[k];
 
-			vertex Vertex = { Vector3D(UnitVertex.x * radius, h, UnitVertex.z * radius), Vector3D(1, 1, 1), Vector3D(1, 1, 1) };
-			struct Vertex TextureVertex = { Vector3D(UnitVertex.x * radius, h, UnitVertex.z * radius), Vector2D((float)j / sectorCount, t) };
+			vertex Vertex = { Vector3D(UnitVertex.m_x * radius, h, UnitVertex.m_z * radius), Vector3D(1, 1, 1), Vector3D(1, 1, 1) };
+			struct Vertex TextureVertex = { Vector3D(UnitVertex.m_x * radius, h, UnitVertex.m_z * radius), Vector2D((float)j / sectorCount, t) };
 			this->Vertices.push_back(Vertex);
 			this->verticesTextured.push_back(TextureVertex);
 			k++;
@@ -56,11 +56,11 @@ Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 		{
 			Vector3D unitVertex = this->CircleVertices[k];
 
-			vertex Vertex = { Vector3D(unitVertex.x * radius, h, unitVertex.z * radius),
+			vertex Vertex = { Vector3D(unitVertex.m_x * radius, h, unitVertex.m_z * radius),
 			Vector3D(1, 1, 1), Vector3D(1, 1, 1) };
 
-			struct Vertex TextureVertex = { Vector3D(unitVertex.x * radius, h, unitVertex.z * radius),
-			Vector2D(-unitVertex.x * 0.5f + 0.5f, -unitVertex.y * 0.5f + 0.5f)};
+			struct Vertex TextureVertex = { Vector3D(unitVertex.m_x * radius, h, unitVertex.m_z * radius),
+			Vector2D(-unitVertex.m_x * 0.5f + 0.5f, -unitVertex.m_y * 0.5f + 0.5f)};
 
 			this->Vertices.push_back(Vertex);
 			this->verticesTextured.push_back(TextureVertex);

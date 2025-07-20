@@ -23,27 +23,27 @@ Capsule::Capsule(String name): AGameObject(name, PrimitiveType::CAPSULE)
 	{
 		for (float j = 0.0f; j < Resolution; j++)
 		{
-			float u = i * step.x + start.x;
-			float v = j * step.y + start.y;
+			float u = i * step.m_x + start.m_x;
+			float v = j * step.m_y + start.m_y;
 			float un = 0.0f;
 			float vn = 0.0f;
 
 			if (i + 1.0f == Resolution)
 			{
-				un = end.x;
+				un = end.m_x;
 			}
 			else
 			{
-				un = (i + 1.0f) * step.x + start.x;
+				un = (i + 1.0f) * step.m_x + start.m_x;
 			}
 
 			if (j + 1.0f == Resolution)
 			{
-				vn = end.y;
+				vn = end.m_y;
 			}
 			else
 			{
-				vn = (j + 1.0f) * step.y + start.y;
+				vn = (j + 1.0f) * step.m_y + start.m_y;
 			}
 
 			int verticesStartIndex = this->Vertices.size();

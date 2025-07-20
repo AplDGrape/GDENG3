@@ -21,16 +21,16 @@ public:
 	void setTranslation(const Vector3D& translation)
 	{
 
-		Matrix[3][0] = translation.x;
-		Matrix[3][1] = translation.y;
-		Matrix[3][2] = translation.z;
+		Matrix[3][0] = translation.m_x;
+		Matrix[3][1] = translation.m_y;
+		Matrix[3][2] = translation.m_z;
 	}
 	void setScale(const Vector3D& scale)
 	{
 
-		Matrix[0][0] = scale.x;
-		Matrix[1][1] = scale.y;
-		Matrix[2][2] = scale.z;
+		Matrix[0][0] = scale.m_x;
+		Matrix[1][1] = scale.m_y;
+		Matrix[2][2] = scale.m_z;
 	}
 	void setRotationX(float x)
 	{
@@ -193,21 +193,21 @@ public:
 		Vector3D upDirection = Vector3D::cross(forward, left);
 
 
-		view.Matrix[0][0] = left.x;
-		view.Matrix[1][0] = upDirection.x;
-		view.Matrix[2][0] = forward.x;
+		view.Matrix[0][0] = left.m_x;
+		view.Matrix[1][0] = upDirection.m_x;
+		view.Matrix[2][0] = forward.m_x;
 		view.Matrix[3][0] = 0.0f;
-		view.Matrix[0][1] = left.y;
-		view.Matrix[1][1] = upDirection.y;
-		view.Matrix[2][1] = forward.y;
+		view.Matrix[0][1] = left.m_y;
+		view.Matrix[1][1] = upDirection.m_y;
+		view.Matrix[2][1] = forward.m_y;
 		view.Matrix[3][1] = 0.0f;
-		view.Matrix[0][2] = left.z;
-		view.Matrix[1][2] = upDirection.z;
-		view.Matrix[2][2] = forward.z;
+		view.Matrix[0][2] = left.m_z;
+		view.Matrix[1][2] = upDirection.m_z;
+		view.Matrix[2][2] = forward.m_z;
 		view.Matrix[3][2] = 0.0f;
-		view.Matrix[0][3] = -left.x * eye.x - left.y * eye.y - left.z * eye.z;
-		view.Matrix[1][3] = -up.x * eye.x - up.y * eye.y - up.z * eye.z;
-		view.Matrix[2][3] = -forward.x * eye.x - forward.y * eye.y - forward.z * eye.z;
+		view.Matrix[0][3] = -left.m_x * eye.m_x - left.m_y * eye.m_y - left.m_z * eye.m_z;
+		view.Matrix[1][3] = -up.m_x * eye.m_x - up.m_y * eye.m_y - up.m_z * eye.m_z;
+		view.Matrix[2][3] = -forward.m_x * eye.m_x - forward.m_y * eye.m_y - forward.m_z * eye.m_z;
 		view.Matrix[3][3] = 1.0f;
 
 		return view;

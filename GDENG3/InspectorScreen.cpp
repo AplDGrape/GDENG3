@@ -107,19 +107,19 @@ void InspectorScreen::generateEditor()
 void InspectorScreen::TransformUpdate()
 {
 	Vector3D position = GameObjectManager::getInstance()->getSelectedObject()->getLocalPosition();
-	this->SelectedObjectposition[0] = position.x;
-	this->SelectedObjectposition[1] = position.y;
-	this->SelectedObjectposition[2] = position.z;
+	this->SelectedObjectposition[0] = position.m_x;
+	this->SelectedObjectposition[1] = position.m_y;
+	this->SelectedObjectposition[2] = position.m_z;
 
 	Vector3D scale = GameObjectManager::getInstance()->getSelectedObject()->getLocalScale();
-	this->SelectedObjectScale[0] = scale.x;
-	this->SelectedObjectScale[1] = scale.y;
-	this->SelectedObjectScale[2] = scale.z;
+	this->SelectedObjectScale[0] = scale.m_x;
+	this->SelectedObjectScale[1] = scale.m_y;
+	this->SelectedObjectScale[2] = scale.m_z;
 
 	Vector3D rotaion = GameObjectManager::getInstance()->getSelectedObject()->getLocalRotation();
-	this->SelectedObjectRotation[0] = rotaion.x;
-	this->SelectedObjectRotation[1] = rotaion.y;
-	this->SelectedObjectRotation[2] = rotaion.z;
+	this->SelectedObjectRotation[0] = rotaion.m_x;
+	this->SelectedObjectRotation[1] = rotaion.m_y;
+	this->SelectedObjectRotation[2] = rotaion.m_z;
 }
 
 void InspectorScreen::TransformSelected(AGameObject* selected)

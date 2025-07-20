@@ -238,7 +238,7 @@ void GameObjectManager::applyEditorAction(EditorAction* action)
 		
 		object->setLocalMatrix(*action->getStoredMatrix().Matrix);
 		object->setPosition(action->getStoredPosition());
-		object->setRotation(action->getStoredRotation().x, action->getStoredRotation().y, action->getStoredRotation().z);
+		object->setRotation(action->getStoredRotation().m_x, action->getStoredRotation().m_y, action->getStoredRotation().m_z);
 		object->setScale(action->getStoredScale());
 
 	}
@@ -383,9 +383,9 @@ void GameObjectManager::generateAllOBJ()
 
 void GameObjectManager::createObjectFromFile(String name, AGameObject::PrimitiveType type, Vector3D position, Vector3D rotation, Vector3D scale, bool rigidBody)
 {
-	if(rotation.y == 90.0f)
+	if(rotation.m_y == 90.0f)
 	{
-		rotation.y = 99.0f;
+		rotation.m_y = 99.0f;
 	}
 
 	if (type == AGameObject::PrimitiveType::CUBE) {

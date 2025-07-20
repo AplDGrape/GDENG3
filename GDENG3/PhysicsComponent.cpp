@@ -12,7 +12,7 @@ PhysicsComponent::PhysicsComponent(String name, AGameObject* owner) : AComponent
 	Vector3D scale = this->getOwner()->getLocalScale();
 	Transform transform;
 	transform.setFromOpenGL(this->getOwner()->getPhysicsLocalMatrix());
-	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.x / 2, scale.y / 2, scale.z / 2));
+	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.m_x / 2, scale.m_y / 2, scale.m_z / 2));
 	SphereShape* shpereShape = physicsCommon->createSphereShape(1);
 	CapsuleShape* capsuleShape = physicsCommon->createCapsuleShape(1, 1);
 	this->rigidBody = physicsWorld->createRigidBody(transform);
