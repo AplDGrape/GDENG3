@@ -123,9 +123,6 @@
     <ClCompile Include="Rectangle.cpp">
       <Filter>GameEngine\Challenges\OBJ\2D\Rectangle</Filter>
     </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <Filter>GameEngine\Challenges\OBJ\2D\Triangle</Filter>
-    </ClCompile>
     <ClCompile Include="Capsule.cpp">
       <Filter>GameEngine\Challenges\OBJ\3D\Capsule</Filter>
     </ClCompile>
@@ -344,9 +341,6 @@
     <ClInclude Include="Rectangle.h">
       <Filter>GameEngine\Challenges\OBJ\2D\Rectangle</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>GameEngine\Challenges\OBJ\2D\Triangle</Filter>
-    </ClInclude>
     <ClInclude Include="Capsule.h">
       <Filter>GameEngine\Challenges\OBJ\3D\Capsule</Filter>
     </ClInclude>
@@ -558,9 +552,6 @@
     </Filter>
     <Filter Include="GameEngine\Challenges\OBJ\2D\Rectangle">
       <UniqueIdentifier>{a71c94e1-bdd2-4f40-b3a2-bf905a26389b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\Challenges\OBJ\2D\Triangle">
-      <UniqueIdentifier>{4ba2e0b6-31f6-49d4-81f1-4f3010188ae7}</UniqueIdentifier>
     </Filter>
     <Filter Include="GameEngine\Challenges\OBJ\3D">
       <UniqueIdentifier>{1c485498-0af0-45e6-8960-0334bf23c1be}</UniqueIdentifier>

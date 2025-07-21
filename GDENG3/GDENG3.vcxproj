@@ -217,7 +217,6 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TexturedCube.h" />
     <ClInclude Include="TextureManager.h" />
-    <ClInclude Include="Triangle.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="UINames.h" />
     <ClInclude Include="Vector2D.h" />
@@ -290,7 +289,6 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TexturedCube.cpp" />
     <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="VertexBuffer.cpp" />
     <ClCompile Include="VertexBufferTextured.cpp" />

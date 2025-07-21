@@ -16,7 +16,6 @@
 #include "Cube.h"
 #include "Plane.h"
 #include "Sphere.h"
-#include "Triangle.h"
 #include "Cylinder.h"
 #include "Rectangle.h"
 
