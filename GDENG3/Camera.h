@@ -1,8 +1,10 @@
 #pragma once
 #include "AGameObject.h"
+#include "EngineTime.h"
+
 #include "InputListener.h"
 #include "InputSystem.h"
-#include "EngineTime.h"
+
 #include "Math.h"
 #include <cmath>
 
@@ -10,7 +12,6 @@ class Camera: public AGameObject, public InputListener
 {
 public:
 	Camera(String name);
-	~Camera();
 
 	void update(float deltaTime) override;
 	void draw(int width, int height) override;
@@ -34,6 +35,8 @@ public:
 	virtual void onRightMouseUp(const Point& mousePosition) override;
 
 	void updateViewMatrix();
+
+	~Camera();
 private:
 	Matrix4x4 LocalMatrix;
 

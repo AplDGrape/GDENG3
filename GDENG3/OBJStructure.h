@@ -8,8 +8,10 @@ class OBJStructure: public AGameObject
 {
 public:
 	OBJStructure(Mesh* mesh, Texture* texture, String name);
+
 	void draw(int width, int height) override;
 	void update(float deltaTime) override;
+
 	~OBJStructure();
 
 private:
@@ -20,7 +22,7 @@ private:
 	float newDelta = 0.0f;
 	float speed = 10.0f;
 	float rate = 3.14;
-
+private:
 	Vector3D rotation;
 
 	Matrix4x4 Summation;
@@ -33,9 +35,9 @@ private:
 	Matrix4x4 Rotation;
 
 	Matrix4x4 RotationTotal;
+private:
 	ShaderNames namesShader;
 	Mesh* meshModel;
 	ConstantBuffer* constantbuffer;
 	Texture* textureModel;
 };
-

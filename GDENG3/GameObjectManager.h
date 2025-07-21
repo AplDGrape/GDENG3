@@ -1,28 +1,30 @@
 #pragma once
-#include <string>
-#include <unordered_map>
-#include <vector>
 #include "AGameObject.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
-#include "PhysicsCube.h"
-#include "Cylinder.h"
-#include "Plane.h"
-#include "Sphere.h"
-#include "PhysicsPlane.h"
+
+#include "Cube.h"
 #include "TexturedCube.h"
+#include "Plane.h"
+#include "Capsule.h"
+#include "Cylinder.h"
+#include "Sphere.h"
+#include "PhysicsCube.h"
+#include "PhysicsPlane.h"
+
 #include "OBJStructure.h"
 #include "MeshManager.h"
 #include "EditorAction.h"
-#include "Capsule.h"
 
-
+#include <string>
+#include <unordered_map>
+#include <vector>
 
 class EditorAction;
+
 class GameObjectManager
 {
 public:
-
 	typedef std::string String;
 	typedef std::vector<AGameObject*> ObjectList;
 	typedef std::unordered_map<String, AGameObject*> HashTable;
@@ -45,41 +47,47 @@ public:
 	static void destroy();
 
 	AGameObject* findObjectByName(String name);
+	AGameObject* getSelectedObject();
 	ObjectList getAllObjects();
+
 	int activeObjects();
 	void updateAll();
 	void renderAll(int viewportWidth, int viewportHeight);
+
 	void addObject(AGameObject* gameObject);
 	void createObject(PrimitiveType type);
-	void generatePhysicsCube();
+	
 	void createOBJMODEL(Mesh* mesh, String name, Texture* text);
 	void deleteObject(AGameObject* gameObject);
 	void deleteObjectByName(String name);
 	void setSelectedObject(String name);
 	void setSelectedObject(AGameObject* gameObject);
-	AGameObject* getSelectedObject();
+
+	void generatePhysicsCube();
 	void hundreadCubes();
 	void saveEditStates();
 	void restoreEditStates();
 	void applyEditorAction(EditorAction* action);
+
 	void generateBunnyObj();
 	void generateArmadilloOBJ();
 	void generateTeapotOBJ();
 	void generateAllOBJ();
 
 	void createObjectFromFile(String name, AGameObject::PrimitiveType type, Vector3D position, Vector3D rotation, Vector3D scale, bool rigidBody);
-	
 private:
 	static GameObjectManager* sharedInstance;
 
 	GameObjectManager();
 	~GameObjectManager();
+
 	GameObjectManager(GameObjectManager const&) {};
 	GameObjectManager& operator=(GameObjectManager const&) {};
+private:
 	AGameObject* SelectedObject;
 	ObjectList GameObjectList;
 	HashTable GameObjectTable;
-
+private:
 	int cubeCounter = 0;
 	int sphereCounter = 0;
 	int cylinderCounter = 0;
@@ -88,4 +96,3 @@ private:
 	int PhysicsPlaneCounter = 0;
 	int PhysicsCubeCounter = 0;
 };
-

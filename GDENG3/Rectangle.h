@@ -7,23 +7,22 @@
 #include "Matrix4x4.h"
 #include "EngineTime.h"
 
-
 class Rectangle
 {
 public:
 	Rectangle();
+
 	void draw();
 	void setWindowSizeLength(float windowsizelength);
 	void setWindowSizeHeight(float windowsizeheight);
 	void setPosition(Vector3D Position);
-	~Rectangle();
 
+	~Rectangle();
 private:
 	VertexBuffer* vertexbuffer;
 	VertexShader* vertexshader;
 	PixelShader* pixelshader;
 	ConstantBuffer* constantbuffer;
-
 private:
 	unsigned long oldTime = 0;
 	float deltaTime = 0;
@@ -40,4 +39,3 @@ private:
 	float speed = 0.0f;
 	bool state = true;
 };
-

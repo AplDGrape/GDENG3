@@ -10,28 +10,26 @@ class Triangle
 {
 public:
 	Triangle();
+
 	void draw();
 	void setWindowSizeLength(float windowsizelength);
 	void setWindowSizeHeight(float windowsizeheight);
 	void setPosition(Vector3D Position);
-	~Triangle();
 
+	~Triangle();
 private:
 	VertexBuffer* vertexbuffer;
 	VertexShader* vertexshader;
 	PixelShader* pixelshader;
 	ConstantBuffer* constantbuffer;
-
 private:
 	unsigned long oldTime = 0;
 	float deltaTime = 0;
 	float angle = 0;
-
+private:
 	float windowSizeHeight;
 	float windowSizeLength;
-
+private:
 	Vector3D position;
 	Vector3D scale;
-
 };
-

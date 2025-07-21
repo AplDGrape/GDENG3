@@ -77,11 +77,12 @@ void MenuScreen::drawUI()
 			ImGui::EndGroup();
 			ImGui::EndMenu();
 		}
-		/*if(ImGui::BeginMenu("OBJ Model"))
+		// Load OBJ from File
+		if(ImGui::BeginMenu("OBJ Model"))
 		{
 			if (ImGui::MenuItem("Select OBJ Model")) { this->objDialog->Open(); }
 			ImGui::EndMenu();
-		}*/
+		}
 		// Tools
 		if (ImGui::BeginMenu("Tools")) {
 			if (ImGui::MenuItem("Colour Picker")) { UIManager::getInstance()->showColorPickerScreen(); }

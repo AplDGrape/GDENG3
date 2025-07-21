@@ -1,24 +1,27 @@
 #pragma once
+#include <string>
 #include "Matrix4x4.h"
 #include "Vector3D.h"
 #include "Vector2D.h"
+#include <vector>
+
 #include "VertexShader.h"
 #include "PixelShader.h"
-#include <vector>
+
 #include "Texture.h"
 #include "AComponent.h"
-#include <string>
-#include "reactphysics3d/reactphysics3d.h"
 
+#include "reactphysics3d/reactphysics3d.h"
 
 using namespace reactphysics3d;
 class EditorAction;
 class AComponent;
+
 class AGameObject
 {
 public:
-
-	enum PrimitiveType {
+	enum PrimitiveType 
+	{
 		CAMERA,
 		TEXTURED_CUBE,
 		CUBE,
@@ -32,7 +35,8 @@ public:
 		BUNNY_OBJ
 	};
 
-	struct AQuaternion {
+	struct AQuaternion 
+	{
 		float w = 0.0f;
 		float x = 0.0f;
 		float y = 0.0f;
@@ -52,8 +56,7 @@ public:
 		Vector2D texCoord;
 	};
 
-	_declspec(align(16))
-		struct constant
+	_declspec(align(16)) struct constant
 	{
 		Matrix4x4 world;
 		Matrix4x4 view;
@@ -112,17 +115,18 @@ public:
 
 	virtual void saveEditState();
 	virtual void restoreEditState();
-
-
 protected:
 	VertexShader* vertex_shader;
 	PixelShader* pixel_shader;
+
 	Vector3D Position;
 	Vector3D Scale;
 	Vector3D Rotation;
-	bool enabled = true;
+
 	String name;
+	bool enabled = true;
 	bool isTextured = false;
+
 	Texture* texture;
 	Matrix4x4 LocalMatrix;
 
@@ -136,7 +140,6 @@ protected:
 	Matrix4x4 RotationF;
 	Matrix4x4 RotationGl;
 	Matrix4x4 RotationMatrix;
-
 	Matrix4x4 RotationTotal;
 
 	ComponentList componentList;
@@ -146,9 +149,6 @@ protected:
 	PrimitiveType objectType;
 
 	virtual void awake();
-
 private:
 	EditorAction* lastEditState = NULL;
 };
-
-

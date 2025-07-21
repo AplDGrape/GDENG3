@@ -154,6 +154,7 @@ bool AGameObject::getStatus()
 
 AGameObject::String AGameObject::getName()
 {
+	//return string();
 	return this->name;
 }
 
@@ -239,7 +240,8 @@ void AGameObject::attachComponent(AComponent* component)
 void AGameObject::detachComponent(AComponent* component)
 {
 	int index = -1;
-	for (int i = 0; i < this->componentList.size(); i++) {
+	for (int i = 0; i < this->componentList.size(); i++) 
+	{
 		if (this->componentList[i] == component) {
 			index = i;
 			this->componentList.erase(this->componentList.begin() + index);
@@ -310,14 +312,16 @@ bool AGameObject::textureFlag()
 
 void AGameObject::saveEditState()
 {
-	if (this->lastEditState == NULL) {
+	if (this->lastEditState == NULL) 
+	{
 		this->lastEditState = new EditorAction(this);
 	}
 }
 
 void AGameObject::restoreEditState()
 {
-	if (this->lastEditState != NULL) {
+	if (this->lastEditState != NULL) 
+	{
 		this->Position = this->lastEditState->getStoredPosition();
 		this->Scale = this->lastEditState->getStoredScale();
 		this->Rotation = this->lastEditState->getStoredRotation();

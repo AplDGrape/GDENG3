@@ -1,6 +1,5 @@
 #include "Triangle.h"
 
-
 struct vertex
 {
 	Vector3D position;
@@ -9,8 +8,7 @@ struct vertex
 	Vector3D color1;
 };
 
-__declspec(align(16))
-struct constant
+__declspec(align(16))struct constant
 {
 	Matrix4x4 world;
 	Matrix4x4 view;
@@ -18,12 +16,12 @@ struct constant
 	float m_angle;
 };
 
-
 Triangle::Triangle()
 {
 	GraphicsEngine* graphEngine = GraphicsEngine::getInstance();
 
-	vertex list[] = {
+	vertex list[] = 
+	{
 		{Vector3D(-0.5f,-0.5f,0.0f), Vector3D( - 0.5f,-0.5f,0.0f), Vector3D(0,1,0), Vector3D(0,0,0)},
 		{Vector3D(0.0f,0.5f,0.0f), Vector3D(0.0f,0.5f,0.0f), Vector3D(0,1,1), Vector3D(1,1,0)},
 		{ Vector3D(0.5f,-0.5f,0.0f),  Vector3D(.5f,-0.5f,0.0f), Vector3D(1,0,0),  Vector3D(0,0,1)}
@@ -55,8 +53,6 @@ Triangle::Triangle()
 
 	this->constantbuffer = graphEngine->createConstantBuffer();
 	this->constantbuffer->load(&cc, sizeof(constant));
-
-
 }
 
 void Triangle::draw()
