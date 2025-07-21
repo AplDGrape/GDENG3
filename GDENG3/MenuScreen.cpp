@@ -50,7 +50,7 @@ void MenuScreen::drawUI()
 				if (ImGui::MenuItem("Create Capsule")) { GameObjectManager::getInstance()->createObject(GameObjectManager::CAPSULE); }
 				if (ImGui::MenuItem("Create Cylinder")) { GameObjectManager::getInstance()->createObject(GameObjectManager::CYLINDER); }
 				if (ImGui::MenuItem("Create Plane")) { GameObjectManager::getInstance()->createObject(GameObjectManager::PLANE); }
-				if (ImGui::MenuItem("10000 Cubes")) { GameObjectManager::getInstance()->hundreadCubes(); }
+				//if (ImGui::MenuItem("10000 Cubes")) { GameObjectManager::getInstance()->hundreadCubes(); }
 				ImGui::EndMenu();
 			}
 
@@ -70,7 +70,7 @@ void MenuScreen::drawUI()
 
 				ImGui::Separator();
 
-				if (ImGui::MenuItem("Generate All 3")) { GameObjectManager::getInstance()->generateAllOBJ(); }
+				if (ImGui::MenuItem("Generate All 3 OBJs")) { GameObjectManager::getInstance()->generateAllOBJ(); }
 				ImGui::EndMenu();
 			}
 
@@ -129,8 +129,6 @@ void MenuScreen::drawUI()
 			this->objDialog->Close();
 
 			this->textureDialogue->Open();
-
-
 		}
 
 		else if (this->textureDialogue->HasSelected())
