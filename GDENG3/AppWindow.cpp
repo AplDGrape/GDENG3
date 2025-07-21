@@ -163,15 +163,15 @@ void AppWindow::onRightMouseUp(const Point& mousePosition)
 	
 }
 
+Wireframe* AppWindow::getWireframe()
+{
+	return this->m_wireframe;
+}
+
 AppWindow* AppWindow::getInstance()
 {
 	if(sharedInstance != NULL)
 	{
 		return sharedInstance;
 	}
-}
-
-Wireframe* AppWindow::getWireframe()
-{
-	return this->m_wireframe;
 }

@@ -2,6 +2,7 @@
 #include <string>
 
 class AGameObject;
+
 class AComponent
 {
 public:

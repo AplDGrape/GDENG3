@@ -32,6 +32,8 @@ public:
 
 	static const int WINDOW_WIDTH = 1440;
 	static const int WINDOW_HEIGHT = 900;
+	//static const int WINDOW_WIDTH = 1024;
+	//static const int WINDOW_HEIGHT = 768;
 private:
 	UIManager(HWND windowHandle);
 	~UIManager();
@@ -41,7 +43,7 @@ private:
 
 	UIList uiList;
 	UITable uiTable;
-
+private:
 	bool showCredits = false;
 	bool showColourPicker = false;
 public:
