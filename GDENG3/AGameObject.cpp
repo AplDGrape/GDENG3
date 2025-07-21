@@ -83,7 +83,6 @@ void AGameObject::setLocalMatrix(float matrix[16])
 
 	this->LocalMatrix = scale.multiplyTo(translate.multiplyTo(coordinate));
 	this->overrideMatrix = true;
-	
 }
 
 Matrix4x4 AGameObject::getLocalMatrix()

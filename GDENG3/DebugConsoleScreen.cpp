@@ -16,6 +16,10 @@ void DebugConsoleScreen::drawUI()
 		ImGui::Text(message.Message.c_str());
 	}
 
+	Wireframe* wf = AppWindow::getInstance()->getWireframe();
+	if (wf)
+		ImGui::Text("Wireframe Mode: %s", wf->isEnabled() ? "ON" : "OFF");
+
 	ImGui::End();
 }
 

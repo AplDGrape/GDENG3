@@ -76,6 +76,8 @@ private:
 	~AppWindow();
 	AppWindow(AppWindow const&){};
 	AppWindow&operator=(AppWindow const&){};
+public:
+	Wireframe* getWireframe();
 private:
 	Wireframe* m_wireframe = nullptr;
 private:

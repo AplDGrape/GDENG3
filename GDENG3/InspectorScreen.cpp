@@ -45,6 +45,7 @@ void InspectorScreen::generateEditor()
 
 			ImGui::Text("Selected Object: %s", GameObjectManager::getInstance()->getSelectedObject()->getName().c_str());
 			this->TransformUpdate();
+
 			if (ImGui::DragFloat3("Position", this->SelectedObjectposition, 0.01f))
 			{
 				this->TransformSelected(GameObjectManager::getInstance()->getSelectedObject());
@@ -58,15 +59,16 @@ void InspectorScreen::generateEditor()
 				this->TransformSelected(GameObjectManager::getInstance()->getSelectedObject());
 			}
 
-			/*if ((PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component") == NULL)
+			// Attach Rigidbody
+			if ((PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component") == NULL)
 			{
 				if (ImGui::Button("Attach Rigidody"))
 				{
 					GameObjectManager::getInstance()->getSelectedObject()->ComputeLocalMatrix();
 					GameObjectManager::getInstance()->getSelectedObject()->attachComponent(new PhysicsComponent(("Physics Component"), GameObjectManager::getInstance()->getSelectedObject()));
 				}
-			}*/
-			/*else
+			}
+			else
 			{
 				if (ImGui::Button("Detach Rigidody"))
 				{
@@ -76,8 +78,9 @@ void InspectorScreen::generateEditor()
 					delete componentAttached;
 					delete (PhysicsComponent*)GameObjectManager::getInstance()->getSelectedObject()->findComponentbyType(AComponent::Physics, "Physics Component");
 				}
-			}*/
-		
+			}
+			
+			// Delete Object
 			if (ImGui::Button("Delete", ImVec2(70.0f, 0.0f)))
 			{
 				GameObjectManager::getInstance()->deleteObjectByName(GameObjectManager::getInstance()->getSelectedObject()->getName());
@@ -97,7 +100,7 @@ void InspectorScreen::generateEditor()
 	{
 		Texture* text = TextureManager::getInstance()->createTextureFromFile(this->textureDialogue->GetSelected().c_str());
 		GameObjectManager::getInstance()->getSelectedObject()->setObjectTexture(text);
-		
+
 
 		this->textureDialogue->ClearSelected();
 		this->textureDialogue->Close();

@@ -12,8 +12,8 @@ public:
     void enable(ID3D11DeviceContext* context);
     void disable(ID3D11DeviceContext* context);
     void toggle();
-    bool isEnabled() const;
 
+    bool isEnabled() const;
 private:
     ID3D11RasterizerState* m_wireframeState = nullptr;
     ID3D11RasterizerState* m_solidState = nullptr;

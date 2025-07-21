@@ -18,41 +18,49 @@ UIManager::UIManager(HWND windowHandle)
 	ImGui_ImplDX11_Init(GraphicsEngine::getInstance()->getD3Ddevice(), GraphicsEngine::getInstance()->getImmediateDeviceContext()->getContext());
 
 	UINames uiNames;
+	// Profiler
 	ProfilerScreen* profilerScreen = new ProfilerScreen();
 	this->uiTable[uiNames.PROFILER_SCREEN] = profilerScreen;
 	this->uiList.push_back(profilerScreen);
 
+	// Menu
 	MenuScreen* menuScreen = new MenuScreen();
 	this->uiTable[uiNames.MENU_SCREEN] = menuScreen;
 	this->uiList.push_back(menuScreen);
 
+	// Inspector window
 	InspectorScreen* inspectorScreen = new InspectorScreen();
 	this->uiTable[uiNames.INSPECTOR_SCREEN] = inspectorScreen;
 	this->uiList.push_back(inspectorScreen);
 
+	// Hierarchy window
 	HierarchyScreen* hierarchyScreen = new HierarchyScreen();
 	this->uiTable[uiNames.HIERARCHY_SCREEN] = hierarchyScreen;
 	this->uiList.push_back(hierarchyScreen);
 
+	// Credits
 	CreditsScreen* creditsScreen = new CreditsScreen();
 	this->uiTable[uiNames.CREDITS_SCREEN] = creditsScreen;
 	this->uiList.push_back(creditsScreen);
 
+	// Colorpicker
 	ColorPickerScreen* colorPickerScreen = new ColorPickerScreen();
 	this->uiTable[uiNames.COLORPICKER_SCREEN] = colorPickerScreen;
 	this->uiList.push_back(colorPickerScreen);
 
+	// Playback
 	ScreenPlayBack* playBackScreen = new ScreenPlayBack();
 	this->uiTable[uiNames.PLAYBACK_SCREEN] = playBackScreen;
 	this->uiList.push_back(playBackScreen);
 
 	/*ScreenActions* ActionsScreen = new ScreenActions();
 	this->uiTable[uiNames.ACTIONS_SCREEN] = ActionsScreen;
-	this->uiList.push_back(ActionsScreen);
+	this->uiList.push_back(ActionsScreen);*/
 
+	// Debug Console
 	DebugConsoleScreen* debugConsoleScreen = new DebugConsoleScreen();
 	this->uiTable[uiNames.DEBUG_CONSOLE_SCREEN] = debugConsoleScreen;
-	this->uiList.push_back(debugConsoleScreen);*/
+	this->uiList.push_back(debugConsoleScreen);
 }
 
 void UIManager::initialize(HWND windowHandle)
