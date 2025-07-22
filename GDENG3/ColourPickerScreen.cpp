@@ -1,13 +1,13 @@
-#include "ColorPickerScreen.h"
+#include "ColourPickerScreen.h"
 
-ColorPickerScreen::ColorPickerScreen(): AUIScreen("Color Picker")
+ColourPickerScreen::ColourPickerScreen(): AUIScreen("Color Picker")
 {
 }
 
-void ColorPickerScreen::drawUI()
+void ColourPickerScreen::drawUI()
 {
 	ImGui::Begin("Color Picker Screen", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-	ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 1125, 400));
+	ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 1125, 480));
 
 	// --- Left section: Color Wheel ---
 	ImGui::ColorPicker4("##ColorWheel", (float*)&UIManager::logoTint,
@@ -33,6 +33,6 @@ void ColorPickerScreen::drawUI()
 	ImGui::End();
 }
 
-ColorPickerScreen::~ColorPickerScreen()
+ColourPickerScreen::~ColourPickerScreen()
 {
 }

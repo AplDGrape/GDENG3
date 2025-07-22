@@ -84,13 +84,45 @@ void MenuScreen::drawUI()
 			ImGui::EndMenu();
 		}
 		// Tools
-		if (ImGui::BeginMenu("Tools")) {
-			if (ImGui::MenuItem("Colour Picker")) { UIManager::getInstance()->showColorPickerScreen(); }
+		if (ImGui::BeginMenu("Tools")) 
+		{
+			static bool showColourPicker = false;
+
+			if (ImGui::MenuItem("Colour Picker", nullptr, showColourPicker)) 
+			{ 
+				showColourPicker = !showColourPicker;
+
+				if (showColourPicker) UIManager::getInstance()->showColorPickerScreen();
+				else UIManager::getInstance()->hideColorPickerScreen();
+			}
 			ImGui::EndMenu();
 		}
 		// Credits
-		if (ImGui::BeginMenu("About")) {
-			if (ImGui::MenuItem("Credits")) { UIManager::getInstance()->showCreditsScreen(); }
+		if (ImGui::BeginMenu("About")) 
+		{
+			static bool showCredits = false;
+
+			if (ImGui::MenuItem("Credits", nullptr, showCredits)) 
+			{
+				showCredits = !showCredits;
+				
+				if (showCredits) UIManager::getInstance()->showCreditsScreen();
+				else UIManager::getInstance()->hideCreditsScreen();
+			}
+			ImGui::EndMenu();
+		}
+		// IMGUI Demo Window
+		if (ImGui::BeginMenu("Help"))
+		{
+			static bool showDemo = false;
+
+			if (ImGui::MenuItem("IMGUI Demo Window", nullptr, showDemo)) 
+			{
+				showDemo = !showDemo;
+
+				if (showDemo) UIManager::getInstance()->showDemoScreen();
+				else UIManager::getInstance()->hideDemoScreen();
+			}
 			ImGui::EndMenu();
 		}
 

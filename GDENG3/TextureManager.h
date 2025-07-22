@@ -17,7 +17,7 @@ public:
 	Texture* createTextureFromFile(const wchar_t* file_path);
 private:
 	static TextureManager* sharedInstance;
-
+private:
 	TextureManager();
 	~TextureManager();
 protected:

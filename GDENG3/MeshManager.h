@@ -14,7 +14,7 @@ public:
 	Mesh* createMeshFromFile(const wchar_t* file_path);
 private:
 	static MeshManager* sharedInstance;
-
+private:
 	MeshManager();
 	~MeshManager();
 protected:

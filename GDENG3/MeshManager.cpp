@@ -34,7 +34,9 @@ Resource* MeshManager::createResourceFromFileConcrete(const wchar_t* file_path)
 		mesh = new Mesh(file_path);
 	}
 	catch (...) {}*/
+
 	Mesh* mesh = nullptr;
+
 	try
 	{
 		mesh = new Mesh(file_path);

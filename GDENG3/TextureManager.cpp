@@ -21,6 +21,7 @@ Texture* TextureManager::createTextureFromFile(const wchar_t* file_path)
 Resource* TextureManager::createResourceFromFileConcrete(const wchar_t* file_path)
 {
 	Texture* tex = nullptr;
+
 	try
 	{
 		tex = new Texture(file_path);

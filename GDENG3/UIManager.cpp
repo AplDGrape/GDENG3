@@ -44,9 +44,14 @@ UIManager::UIManager(HWND windowHandle)
 	this->uiList.push_back(creditsScreen);
 
 	// Colorpicker
-	ColorPickerScreen* colorPickerScreen = new ColorPickerScreen();
-	this->uiTable[uiNames.COLORPICKER_SCREEN] = colorPickerScreen;
+	ColourPickerScreen* colorPickerScreen = new ColourPickerScreen();
+	this->uiTable[uiNames.COLOURPICKER_SCREEN] = colorPickerScreen;
 	this->uiList.push_back(colorPickerScreen);
+
+	// Demo Screen
+	DemoScreen* demoScreen = new DemoScreen();
+	this->uiTable[uiNames.DEMO_SCREEN] = demoScreen;
+	this->uiList.push_back(demoScreen);
 
 	// Playback
 	ScreenPlayBack* playBackScreen = new ScreenPlayBack();
@@ -80,20 +85,12 @@ void UIManager::drawAllUI()
 	ImGui::NewFrame();
 	UINames uiNames;
 
-	for(int i = 0; i < uiList.size(); i++){
-		if(this->uiList[i]->getName() == "Credits Screen" && !showCredits)
-		{
-			continue;
-		}
-		else if(this->uiList[i]->getName() == "Color Picker" && !showColourPicker)
-		{
-			continue;
-		}
-		else
-		{
-			this->uiList[i]->drawUI();
-		}
-		
+	for(int i = 0; i < uiList.size(); i++)
+	{
+		if(this->uiList[i]->getName() == "Credits Screen" && !showCredits) continue;
+		else if(this->uiList[i]->getName() == "Color Picker" && !showColourPicker) continue;
+		else if (uiList[i]->getName() == "Demo Screen" && !showDemo) continue;
+		else this->uiList[i]->drawUI();
 	}
 
 	//ImGui::ShowDemoWindow();
@@ -120,6 +117,16 @@ void UIManager::hideColorPickerScreen()
 void UIManager::showColorPickerScreen()
 {
 	this->showColourPicker = true;
+}
+
+void UIManager::showDemoScreen() 
+{ 
+	showDemo = true; 
+}
+
+void UIManager::hideDemoScreen() 
+{ 
+	showDemo = false; 
 }
 
 UIManager* UIManager::getInstance()

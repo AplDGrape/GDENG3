@@ -7,7 +7,8 @@
 #include "InspectorScreen.h"
 #include "HierarchyScreen.h"
 #include "CreditsScreen.h"
-#include "ColorPickerScreen.h"
+#include "ColourPickerScreen.h"
+#include "DemoScreen.h"
 #include "ScreenPlayBack.h"
 #include "ScreenActions.h"
 #include "DebugConsoleScreen.h"
@@ -30,6 +31,9 @@ public:
 	void hideColorPickerScreen();
 	void showColorPickerScreen();
 
+	void showDemoScreen();
+	void hideDemoScreen();
+
 	static const int WINDOW_WIDTH = 1440;
 	static const int WINDOW_HEIGHT = 900;
 	//static const int WINDOW_WIDTH = 1024;
@@ -37,6 +41,7 @@ public:
 private:
 	UIManager(HWND windowHandle);
 	~UIManager();
+
 	UIManager(UIManager const&) {};
 	UIManager& operator=(UIManager const&){};
 	static UIManager* sharedInstance;
@@ -44,6 +49,7 @@ private:
 	UIList uiList;
 	UITable uiTable;
 private:
+	bool showDemo = false;
 	bool showCredits = false;
 	bool showColourPicker = false;
 public:

@@ -159,7 +159,7 @@
     <ClCompile Include="AUIScreen.cpp">
       <Filter>UI\UIScreen</Filter>
     </ClCompile>
-    <ClCompile Include="ColorPickerScreen.cpp">
+    <ClCompile Include="ColourPickerScreen.cpp">
       <Filter>UI\ColorPicker</Filter>
     </ClCompile>
     <ClCompile Include="CreditsScreen.cpp">
@@ -218,6 +218,9 @@
     </ClCompile>
     <ClCompile Include="Wireframe.cpp">
       <Filter>GameEngine\Challenges</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoScreen.cpp">
+      <Filter>UI\DemoWindow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -380,7 +383,7 @@
     <ClInclude Include="AUIScreen.h">
       <Filter>UI\UIScreen</Filter>
     </ClInclude>
-    <ClInclude Include="ColorPickerScreen.h">
+    <ClInclude Include="ColourPickerScreen.h">
       <Filter>UI\ColorPicker</Filter>
     </ClInclude>
     <ClInclude Include="CreditsScreen.h">
@@ -448,6 +451,9 @@
     </ClInclude>
     <ClInclude Include="Wireframe.h">
       <Filter>GameEngine\Challenges</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoScreen.h">
+      <Filter>UI\DemoWindow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -657,6 +663,9 @@
     </Filter>
     <Filter Include="GameEngine\GraphicsEngine\ResourceManager\TextureManager\Texture">
       <UniqueIdentifier>{b58308dd-79df-49db-9ae5-f60443e404bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\DemoWindow">
+      <UniqueIdentifier>{8c64005b-7d1d-49dd-a74d-d28cb212622f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

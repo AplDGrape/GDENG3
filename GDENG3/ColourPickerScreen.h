@@ -6,12 +6,12 @@
 #include "IMGUI/imgui_impl_dx11.h"
 #include "IMGUI/imgui_impl_win32.h"
 
-class ColorPickerScreen: public AUIScreen
+class ColourPickerScreen: public AUIScreen
 {
 public:
-	ColorPickerScreen();
+	ColourPickerScreen();
 
 	void drawUI() override;
 
-	~ColorPickerScreen();
+	~ColourPickerScreen();
 };
