@@ -9,6 +9,7 @@ public:
 	typedef std::string String;
 
 	static BaseSystem* getInstance();
+
 	static void initialize();
 	static void destroy();
 

@@ -13,8 +13,10 @@ public:
 	Rectangle();
 
 	void draw();
+
 	void setWindowSizeLength(float windowsizelength);
 	void setWindowSizeHeight(float windowsizeheight);
+
 	void setPosition(Vector3D Position);
 
 	~Rectangle();
@@ -33,6 +35,7 @@ private:
 
 	Vector3D position;
 	Vector3D scale;
+
 	float ticks = 0.0f;
 	float cooldownrate = 10.0f;
 	float rate = 0.0f;

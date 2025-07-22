@@ -1,7 +1,5 @@
 #include "Cylinder.h"
-
 #include "PhysicsComponent.h"
-
 
 Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 {
@@ -12,7 +10,6 @@ Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 	int sectorCount = 12;
 	float height = 1.5f;
 	
-
 	float pi = 3.1415926f;
 	float sectorStep = 2 * pi / (float)sectorCount;
 	float sectorAngle;
@@ -38,6 +35,7 @@ Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 			struct Vertex TextureVertex = { Vector3D(UnitVertex.m_x * radius, h, UnitVertex.m_z * radius), Vector2D((float)j / sectorCount, t) };
 			this->Vertices.push_back(Vertex);
 			this->verticesTextured.push_back(TextureVertex);
+
 			k++;
 		}
 	}
@@ -64,15 +62,16 @@ Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 
 			this->Vertices.push_back(Vertex);
 			this->verticesTextured.push_back(TextureVertex);
+
 			k++;
 		}
 	}
 
-	this->verterbuffer = GraphicsEngine::getInstance()->createVertexBuffer();
-	this->verterbuffer->load(&(this->Vertices[0]), sizeof(vertex), this->Vertices.size(), shaderdata.shaderByteCode, shaderdata.sizeShader);
+	this->vertexbuffer = GraphicsEngine::getInstance()->createVertexBuffer();
+	this->vertexbuffer->load(&(this->Vertices[0]), sizeof(vertex), this->Vertices.size(), shaderdata.shaderByteCode, shaderdata.sizeShader);
 
-	this->verterBufferTextured = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
-	this->verterBufferTextured->load(&(this->verticesTextured[0]), sizeof(struct Vertex), this->verticesTextured.size(), shaderdataTexture.shaderByteCode, shaderdataTexture.sizeShader);
+	this->vertexBufferTextured = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
+	this->vertexBufferTextured->load(&(this->verticesTextured[0]), sizeof(struct Vertex), this->verticesTextured.size(), shaderdataTexture.shaderByteCode, shaderdataTexture.sizeShader);
 
 	int k1 = 0;
 	int k2 = sectorCount + 1;
@@ -107,6 +106,7 @@ Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 			this->Indices.push_back(this->BaseCenterIndex + 1);
 			this->Indices.push_back(k);
 		}
+
 		k++;
 	}
 
@@ -126,6 +126,7 @@ Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 			this->Indices.push_back(k);
 			this->Indices.push_back(this->TopCenterIndex + 1);
 		}
+
 		k++;
 	}
 
@@ -133,27 +134,24 @@ Cylinder::Cylinder(String name): AGameObject(name, PrimitiveType::CYLINDER)
 	this->indexbuffer->load(&(this->Indices[0]), this->Indices.size());
 
 	constant cc;
+
 	this->constantbuffer = GraphicsEngine::getInstance()->createConstantBuffer();
 	this->constantbuffer->load(&cc, sizeof(constant));
-
 }
 
 void Cylinder::draw(int width, int height)
 {
 	constant cc;
 
-
 	if (this->getObjectTexture() == NULL)
 	{
 		this->vertex_shader = Shaderlibrary::getInstance()->getVertexShader(namesShader.BASE_VERTEX_SHADER_NAME);
 		this->pixel_shader = Shaderlibrary::getInstance()->getPixelShader(namesShader.BASE_PIXEL_SHADER_NAME);
-
 	}
 	else
 	{
 		this->vertex_shader = Shaderlibrary::getInstance()->getVertexShader(namesShader.TEXTURED_VERTEX_SHADER_NAME);
 		this->pixel_shader = Shaderlibrary::getInstance()->getPixelShader(namesShader.TEXTURED_PIXEL_SHADER_NAME);
-
 	}
 
 	if (this->overrideMatrix)
@@ -185,7 +183,7 @@ void Cylinder::draw(int width, int height)
 
 	if (this->getObjectTexture() == NULL)
 	{
-		device->setVertexBuffer(this->verterbuffer);
+		device->setVertexBuffer(this->vertexbuffer);
 		device->setIndexBuffer(this->indexbuffer);
 
 		device->drawIndexedTriangleList(this->indexbuffer->getSizeIndexList(), 0, 0);
@@ -195,20 +193,19 @@ void Cylinder::draw(int width, int height)
 		device->setTexture(this->vertex_shader, this->texture);
 		device->setTexture(this->pixel_shader, this->texture);
 
-		device->setVertexBufferTextured(this->verterBufferTextured);
+		device->setVertexBufferTextured(this->vertexBufferTextured);
 		device->setIndexBuffer(this->indexbuffer);
 
 		device->drawIndexedTriangleList(this->indexbuffer->getSizeIndexList(), 0, 0);
 	}
-
 }
 
 void Cylinder::update(float deltaTime)
 {
-	
 }
 
-void Cylinder::saveEditState() {
+void Cylinder::saveEditState() 
+{
 	PhysicsComponent* componentAttached = (PhysicsComponent*)this->findComponentbyType(AComponent::Physics, "Physics Component");
 	if (componentAttached != nullptr)
 	{
@@ -218,7 +215,6 @@ void Cylinder::saveEditState() {
 
 void Cylinder::restoreEditState()
 {
-	
 	PhysicsComponent* componentAttached = (PhysicsComponent*)this->findComponentbyType(AComponent::Physics, "Physics Component");
 	if (componentAttached != nullptr)
 	{
@@ -227,13 +223,12 @@ void Cylinder::restoreEditState()
 		componentAttached = new PhysicsComponent("Physics Component", this);
 		this->attachComponent(componentAttached);
 	}
-
 }
 
 Cylinder::~Cylinder()
 {
 	this->constantbuffer->release();
 	this->indexbuffer->release();
-	this->verterbuffer->release();
+	this->vertexbuffer->release();
 	AGameObject::~AGameObject();
 }

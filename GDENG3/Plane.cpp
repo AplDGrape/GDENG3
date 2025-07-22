@@ -1,5 +1,4 @@
 #include "Plane.h"
-
 #include "AGameObject.h"
 
 Plane::Plane(String name): Cube(name, PrimitiveType::PLANE)
@@ -11,19 +10,20 @@ Plane::Plane(String name): Cube(name, PrimitiveType::PLANE)
 	{
 		//X - Y - Z
 		//FRONT FACE
-		{Vector3D(-0.5f,-0.01f,-0.5f),    Vector3D(1,1,1)},
-		{Vector3D(-0.5f,0.01f,-0.5f),    Vector3D(1,1,1)},
-		{ Vector3D(0.5f,0.01f,-0.5f),   Vector3D(1,1,1)},
-		{ Vector3D(0.5f,-0.01f,-0.5f),     Vector3D(1,1,1)},
+		{Vector3D(-0.5f, -0.01f, -0.5f),   Vector3D(1, 1, 1)},
+		{Vector3D(-0.5f,  0.01f, -0.5f),   Vector3D(1, 1, 1)},
+		{Vector3D( 0.5f,  0.01f, -0.5f),   Vector3D(1, 1, 1)},
+		{Vector3D( 0.5f, -0.01f, -0.5f),   Vector3D(1, 1, 1)},
+
 		//BACK FACE
-		{ Vector3D(0.5f,-0.01f,0.5f),    Vector3D(1,1,1)},
-		{ Vector3D(0.5f,0.01f,0.5f),    Vector3D(1,1,1)},
-		{ Vector3D(-0.5f,0.01f,0.5f),   Vector3D(1,1,1)},
-		{ Vector3D(-0.5f,-0.01f,0.5f),     Vector3D(1,1,1)}
+		{Vector3D( 0.5f, -0.01f, 0.5f),    Vector3D(1, 1, 1)},
+		{Vector3D( 0.5f,  0.01f, 0.5f),    Vector3D(1, 1, 1)},
+		{Vector3D(-0.5f,  0.01f, 0.5f),    Vector3D(1, 1, 1)},
+		{Vector3D(-0.5f, -0.01f, 0.5f),    Vector3D(1, 1, 1)}
 	};
 
-	this->verterbuffer = GraphicsEngine::getInstance()->createVertexBuffer();
-	this->verterbuffer->load(vertex_list, sizeof(vertex), ARRAYSIZE(vertex_list), shaderdata.shaderByteCode, shaderdata.sizeShader);
+	this->vertex_buffer = GraphicsEngine::getInstance()->createVertexBuffer();
+	this->vertex_buffer->load(vertex_list, sizeof(vertex), ARRAYSIZE(vertex_list), shaderdata.shaderByteCode, shaderdata.sizeShader);
 	
 	UINT size_list = ARRAYSIZE(vertex_list);
 
@@ -49,15 +49,16 @@ Plane::Plane(String name): Cube(name, PrimitiveType::PLANE)
 		1,0,7
 	};
 
-	this->indexbuffer = GraphicsEngine::getInstance()->createIndexBuffer();
+	this->index_buffer = GraphicsEngine::getInstance()->createIndexBuffer();
 	UINT size_index_list = ARRAYSIZE(index_list);
 
-	this->indexbuffer->load(index_list, size_index_list);
+	this->index_buffer->load(index_list, size_index_list);
+
 	constant cc;
 	cc.time = 0;
-	this->constantbuffer = GraphicsEngine::getInstance()->createConstantBuffer();
-	this->constantbuffer->load(&cc, sizeof(constant));
 
+	this->constant_buffer = GraphicsEngine::getInstance()->createConstantBuffer();
+	this->constant_buffer->load(&cc, sizeof(constant));
 }
 
 void Plane::setTexturesVertexBuffer()
@@ -66,71 +67,64 @@ void Plane::setTexturesVertexBuffer()
 
 	Vector3D position_list[] =
 	{
-		{ Vector3D(-0.5f,-0.1f,-0.5f)},
-		{ Vector3D(-0.5f,0.1f,-0.5f) },
-		{ Vector3D(0.5f,0.1f,-0.5f) },
-		{ Vector3D(0.5f,-0.1f,-0.5f)},
+		//FRONT FACE
+		{Vector3D(-0.5f, -0.1f, -0.5f)},
+		{Vector3D(-0.5f,  0.1f, -0.5f)},
+		{Vector3D( 0.5f,  0.1f, -0.5f)},
+		{Vector3D( 0.5f, -0.1f, -0.5f)},
 
 		//BACK FACE
-		{ Vector3D(0.5f,-0.1f,0.5f) },
-		{ Vector3D(0.5f,0.1f,0.5f) },
-		{ Vector3D(-0.5f,0.1f,0.5f)},
-		{ Vector3D(-0.5f,-0.1f,0.5f) }
+		{Vector3D( 0.5f, -0.1f, 0.5f)},
+		{Vector3D( 0.5f,  0.1f, 0.5f)},
+		{Vector3D(-0.5f,  0.1f, 0.5f)},
+		{Vector3D(-0.5f, -0.1f, 0.5f)}
 	};
-
 
 	Vector2D texcoord_list[] =
 	{
-		{ Vector2D(0.0f,0.0f) },
-		{ Vector2D(0.0f,1.0f) },
-		{ Vector2D(1.0f,0.0f) },
-		{ Vector2D(1.0f,1.0f) }
+		{Vector2D(0.0f, 0.0f)},
+		{Vector2D(0.0f, 1.0f)},
+		{Vector2D(1.0f, 0.0f)},
+		{Vector2D(1.0f, 1.0f)}
 	};
-
-
 
 	Vertex vertex_list[] =
 	{
 		//X - Y - Z
 		//FRONT FACE
-		{ position_list[0],texcoord_list[1] },
-		{ position_list[1],texcoord_list[0] },
-		{ position_list[2],texcoord_list[2] },
-		{ position_list[3],texcoord_list[3] },
+		{ position_list[0], texcoord_list[1] },
+		{ position_list[1], texcoord_list[0] },
+		{ position_list[2], texcoord_list[2] },
+		{ position_list[3], texcoord_list[3] },
 
+		{ position_list[4], texcoord_list[1] },
+		{ position_list[5], texcoord_list[0] },
+		{ position_list[6], texcoord_list[2] },
+		{ position_list[7], texcoord_list[3] },
 
-		{ position_list[4],texcoord_list[1] },
-		{ position_list[5],texcoord_list[0] },
-		{ position_list[6],texcoord_list[2] },
-		{ position_list[7],texcoord_list[3] },
+		{ position_list[1], texcoord_list[1] },
+		{ position_list[6], texcoord_list[0] },
+		{ position_list[5], texcoord_list[2] },
+		{ position_list[2], texcoord_list[3] },
 
+		{ position_list[7], texcoord_list[1] },
+		{ position_list[0], texcoord_list[0] },
+		{ position_list[3], texcoord_list[2] },
+		{ position_list[4], texcoord_list[3] },
 
-		{ position_list[1],texcoord_list[1] },
-		{ position_list[6],texcoord_list[0] },
-		{ position_list[5],texcoord_list[2] },
-		{ position_list[2],texcoord_list[3] },
+		{ position_list[3], texcoord_list[1] },
+		{ position_list[2], texcoord_list[0] },
+		{ position_list[5], texcoord_list[2] },
+		{ position_list[4], texcoord_list[3] },
 
-		{ position_list[7],texcoord_list[1] },
-		{ position_list[0],texcoord_list[0] },
-		{ position_list[3],texcoord_list[2] },
-		{ position_list[4],texcoord_list[3] },
-
-		{ position_list[3],texcoord_list[1] },
-		{ position_list[2],texcoord_list[0] },
-		{ position_list[5],texcoord_list[2] },
-		{ position_list[4],texcoord_list[3] },
-
-		{ position_list[7],texcoord_list[1] },
-		{ position_list[6],texcoord_list[0] },
-		{ position_list[1],texcoord_list[2] },
-		{ position_list[0],texcoord_list[3] }
-
-
+		{ position_list[7], texcoord_list[1] },
+		{ position_list[6], texcoord_list[0] },
+		{ position_list[1], texcoord_list[2] },
+		{ position_list[0], texcoord_list[3] }
 	};
 
-
-	this->textureVertexBuffer = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
-	this->textureVertexBuffer->load(vertex_list, sizeof(Vertex), ARRAYSIZE(vertex_list), shaderdataTexture.shaderByteCode, shaderdataTexture.sizeShader);
+	this->vertexbufferTextured = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
+	this->vertexbufferTextured->load(vertex_list, sizeof(Vertex), ARRAYSIZE(vertex_list), shaderdataTexture.shaderByteCode, shaderdataTexture.sizeShader);
 
 	unsigned int index_list[] =
 	{
@@ -155,13 +149,13 @@ void Plane::setTexturesVertexBuffer()
 	};
 
 
-	this->IndexBufferTexture = GraphicsEngine::getInstance()->createIndexBuffer();
-	this->IndexBufferTexture->load(index_list, ARRAYSIZE(index_list));
+	this->indexbufferTextured = GraphicsEngine::getInstance()->createIndexBuffer();
+	this->indexbufferTextured->load(index_list, ARRAYSIZE(index_list));
 
 	constant cc;
 	cc.time = 0;
-	this->constantbuffer = GraphicsEngine::getInstance()->createConstantBuffer();
-	this->constantbuffer->load(&cc, sizeof(constant));
+	this->constant_buffer = GraphicsEngine::getInstance()->createConstantBuffer();
+	this->constant_buffer->load(&cc, sizeof(constant));
 }
 
 void Plane::draw(int width, int height)
@@ -201,9 +195,9 @@ void Plane::draw(int width, int height)
 
 	DeviceContext* device = GraphicsEngine::getInstance()->getImmediateDeviceContext();
 
-	this->constantbuffer->update(device, &cc);
-	device->setConstantBuffer(this->vertex_shader, this->constantbuffer);
-	device->setConstantBuffer(this->pixel_shader, this->constantbuffer);
+	this->constant_buffer->update(device, &cc);
+	device->setConstantBuffer(this->vertex_shader, this->constant_buffer);
+	device->setConstantBuffer(this->pixel_shader, this->constant_buffer);
 
 	device->setVertexShader(this->vertex_shader);
 	device->setPixelShader(this->pixel_shader);
@@ -211,31 +205,27 @@ void Plane::draw(int width, int height)
 
 	if (this->getObjectTexture() == NULL)
 	{
-		device->setVertexBuffer(this->verterbuffer);
-		device->setIndexBuffer(this->indexbuffer);
+		device->setVertexBuffer(this->vertex_buffer);
+		device->setIndexBuffer(this->index_buffer);
 
-		device->drawIndexedTriangleList(this->indexbuffer->getSizeIndexList(), 0, 0);
+		device->drawIndexedTriangleList(this->index_buffer->getSizeIndexList(), 0, 0);
 	}
 	else
 	{
 		device->setTexture(this->vertex_shader, this->texture);
 		device->setTexture(this->pixel_shader, this->texture);
 
-		device->setVertexBufferTextured(this->textureVertexBuffer);
-		device->setIndexBuffer(this->IndexBufferTexture);
+		device->setVertexBufferTextured(this->vertexbufferTextured);
+		device->setIndexBuffer(this->indexbufferTextured);
 
-		device->drawIndexedTriangleList(this->IndexBufferTexture->getSizeIndexList(), 0, 0);
+		device->drawIndexedTriangleList(this->indexbufferTextured->getSizeIndexList(), 0, 0);
 	}
 	
 }
 
 Plane::~Plane()
 {
-	this->constantbuffer->release();
-	this->indexbuffer->release();
-	this->verterbuffer->release();
+	this->constant_buffer->release();
+	this->index_buffer->release();
+	this->vertex_buffer->release();
 }
-
-
-
-

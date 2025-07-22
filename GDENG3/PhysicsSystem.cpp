@@ -1,5 +1,4 @@
 #include "PhysicsSystem.h"
-
 #include "PhysicsComponent.h"
 
 PhysicsSystem::PhysicsSystem()
@@ -53,7 +52,6 @@ void PhysicsSystem::updateAllComponents()
 			this->componentList[i]->perform(EngineTime::getDeltaTime());
 		}
 	}
-	
 }
 
 PhysicsWorld* PhysicsSystem::getPhysicsWorld()
@@ -70,6 +68,7 @@ PhysicsSystem::~PhysicsSystem()
 {
 	this->componentList.clear();
 	this->componentTable.clear();
+
 	this->physicsCommon = nullptr;
 	this->physicsWorld = nullptr;
 }

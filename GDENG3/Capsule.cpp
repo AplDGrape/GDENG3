@@ -132,20 +132,18 @@ Capsule::Capsule(String name): AGameObject(name, PrimitiveType::CAPSULE)
 		}
 	}
 	
-	this->verterbuffer = GraphicsEngine::getInstance()->createVertexBuffer();
-	this->verterbuffer->load(&(this->Vertices[0]), sizeof(vertex), this->Vertices.size(), shaderdata.shaderByteCode, shaderdata.sizeShader);
+	this->vertex_buffer = GraphicsEngine::getInstance()->createVertexBuffer();
+	this->vertex_buffer->load(&(this->Vertices[0]), sizeof(vertex), this->Vertices.size(), shaderdata.shaderByteCode, shaderdata.sizeShader);
 
-	this->verterBufferTextured = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
-	this->verterBufferTextured->load(&(this->verticesTextured[0]), sizeof(Vertex), this->verticesTextured.size(), shaderdataTexture.shaderByteCode, shaderdataTexture.sizeShader);
+	this->vertexbufferTextured = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
+	this->vertexbufferTextured->load(&(this->verticesTextured[0]), sizeof(Vertex), this->verticesTextured.size(), shaderdataTexture.shaderByteCode, shaderdataTexture.sizeShader);
 
-	this->indexbuffer = GraphicsEngine::getInstance()->createIndexBuffer();
-	this->indexbuffer->load(&(this->Indices[0]), this->Indices.size());
+	this->index_buffer = GraphicsEngine::getInstance()->createIndexBuffer();
+	this->index_buffer->load(&(this->Indices[0]), this->Indices.size());
 
 	constant cc;
-	this->constantbuffer = GraphicsEngine::getInstance()->createConstantBuffer();
-	this->constantbuffer->load(&cc, sizeof(constant));
-
-	
+	this->constant_buffer = GraphicsEngine::getInstance()->createConstantBuffer();
+	this->constant_buffer->load(&cc, sizeof(constant));
 }
 
 void Capsule::draw(int width, int height)
@@ -183,30 +181,30 @@ void Capsule::draw(int width, int height)
 
 	DeviceContext* device = GraphicsEngine::getInstance()->getImmediateDeviceContext();
 
-	this->constantbuffer->update(device, &cc);
+	this->constant_buffer->update(device, &cc);
 
-	device->setConstantBuffer(this->vertex_shader, this->constantbuffer);
-	device->setConstantBuffer(this->pixel_shader, this->constantbuffer);
+	device->setConstantBuffer(this->vertex_shader, this->constant_buffer);
+	device->setConstantBuffer(this->pixel_shader, this->constant_buffer);
 
 	device->setVertexShader(this->vertex_shader);
 	device->setPixelShader(this->pixel_shader);
 
 	if (this->getObjectTexture() == NULL)
 	{
-		device->setVertexBuffer(this->verterbuffer);
-		device->setIndexBuffer(this->indexbuffer);
+		device->setVertexBuffer(this->vertex_buffer);
+		device->setIndexBuffer(this->index_buffer);
 
-		device->drawIndexedTriangleList(this->indexbuffer->getSizeIndexList(), 0, 0);
+		device->drawIndexedTriangleList(this->index_buffer->getSizeIndexList(), 0, 0);
 	}
 	else
 	{
 		device->setTexture(this->vertex_shader, this->texture);
 		device->setTexture(this->pixel_shader, this->texture);
 
-		device->setVertexBufferTextured(this->verterBufferTextured);
-		device->setIndexBuffer(this->indexbuffer);
+		device->setVertexBufferTextured(this->vertexbufferTextured);
+		device->setIndexBuffer(this->index_buffer);
 
-		device->drawIndexedTriangleList(this->indexbuffer->getSizeIndexList(), 0, 0);
+		device->drawIndexedTriangleList(this->index_buffer->getSizeIndexList(), 0, 0);
 	}
 }
 
@@ -280,8 +278,8 @@ Vector3D Capsule::sphereEnd(float u, float v)
 
 Capsule::~Capsule()
 {
-	this->constantbuffer->release();
-	this->indexbuffer->release();
-	this->verterbuffer->release();
+	this->constant_buffer->release();
+	this->index_buffer->release();
+	this->vertex_buffer->release();
 	AGameObject::~AGameObject();
 }

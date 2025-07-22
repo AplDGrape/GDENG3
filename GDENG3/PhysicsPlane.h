@@ -7,4 +7,3 @@ public:
 	PhysicsPlane(String name);
 	~PhysicsPlane();
 };
-

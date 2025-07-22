@@ -10,16 +10,13 @@ class TexturedCube: public Cube
 {
 public:
 	TexturedCube(String name);
-	~TexturedCube();
 
 	void draw(int width, int height) override;
 	void update(float deltaTime) override;
 
-	
-
+	~TexturedCube();
 private:
-	VertexBufferTextured* vertexBuffer;
+	VertexBufferTextured* vertexbufferTextured;
 	IndexBuffer* index_Buffer;
 	ConstantBuffer* constant_Buffer;
 };
-

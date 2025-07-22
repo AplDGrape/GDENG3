@@ -11,19 +11,19 @@ PhysicsPlane::PhysicsPlane(String name): Cube(name, PHYSICS_PLANE)
 	{
 		//X - Y - Z
 		//FRONT FACE
-		{Vector3D(-0.5f,-0.01f,-0.5f),    Vector3D(1,1,1)},
-		{Vector3D(-0.5f,0.01f,-0.5f),    Vector3D(1,1,1)},
-		{ Vector3D(0.5f,0.01f,-0.5f),   Vector3D(1,1,1)},
-		{ Vector3D(0.5f,-0.01f,-0.5f),     Vector3D(1,1,1)},
+		{Vector3D(-0.5f, -0.01f, -0.5f),   Vector3D(1, 1, 1)},
+		{Vector3D(-0.5f,  0.01f, -0.5f),   Vector3D(1, 1, 1)},
+		{Vector3D( 0.5f,  0.01f, -0.5f),   Vector3D(1, 1, 1)},
+		{Vector3D( 0.5f, -0.01f, -0.5f),   Vector3D(1, 1, 1)},
 		//BACK FACE
-		{ Vector3D(0.5f,-0.01f,0.5f),    Vector3D(1,1,1)},
-		{ Vector3D(0.5f,0.01f,0.5f),    Vector3D(1,1,1)},
-		{ Vector3D(-0.5f,0.01f,0.5f),   Vector3D(1,1,1)},
-		{ Vector3D(-0.5f,-0.01f,0.5f),     Vector3D(1,1,1)}
+		{Vector3D( 0.5f, -0.01f, 0.5f),    Vector3D(1, 1, 1)},
+		{Vector3D( 0.5f,  0.01f, 0.5f),    Vector3D(1, 1, 1)},
+		{Vector3D(-0.5f,  0.01f, 0.5f),    Vector3D(1, 1, 1)},
+		{Vector3D(-0.5f, -0.01f, 0.5f),    Vector3D(1, 1, 1)}
 	};
 
-	this->verterbuffer = GraphicsEngine::getInstance()->createVertexBuffer();
-	this->verterbuffer->load(vertex_list, sizeof(vertex), ARRAYSIZE(vertex_list), shaderdata.shaderByteCode, shaderdata.sizeShader);
+	this->vertex_buffer = GraphicsEngine::getInstance()->createVertexBuffer();
+	this->vertex_buffer->load(vertex_list, sizeof(vertex), ARRAYSIZE(vertex_list), shaderdata.shaderByteCode, shaderdata.sizeShader);
 
 	UINT size_list = ARRAYSIZE(vertex_list);
 
@@ -48,17 +48,16 @@ PhysicsPlane::PhysicsPlane(String name): Cube(name, PHYSICS_PLANE)
 		7,6,1,
 		1,0,7
 	};
-
 	
-	this->indexbuffer = GraphicsEngine::getInstance()->createIndexBuffer();
+	this->index_buffer = GraphicsEngine::getInstance()->createIndexBuffer();
 	UINT size_index_list = ARRAYSIZE(index_list);
-	this->indexbuffer->load(index_list, size_index_list);
+	this->index_buffer->load(index_list, size_index_list);
 
-	
 	constant cc;
 	cc.time = 0;
-	this->constantbuffer = GraphicsEngine::getInstance()->createConstantBuffer();
-	this->constantbuffer->load(&cc, sizeof(constant));
+
+	this->constant_buffer = GraphicsEngine::getInstance()->createConstantBuffer();
+	this->constant_buffer->load(&cc, sizeof(constant));
 
 	this->setPosition(0.0f, -5.0f, 0.0f);
 	this->setScale(33.5f, 0.2f, 35.5f);

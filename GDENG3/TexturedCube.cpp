@@ -1,81 +1,74 @@
 #include "TexturedCube.h"
 
-
 TexturedCube::TexturedCube(String name): Cube(name, TEXTURED_CUBE)
 {
-	
+	// Load texture from file
 	Shaderlibrary::getInstance()->requestVertexShaderData(namesShader.TEXTURED_VERTEX_SHADER_NAME, &shaderdata.shaderByteCode, &shaderdata.sizeShader);
 	Texture* tex = TextureManager::getInstance()->createTextureFromFile(L"Assets\\Textures\\wood.jpg");
+
 	this->setObjectTexture(tex);
 	this->setTextureFlag();
 
 	Vector3D position_list[] =
 	{
-		{ Vector3D(-0.5f,-0.5f,-0.5f)},
-		{ Vector3D(-0.5f,0.5f,-0.5f) },
-		{ Vector3D(0.5f,0.5f,-0.5f) },
-		{ Vector3D(0.5f,-0.5f,-0.5f)},
+		//FRONT FACE
+		{Vector3D(-0.5f, -0.5f, -0.5f)},
+		{Vector3D(-0.5f,  0.5f, -0.5f)},
+		{Vector3D( 0.5f,  0.5f, -0.5f)},
+		{Vector3D( 0.5f, -0.5f, -0.5f)},
 
 		//BACK FACE
-		{ Vector3D(0.5f,-0.5f,0.5f) },
-		{ Vector3D(0.5f,0.5f,0.5f) },
-		{ Vector3D(-0.5f,0.5f,0.5f)},
-		{ Vector3D(-0.5f,-0.5f,0.5f) }
+		{Vector3D( 0.5f, -0.5f, 0.5f)},
+		{Vector3D( 0.5f,  0.5f, 0.5f)},
+		{Vector3D(-0.5f,  0.5f, 0.5f)},
+		{Vector3D(-0.5f, -0.5f, 0.5f)}
 	};
-
 	
 	Vector2D texcoord_list[] =
 	{
-		{ Vector2D(0.0f,0.0f) },
-		{ Vector2D(0.0f,1.0f) },
-		{ Vector2D(1.0f,0.0f) },
-		{ Vector2D(1.0f,1.0f) }
+		{Vector2D(0.0f, 0.0f)},
+		{Vector2D(0.0f, 1.0f)},
+		{Vector2D(1.0f, 0.0f)},
+		{Vector2D(1.0f, 1.0f)}
 	};
-
-
 	
 	Vertex vertex_list[] =
 	{
 		//X - Y - Z
 		//FRONT FACE
-		{ position_list[0],texcoord_list[1] },
-		{ position_list[1],texcoord_list[0] },
-		{ position_list[2],texcoord_list[2] },
-		{ position_list[3],texcoord_list[3] },
+		{ position_list[0], texcoord_list[1] },
+		{ position_list[1], texcoord_list[0] },
+		{ position_list[2], texcoord_list[2] },
+		{ position_list[3], texcoord_list[3] },
 
+		{ position_list[4], texcoord_list[1] },
+		{ position_list[5], texcoord_list[0] },
+		{ position_list[6], texcoord_list[2] },
+		{ position_list[7], texcoord_list[3] },
 
-		{ position_list[4],texcoord_list[1] },
-		{ position_list[5],texcoord_list[0] },
-		{ position_list[6],texcoord_list[2] },
-		{ position_list[7],texcoord_list[3] },
+		{ position_list[1], texcoord_list[1] },
+		{ position_list[6], texcoord_list[0] },
+		{ position_list[5], texcoord_list[2] },
+		{ position_list[2], texcoord_list[3] },
 
+		{ position_list[7], texcoord_list[1] },
+		{ position_list[0], texcoord_list[0] },
+		{ position_list[3], texcoord_list[2] },
+		{ position_list[4], texcoord_list[3] },
 
-		{ position_list[1],texcoord_list[1] },
-		{ position_list[6],texcoord_list[0] },
-		{ position_list[5],texcoord_list[2] },
-		{ position_list[2],texcoord_list[3] },
+		{ position_list[3], texcoord_list[1] },
+		{ position_list[2], texcoord_list[0] },
+		{ position_list[5], texcoord_list[2] },
+		{ position_list[4], texcoord_list[3] },
 
-		{ position_list[7],texcoord_list[1] },
-		{ position_list[0],texcoord_list[0] },
-		{ position_list[3],texcoord_list[2] },
-		{ position_list[4],texcoord_list[3] },
-
-		{ position_list[3],texcoord_list[1] },
-		{ position_list[2],texcoord_list[0] },
-		{ position_list[5],texcoord_list[2] },
-		{ position_list[4],texcoord_list[3] },
-
-		{ position_list[7],texcoord_list[1] },
-		{ position_list[6],texcoord_list[0] },
-		{ position_list[1],texcoord_list[2] },
-		{ position_list[0],texcoord_list[3] }
-
-
+		{ position_list[7], texcoord_list[1] },
+		{ position_list[6], texcoord_list[0] },
+		{ position_list[1], texcoord_list[2] },
+		{ position_list[0], texcoord_list[3] }
 	};
 
-	
-	this->vertexBuffer = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
-	this->vertexBuffer->load(vertex_list, sizeof(Vertex), ARRAYSIZE(vertex_list), shaderdata.shaderByteCode, shaderdata.sizeShader);
+	this->vertexbufferTextured = GraphicsEngine::getInstance()->createTexturedVertexBuffer();
+	this->vertexbufferTextured->load(vertex_list, sizeof(Vertex), ARRAYSIZE(vertex_list), shaderdata.shaderByteCode, shaderdata.sizeShader);
 
 	unsigned int index_list[] =
 	{
@@ -99,15 +92,15 @@ TexturedCube::TexturedCube(String name): Cube(name, TEXTURED_CUBE)
 		22,23,20
 	};
 
-	
+	// Index Buffer
 	this->index_Buffer = GraphicsEngine::getInstance()->createIndexBuffer();
 	this->index_Buffer->load(index_list, ARRAYSIZE(index_list));
 	
+	//constant cc = {};
 	constant cc;
 	cc.time = 0;
 	this->constant_Buffer = GraphicsEngine::getInstance()->createConstantBuffer();
 	this->constant_Buffer->load(&cc, sizeof(constant));
-
 }
 
 void TexturedCube::draw(int width, int height)
@@ -144,12 +137,11 @@ void TexturedCube::draw(int width, int height)
 		device->setTexture(this->vertex_shader, this->texture);
 		device->setTexture(this->pixel_shader, this->texture);
 
-		device->setVertexBufferTextured(this->vertexBuffer);
+		device->setVertexBufferTextured(this->vertexbufferTextured);
 		device->setIndexBuffer(this->index_Buffer);
 
 		device->drawIndexedTriangleList(this->index_Buffer->getSizeIndexList(), 0, 0);
 	}
-	
 	else
 	{
 		Cube::draw(width, height);
@@ -160,9 +152,6 @@ void TexturedCube::update(float deltaTime)
 {
 }
 
-
 TexturedCube::~TexturedCube()
 {
 }
-
-
