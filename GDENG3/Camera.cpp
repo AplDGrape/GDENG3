@@ -13,7 +13,6 @@ Camera::Camera(String name) :AGameObject(name, AGameObject::CAMERA)
 	pitch = std::asin(direction.m_y);
 	yaw = std::atan2(direction.m_x, -direction.m_z);
 
-
 	InputSystem::getInstance()->addListener(this);
 	this->updateViewMatrix();
 }
