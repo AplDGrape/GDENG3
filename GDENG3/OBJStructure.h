@@ -13,7 +13,6 @@ public:
 	void update(float deltaTime) override;
 
 	~OBJStructure();
-
 private:
 	float ticks = 0.0f;
 	float deltaPos = 0.0f;

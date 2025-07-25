@@ -58,9 +58,10 @@ UIManager::UIManager(HWND windowHandle)
 	this->uiTable[uiNames.PLAYBACK_SCREEN] = playBackScreen;
 	this->uiList.push_back(playBackScreen);
 
-	/*ScreenActions* ActionsScreen = new ScreenActions();
+	// Undo/Redo
+	ScreenActions* ActionsScreen = new ScreenActions();
 	this->uiTable[uiNames.ACTIONS_SCREEN] = ActionsScreen;
-	this->uiList.push_back(ActionsScreen);*/
+	this->uiList.push_back(ActionsScreen);
 
 	// Debug Console
 	DebugConsoleScreen* debugConsoleScreen = new DebugConsoleScreen();

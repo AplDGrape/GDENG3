@@ -1,5 +1,4 @@
 #include "Sphere.h"
-
 #include "PhysicsComponent.h"
 
 Sphere::Sphere(String name):AGameObject(name, PrimitiveType::SPHERE)
@@ -82,8 +81,6 @@ Sphere::Sphere(String name):AGameObject(name, PrimitiveType::SPHERE)
 	constant cc;
 	this->constantbuffer = GraphicsEngine::getInstance()->createConstantBuffer();
 	this->constantbuffer->load(&cc, sizeof(constant));
-
-	
 }
 
 void Sphere::draw(int width, int height)
@@ -94,14 +91,13 @@ void Sphere::draw(int width, int height)
 	{
 		this->vertex_shader = Shaderlibrary::getInstance()->getVertexShader(namesShader.BASE_VERTEX_SHADER_NAME);
 		this->pixel_shader = Shaderlibrary::getInstance()->getPixelShader(namesShader.BASE_PIXEL_SHADER_NAME);
-
 	}
 	else
 	{
 		this->vertex_shader = Shaderlibrary::getInstance()->getVertexShader(namesShader.TEXTURED_VERTEX_SHADER_NAME);
 		this->pixel_shader = Shaderlibrary::getInstance()->getPixelShader(namesShader.TEXTURED_PIXEL_SHADER_NAME);
-
 	}
+
 	if (this->overrideMatrix)
 	{
 		cc.world = this->getLocalMatrix();
@@ -147,12 +143,10 @@ void Sphere::draw(int width, int height)
 
 		device->drawIndexedTriangleList(this->indexbuffer->getSizeIndexList(), 0, 0);
 	}
-
 }
 
 void Sphere::update(float deltaTime)
 {
-	
 }
 
 void Sphere::saveEditState(){
@@ -167,6 +161,7 @@ void Sphere::restoreEditState()
 {
 	
 	PhysicsComponent* componentAttached = (PhysicsComponent*)this->findComponentbyType(AComponent::Physics, "Physics Component");
+
 	if (componentAttached != nullptr)
 	{
 		AGameObject::restoreEditState();
@@ -184,7 +179,3 @@ Sphere::~Sphere()
 	this->verterbuffer->release();
 	AGameObject::~AGameObject();
 }
-
-
-
-

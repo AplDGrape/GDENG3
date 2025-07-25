@@ -1,7 +1,8 @@
 #include "SceneWriter.h"
-#include <iostream>
 #include "AComponent.h"
 #include "GameObjectManager.h"
+
+#include <iostream>
 #include "pugixml-1.13/src/pugixml.hpp"
 #include "pugixml-1.13/src/pugiconfig.hpp"
 

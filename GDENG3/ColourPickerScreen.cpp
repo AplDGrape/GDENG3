@@ -9,12 +9,12 @@ void ColourPickerScreen::drawUI()
 	ImGui::Begin("Color Picker Screen", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
 	ImGui::SetWindowPos(ImVec2(UIManager::WINDOW_WIDTH - 1125, 480));
 
-	// --- Left section: Color Wheel ---
+	// Colour Wheel
 	ImGui::ColorPicker4("##ColorWheel", (float*)&UIManager::logoTint,
 		ImGuiColorEditFlags_PickerHueWheel | ImGuiColorEditFlags_NoSidePreview | ImGuiColorEditFlags_NoInputs);
 	ImGui::SameLine();
 
-	// --- Right section: Color display & close ---
+	// Colour display & close
 	ImGui::BeginGroup();
 	ImGui::Text("Color");
 	ImGui::ColorButton("Current Color", UIManager::logoTint, ImGuiColorEditFlags_NoTooltip, ImVec2(65, 35));
@@ -25,6 +25,7 @@ void ColourPickerScreen::drawUI()
 	float buttonX = ImGui::GetWindowContentRegionMax().x - buttonSize.x - padding;
 
 	ImGui::SetCursorPosX(buttonX);
+
 	if (ImGui::Button("Close", buttonSize)) {
 		UIManager::getInstance()->hideColorPickerScreen();
 	}

@@ -54,26 +54,31 @@ public:
 	void updateAll();
 	void renderAll(int viewportWidth, int viewportHeight);
 
+	// Object instance
 	void addObject(AGameObject* gameObject);
 	void createObject(PrimitiveType type);
 	
+	// Create/Delete/Select Object
 	void createOBJMODEL(Mesh* mesh, String name, Texture* text);
 	void deleteObject(AGameObject* gameObject);
 	void deleteObjectByName(String name);
 	void setSelectedObject(String name);
 	void setSelectedObject(AGameObject* gameObject);
 
-	void generatePhysicsCube();
-	void hundreadCubes();
+	// File System
 	void saveEditStates();
 	void restoreEditStates();
 	void applyEditorAction(EditorAction* action);
 
+	// Object generation
+	//void hundredCube();
+	void generatePhysicsCube();
 	void generateBunnyObj();
 	void generateArmadilloOBJ();
 	void generateTeapotOBJ();
 	void generateAllOBJ();
 
+	// Render from file
 	void createObjectFromFile(String name, AGameObject::PrimitiveType type, Vector3D position, Vector3D rotation, Vector3D scale, bool rigidBody);
 private:
 	static GameObjectManager* sharedInstance;
@@ -87,6 +92,7 @@ private:
 	AGameObject* SelectedObject;
 	ObjectList GameObjectList;
 	HashTable GameObjectTable;
+// Object counter (heirarchy)
 private:
 	int cubeCounter = 0;
 	int sphereCounter = 0;

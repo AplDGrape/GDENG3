@@ -1,7 +1,8 @@
 #pragma once
+#include "Vector3D.h"
+
 #include <string>
 #include <fstream>
-#include "Vector3D.h"
 
 class SceneWriter
 {

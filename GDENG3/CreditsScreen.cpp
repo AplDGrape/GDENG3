@@ -25,7 +25,7 @@ void CreditsScreen::drawUI()
         ImGui::Image((void*)my_texture, ImVec2(my_image_width, my_image_height), ImVec2(0, 0), ImVec2(1, 1), UIManager::logoTint);
         ImGui::Text("About");
         ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing();
-        ImGui::Text("Scene Editor v2.2");
+        ImGui::Text("Scene Editor v2.3");
         ImGui::Text("Developed by: Francis Raphael D. Apolinar");
         ImGui::Spacing(); ImGui::Spacing(); ImGui::Spacing();
         ImGui::Text("Acknowledgements:");

@@ -8,18 +8,21 @@ Shaderlibrary::Shaderlibrary()
 	ShaderData shaderdata;
 	ShaderNames names;
 
+	// Base Shader
 	graphEngine->compileVertexShader(names.BASE_VERTEX_SHADER_NAME.c_str(), "vsmain", &shaderdata.shaderByteCode, &shaderdata.sizeShader);
 	this->activeVertexShaders[names.BASE_VERTEX_SHADER_NAME] = graphEngine->createVertexShader(shaderdata.shaderByteCode, shaderdata.sizeShader);
 
 	graphEngine->compilePixelShader(names.BASE_PIXEL_SHADER_NAME.c_str(), "psmain", &shaderdata.shaderByteCode, &shaderdata.sizeShader);
 	this->activePixelShaders[names.BASE_PIXEL_SHADER_NAME] = graphEngine->createPixelShader(shaderdata.shaderByteCode, shaderdata.sizeShader);
 
+	// Texture Shader
 	graphEngine->compileVertexShader(names.TEXTURED_VERTEX_SHADER_NAME.c_str(), "vsmain", &shaderdata.shaderByteCode, &shaderdata.sizeShader);
 	this->activeVertexShaders[names.TEXTURED_VERTEX_SHADER_NAME] = graphEngine->createVertexShader(shaderdata.shaderByteCode, shaderdata.sizeShader);
 
 	graphEngine->compilePixelShader(names.TEXTURED_PIXEL_SHADER_NAME.c_str(), "psmain", &shaderdata.shaderByteCode, &shaderdata.sizeShader);
 	this->activePixelShaders[names.TEXTURED_PIXEL_SHADER_NAME] = graphEngine->createPixelShader(shaderdata.shaderByteCode, shaderdata.sizeShader);
 
+	// Mesh Shader
 	graphEngine->compilePixelShader(names.MESHLAYOUT_PIXEL_SHADER_NAME.c_str(), "psmain", &shaderdata.shaderByteCode, &shaderdata.sizeShader);
 	this->activePixelShaders[names.MESHLAYOUT_PIXEL_SHADER_NAME] = graphEngine->createPixelShader(shaderdata.shaderByteCode, shaderdata.sizeShader);
 
@@ -50,17 +53,18 @@ void Shaderlibrary::requestVertexShaderData(String vertexShaderName, void** shad
 	ShaderNames names;
 	ShaderData shaderdata;
 
+	// Base
 	if(vertexShaderName == names.BASE_VERTEX_SHADER_NAME)
 	{
 		graphEngine->compileVertexShader(names.BASE_VERTEX_SHADER_NAME.c_str(), "vsmain", shaderByteCode, sizeShader);
 		
 	}
-
+	// Textured
 	else if(vertexShaderName == names.TEXTURED_VERTEX_SHADER_NAME)
 	{
 		graphEngine->compileVertexShader(names.TEXTURED_VERTEX_SHADER_NAME.c_str(), "vsmain", shaderByteCode, sizeShader);
 	}
-
+	// Mesh
 	else if(vertexShaderName == names.MESHLAYOUT_VERTEX_SHADER_NAME)
 	{
 		graphEngine->compileVertexShader(names.MESHLAYOUT_VERTEX_SHADER_NAME.c_str(), "vsmain", shaderByteCode, sizeShader);

@@ -4,6 +4,7 @@
 Debug& Debug::GetInstance()
 {
 	static Debug instance;
+
 	return instance;
 }
 

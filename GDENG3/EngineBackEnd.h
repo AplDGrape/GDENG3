@@ -20,6 +20,7 @@ public:
 	bool insideFrameStep();
 	void Start();
 	void Stop();
+
 	EditorMode getMode();
 private:
 	EngineBackEnd();
@@ -27,11 +28,11 @@ private:
 
 	EngineBackEnd(EngineBackEnd const&){};
 	EngineBackEnd& operator=(EngineBackEnd const&) {};
-
+private:
 	static EngineBackEnd* sharedInstance;
 
 	EditorMode editorMode = EditorMode::EDITOR;
-
+private:
 	bool frameStepping = false;
 	bool isStopped = false;
 };

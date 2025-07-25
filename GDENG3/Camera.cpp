@@ -3,6 +3,7 @@
 
 Camera::Camera(String name) :AGameObject(name, AGameObject::CAMERA)
 {
+	// Set Default Position
 	this->setPosition(0.0f, 2.0f, -2.0f);
 	//this->cameraFront = Vector3D(0.0f, 0.0f, -1.0f);
 	//this->cameraUp = Vector3D(0.0f, 1.0f, 0.0f);
@@ -245,7 +246,6 @@ Matrix4x4 Camera::getViewMatrix()
 
 void Camera::onKeyDown(int key)
 {
-	
 }
 
 void Camera::onKeyUp(int key)

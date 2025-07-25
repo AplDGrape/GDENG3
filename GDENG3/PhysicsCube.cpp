@@ -32,6 +32,7 @@ void PhysicsCube::saveEditState()
 void PhysicsCube::restoreEditState()
 {
 	AGameObject::restoreEditState();
+
 	this->detachComponent(this->attachedComponent);
 	delete this->attachedComponent;
 

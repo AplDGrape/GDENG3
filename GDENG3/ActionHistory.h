@@ -25,14 +25,13 @@ public:
 	EditorAction* redoAction();
 
 	void clear();
-
 private:
 	ActionHistory();
 	~ActionHistory();
 
 	ActionHistory(ActionHistory const&) {};
 	ActionHistory& operator=(ActionHistory const&) {};
-
+private:
 	static ActionHistory* sharedInstance;
 
 	ActionStack actionsPerformed;

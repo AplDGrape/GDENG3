@@ -14,6 +14,7 @@ void SceneReader::readFromFile()
 {
 	String objectName;
 	AGameObject::PrimitiveType objectType;
+
 	bool rigidBody;
 	Vector3D position;
 	Vector3D rotation;
@@ -33,12 +34,13 @@ void SceneReader::readFromFile()
 			<< ", character pos= " << result.offset;
 	}
 
-	// A valid XML document must have a single root node
+	// Valid XML document needs a single root node
 	pugi::xml_node root = doc.first_child();
 	
 	for(; root; root = root.next_sibling())
 	{
 		pugi::xml_node GameObjectNode = root.child("GameObject");
+
 		for(; GameObjectNode; GameObjectNode = GameObjectNode.next_sibling())
 		{
 			String objectName = GameObjectNode.child("Name").child_value();
@@ -46,9 +48,7 @@ void SceneReader::readFromFile()
 			objectType = (AGameObject::PrimitiveType)std::stoi(GameObjectNode.child("Type").child_value());
 			
 			position = GetTransformFromXML(GameObjectNode.child("Position"));
-
 			scale = GetTransformFromXML(GameObjectNode.child("Scale"));
-			
 			rotation = GetTransformFromXML(GameObjectNode.child("Rotation"));
 
 			if(std::atoi(GameObjectNode.child("RigidBody").child_value()) == 0)

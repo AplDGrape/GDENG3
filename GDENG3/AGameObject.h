@@ -66,7 +66,7 @@ public:
 
 	typedef std::string String;
 	typedef std::vector<AComponent*> ComponentList;
-
+public:
 	AGameObject(String name, PrimitiveType type);
 	~AGameObject();
 
@@ -94,7 +94,7 @@ public:
 	void enable();
 	void disable();
 	bool getStatus();
-
+public:
 	String getName();
 	void setName(String name);
 	PrimitiveType getType();
@@ -103,7 +103,7 @@ public:
 
 	void attachComponent(AComponent* component);
 	void detachComponent(AComponent* component);
-
+public:
 	AComponent* findComponentByName(String name);
 	AComponent* findComponentbyType(AComponent::ComponentType type, String name);
 	ComponentList getComponentsOfType(AComponent::ComponentType type);
@@ -122,7 +122,7 @@ protected:
 	Vector3D Position;
 	Vector3D Scale;
 	Vector3D Rotation;
-
+protected:
 	String name;
 	bool enabled = true;
 	bool isTextured = false;

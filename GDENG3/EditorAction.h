@@ -18,7 +18,7 @@ public:
 	Matrix4x4 getStoredMatrix();
 private:
 	AGameObject::String objectName;
-
+private:
 	Vector3D localPosition;
 	Vector3D localScale;
 	Vector3D localRotation;

@@ -21,6 +21,8 @@ void InspectorScreen::generateEditor()
 	if (GameObjectManager::getInstance()->getSelectedObject() != NULL)
 	{
 		bool enabled = GameObjectManager::getInstance()->getSelectedObject()->getStatus();
+
+		// Object State
 		if (ImGui::Checkbox("Enabled", &enabled))
 		{
 			if (enabled)
@@ -28,6 +30,7 @@ void InspectorScreen::generateEditor()
 			else
 				GameObjectManager::getInstance()->getSelectedObject()->disable();
 		}
+		// Component System
 		if(ImGui::Button("Remove Texture"))
 		{
 			if(GameObjectManager::getInstance()->getSelectedObject()->getObjectTexture() != NULL)

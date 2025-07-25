@@ -6,6 +6,7 @@ OBJStructure::OBJStructure(Mesh* mesh, Texture* texture, String name): AGameObje
 	this->setObjectTexture(texture);
 
 	this->setTextureFlag();
+
 	constant cc;
 	cc.time = 0;
 	this->constantbuffer = GraphicsEngine::getInstance()->createConstantBuffer();

@@ -279,6 +279,7 @@ AComponent* AGameObject::findComponentbyType(AComponent::ComponentType type, Str
 AGameObject::ComponentList AGameObject::getComponentsOfType(AComponent::ComponentType type)
 {
 	ComponentList foundList;
+
 	for (int i = 0; i < this->componentList.size(); i++)
 	{
 		if (this->componentList[i]->getType() == type) {
@@ -324,6 +325,7 @@ void AGameObject::restoreEditState()
 		this->Position = this->lastEditState->getStoredPosition();
 		this->Scale = this->lastEditState->getStoredScale();
 		this->Rotation = this->lastEditState->getStoredRotation();
+
 		this->LocalMatrix = this->lastEditState->getStoredMatrix();
 
 		this->lastEditState = NULL;

@@ -30,6 +30,7 @@ void AComponent::attachOwner(AGameObject* owner)
 void AComponent::detachOwner()
 {
 	this->owner = NULL;
+
 	delete this;
 }
 

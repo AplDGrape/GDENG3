@@ -6,15 +6,19 @@
 PhysicsComponent::PhysicsComponent(String name, AGameObject* owner) : AComponent(name, ComponentType::Physics, owner)
 {
 	BaseSystem::getInstance()->getPhysicsSystem()->registerComponent(this);
+
 	PhysicsCommon* physicsCommon = BaseSystem::getInstance()->getPhysicsSystem()->getPhysicsCommon();
 	PhysicsWorld* physicsWorld = BaseSystem::getInstance()->getPhysicsSystem()->getPhysicsWorld();
 
 	Vector3D scale = this->getOwner()->getLocalScale();
+
 	Transform transform;
 	transform.setFromOpenGL(this->getOwner()->getPhysicsLocalMatrix());
+
 	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.m_x / 2, scale.m_y / 2, scale.m_z / 2));
 	SphereShape* shpereShape = physicsCommon->createSphereShape(1);
 	CapsuleShape* capsuleShape = physicsCommon->createCapsuleShape(1, 1);
+
 	this->rigidBody = physicsWorld->createRigidBody(transform);
 
 	if(owner->getType() == AGameObject::CUBE)
@@ -34,7 +38,6 @@ PhysicsComponent::PhysicsComponent(String name, AGameObject* owner) : AComponent
 		this->rigidBody->addCollider(boxShape, transform);
 	}
 	
-
 	this->rigidBody->updateMassPropertiesFromColliders();
 	this->rigidBody->setMass(this->mass);
 	this->rigidBody->setType(BodyType::DYNAMIC);
@@ -44,7 +47,6 @@ PhysicsComponent::PhysicsComponent(String name, AGameObject* owner) : AComponent
 	transform.getOpenGLMatrix(matrix);
 
 	this->getOwner()->setLocalMatrix(matrix);
-
 }
 
 void PhysicsComponent::perform(float deltaTime)

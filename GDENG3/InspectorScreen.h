@@ -21,6 +21,6 @@ private:
 	float SelectedObjectposition[3] = { 0.0f, 0.0f, 0.0f };
 	float SelectedObjectScale[3] = { 0.0f, 0.0f, 0.0f };
 	float SelectedObjectRotation[3] = { 0.0f, 0.0f, 0.0f };
-
+private:
 	ImGui::FileBrowser* textureDialogue;
 };
