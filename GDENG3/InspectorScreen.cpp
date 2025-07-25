@@ -38,10 +38,10 @@ void InspectorScreen::generateEditor()
 
 		if (enabled)
 		{
-			/*if (ImGui::Button("Select Texture"))
+			if (ImGui::Button("Select Texture"))
 			{
 				this->textureDialogue->Open();
-			}*/
+			}
 
 			ImGui::Text("Selected Object: %s", GameObjectManager::getInstance()->getSelectedObject()->getName().c_str());
 			this->TransformUpdate();

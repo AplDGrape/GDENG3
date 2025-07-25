@@ -7,6 +7,13 @@ Camera::Camera(String name) :AGameObject(name, AGameObject::CAMERA)
 	//this->cameraFront = Vector3D(0.0f, 0.0f, -1.0f);
 	//this->cameraUp = Vector3D(0.0f, 1.0f, 0.0f);
 
+	Vector3D direction = Vector3D(0.0f, 2.0f, -30.0f) - this->getLocalPosition();
+	direction = Vector3D::nomalize(direction);
+
+	pitch = std::asin(direction.m_y);
+	yaw = std::atan2(direction.m_x, -direction.m_z);
+
+
 	InputSystem::getInstance()->addListener(this);
 	this->updateViewMatrix();
 }
@@ -236,8 +243,6 @@ Matrix4x4 Camera::getViewMatrix()
 {
 	return this->LocalMatrix;
 }
-
-
 
 void Camera::onKeyDown(int key)
 {

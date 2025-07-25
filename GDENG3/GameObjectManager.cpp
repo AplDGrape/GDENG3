@@ -106,7 +106,7 @@ void GameObjectManager::createObject(PrimitiveType type)
 	{
 		Plane* plane = new Plane("Plane");
 		plane->setPosition(0.0f, 1.0f, 0.0f);
-		plane->setScale(1.0f, 1.0f, 1.0f);
+		plane->setScale(10.0f, 1.0f, 10.0f);
 		this->addObject(plane);
 		
 	}
