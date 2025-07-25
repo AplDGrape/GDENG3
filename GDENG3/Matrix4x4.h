@@ -229,10 +229,10 @@ public:
 		Vector3D X, Y, Z;
 
 		Vector3D forward = eye - center;
-		forward = Vector3D::nomalize(forward);
+		forward = Vector3D::normalize(forward);
 
 		Vector3D left = Vector3D::cross(up, forward);
-		left = Vector3D::nomalize(left);
+		left = Vector3D::normalize(left);
 
 		Vector3D upDirection = Vector3D::cross(forward, left);
 

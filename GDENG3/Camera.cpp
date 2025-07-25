@@ -9,7 +9,7 @@ Camera::Camera(String name) :AGameObject(name, AGameObject::CAMERA)
 	//this->cameraUp = Vector3D(0.0f, 1.0f, 0.0f);
 
 	Vector3D direction = Vector3D(0.0f, 2.0f, -30.0f) - this->getLocalPosition();
-	direction = Vector3D::nomalize(direction);
+	direction = Vector3D::normalize(direction);
 
 	pitch = std::asin(direction.m_y);
 	yaw = std::atan2(direction.m_x, -direction.m_z);

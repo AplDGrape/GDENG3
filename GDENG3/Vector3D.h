@@ -36,7 +36,7 @@ public:
 	}
 
 	// Normalize this vector (returns a new vector)
-	static Vector3D nomalize(const Vector3D& v)
+	static Vector3D normalize(const Vector3D& v)
 	{
 		float length_of_v = sqrt((v.m_x * v.m_x) + (v.m_y * v.m_y) + (v.m_z * v.m_z));
 		return Vector3D(v.m_x / length_of_v, v.m_y / length_of_v, v.m_z / length_of_v);
