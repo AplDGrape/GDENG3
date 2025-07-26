@@ -19,6 +19,7 @@ public:
 	ComponentType getType();
 	String getName();
 
+	// Performs the associated action
 	virtual void perform(float deltaTime) = 0;
 protected:
 	AGameObject* owner;

@@ -5,17 +5,19 @@
 
 PhysicsComponent::PhysicsComponent(String name, AGameObject* owner) : AComponent(name, ComponentType::Physics, owner)
 {
+	// Whenever a new physics component is initialized. Register to physics system
 	BaseComponentSystem::getInstance()->getPhysicsSystem()->registerComponent(this);
 
 	PhysicsCommon* physicsCommon = BaseComponentSystem::getInstance()->getPhysicsSystem()->getPhysicsCommon();
 	PhysicsWorld* physicsWorld = BaseComponentSystem::getInstance()->getPhysicsSystem()->getPhysicsWorld();
 
+	// Create a rigid body in the world
 	Vector3D scale = this->getOwner()->getLocalScale();
 
 	Transform transform;
 	transform.setFromOpenGL(this->getOwner()->getPhysicsLocalMatrix());
 
-	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.m_x / 2, scale.m_y / 2, scale.m_z / 2));
+	BoxShape* boxShape = physicsCommon->createBoxShape(Vector3(scale.m_x / 2, scale.m_y / 2, scale.m_z / 2));	// Half extent
 	SphereShape* shpereShape = physicsCommon->createSphereShape(1);
 	CapsuleShape* capsuleShape = physicsCommon->createCapsuleShape(1, 1);
 
@@ -56,6 +58,7 @@ void PhysicsComponent::perform(float deltaTime)
 	transform.getOpenGLMatrix(Matrix);
 
 	this->getOwner()->setLocalMatrix(Matrix);
+	//std::cout << "My component is updating: " << this->name << "\n";
 }
 
 RigidBody* PhysicsComponent::getRigidBody()
