@@ -13,7 +13,7 @@ public:
 
 	void drawUI() override;
 	void generateEditor();
-	void TransformUpdate();
+	void onTransformUpdate();
 	void TransformSelected(AGameObject* selected);
 
 	~InspectorScreen();

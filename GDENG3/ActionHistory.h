@@ -29,9 +29,9 @@ private:
 	ActionHistory();
 	~ActionHistory();
 
-	ActionHistory(ActionHistory const&) {};
-	ActionHistory& operator=(ActionHistory const&) {};
-private:
+	ActionHistory(ActionHistory const&) {};				// Copy constructor is private
+	ActionHistory& operator=(ActionHistory const&) {};	// Assignment operator is private
+
 	static ActionHistory* sharedInstance;
 
 	ActionStack actionsPerformed;

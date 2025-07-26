@@ -11,13 +11,15 @@ class ShaderNames
 {
 public:
 	typedef std::wstring String;
+
+	// Vertex shader names
 	const String BASE_VERTEX_SHADER_NAME = L"VertexShader.hlsl";
-	const String BASE_PIXEL_SHADER_NAME = L"PixelShader.hlsl";
-
 	const String TEXTURED_VERTEX_SHADER_NAME = L"TexturedVertexShader.hlsl";
-	const String TEXTURED_PIXEL_SHADER_NAME = L"TexturedPixelShader.hlsl";
-
 	const String MESHLAYOUT_VERTEX_SHADER_NAME = L"VertexMeshLayoutShader.hlsl";
+
+	// Pixel shader names
+	const String BASE_PIXEL_SHADER_NAME = L"PixelShader.hlsl";
+	const String TEXTURED_PIXEL_SHADER_NAME = L"TexturedPixelShader.hlsl";
 	const String MESHLAYOUT_PIXEL_SHADER_NAME = L"PixelMeshLayoutShader.hlsl";
 };
 
@@ -39,6 +41,7 @@ public:
 	static void initialize();
 	static void destroy();
 
+	// Since shader byte code gets dereferenced for some reason if stored in a hash table. request manually.
 	void requestVertexShaderData(String vertexShaderName, void** shaderByteCode, size_t* sizeShader);
 	void requestPixelShaderData(String pixelShaderName, void** shaderByteCode, size_t* sizeShader);
 

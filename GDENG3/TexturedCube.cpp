@@ -134,6 +134,7 @@ void TexturedCube::draw(int width, int height)
 		device->setVertexShader(this->vertex_shader);
 		device->setPixelShader(this->pixel_shader);
 
+		// Set vertex shader and pixel shader for the object
 		device->setTexture(this->vertex_shader, this->texture);
 		device->setTexture(this->pixel_shader, this->texture);
 

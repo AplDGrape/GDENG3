@@ -18,8 +18,8 @@ public:
 private:
 	BaseSystem();
 	
-	BaseSystem(BaseSystem const&) {};
-	BaseSystem& operator=(BaseSystem const&) {};
+	BaseSystem(BaseSystem const&) {};				// Copy constructor is private
+	BaseSystem& operator=(BaseSystem const&) {};	// Assignment operator is private
 	static BaseSystem* sharedInstance;
 
 	PhysicsSystem* physicsSystem;

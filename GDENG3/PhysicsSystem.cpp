@@ -3,6 +3,7 @@
 
 PhysicsSystem::PhysicsSystem()
 {
+	// Create the physics engine and world
 	this->physicsCommon = new PhysicsCommon();
 	PhysicsWorld::WorldSettings worldSeting;
 

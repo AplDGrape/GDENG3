@@ -50,7 +50,8 @@ void AppWindow::onUpdate()
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-	// Engine Backend
+	// Engine States
+	// Holds the current state of the editor
 	EngineBackEnd* backend = EngineBackEnd::getInstance();
 	if (backend->getMode() == EngineBackEnd::EditorMode::PLAY) 
 	{
@@ -60,7 +61,6 @@ void AppWindow::onUpdate()
 	else if (backend->getMode() == EngineBackEnd::EditorMode::EDITOR) 
 	{
 		GameObjectManager::getInstance()->updateAll();
-
 	}
 	else if (backend->getMode() == EngineBackEnd::EditorMode::PAUSED) 
 	{

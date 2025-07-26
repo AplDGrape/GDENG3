@@ -14,6 +14,7 @@ public:
 		PAUSED = 2
 	};
 
+	// Setters
 	void setMode(EditorMode mode);
 	void startFrameStep();
 	void endFrameStep();
@@ -26,13 +27,13 @@ private:
 	EngineBackEnd();
 	~EngineBackEnd();
 
-	EngineBackEnd(EngineBackEnd const&){};
-	EngineBackEnd& operator=(EngineBackEnd const&) {};
-private:
+	EngineBackEnd(EngineBackEnd const&){};				// Copy constructor is private
+	EngineBackEnd& operator=(EngineBackEnd const&) {};	// Assignment operator is private
+
 	static EngineBackEnd* sharedInstance;
 
 	EditorMode editorMode = EditorMode::EDITOR;
-private:
+
 	bool frameStepping = false;
 	bool isStopped = false;
 };

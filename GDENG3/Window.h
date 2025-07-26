@@ -1,6 +1,6 @@
 #pragma once
 #pragma comment(lib,"d3d11.lib")
-#define NOMINMAX
+#define NOMINMAX // To avoid conflict with Windows.h MIN and MAX declarations
 
 #include <Windows.h>
 #include "EngineTime.h"

@@ -47,7 +47,7 @@ void InspectorScreen::generateEditor()
 			}
 
 			ImGui::Text("Selected Object: %s", GameObjectManager::getInstance()->getSelectedObject()->getName().c_str());
-			this->TransformUpdate();
+			this->onTransformUpdate();
 
 			if (ImGui::DragFloat3("Position", this->SelectedObjectposition, 0.01f))
 			{
@@ -110,7 +110,7 @@ void InspectorScreen::generateEditor()
 	}
 }
 
-void InspectorScreen::TransformUpdate()
+void InspectorScreen::onTransformUpdate()
 {
 	Vector3D position = GameObjectManager::getInstance()->getSelectedObject()->getLocalPosition();
 	this->SelectedObjectposition[0] = position.m_x;
@@ -133,6 +133,7 @@ void InspectorScreen::TransformSelected(AGameObject* selected)
 	ActionHistory::getInstance()->recordAction(selected);
 	selected->setPosition(this->SelectedObjectposition[0], this->SelectedObjectposition[1], this->SelectedObjectposition[2]);
 	selected->setRotation(this->SelectedObjectRotation[0], this->SelectedObjectRotation[1], this->SelectedObjectRotation[2]);
+	//this->selectedObject->setEulerAnglesRotation(this->rotationDisplay[0], this->rotationDisplay[1], this->rotationDisplay[2]);
 	selected->setScale(this->SelectedObjectScale[0], this->SelectedObjectScale[1], this->SelectedObjectScale[2]);
 }
 

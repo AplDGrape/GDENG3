@@ -1,8 +1,10 @@
 #pragma once
+#include <iostream>
 #include "Vector3D.h"
 #include "Matrix4x4.h"
 #include "AGameObject.h"
 
+// An action performed by the user in the editor. Stores a snapshot for undoing and redoing
 class EditorAction
 {
 public:

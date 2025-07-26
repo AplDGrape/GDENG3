@@ -240,7 +240,6 @@ void GameObjectManager::applyEditorAction(EditorAction* action)
 		object->setPosition(action->getStoredPosition());
 		object->setRotation(action->getStoredRotation().m_x, action->getStoredRotation().m_y, action->getStoredRotation().m_z);
 		object->setScale(action->getStoredScale());
-
 	}
 }
 
