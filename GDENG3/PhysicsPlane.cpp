@@ -1,6 +1,6 @@
 #include "PhysicsPlane.h"
 #include "PhysicsComponent.h"
-#include "BaseSystem.h"
+#include "BaseComponentSystem.h"
 #include "PhysicsSystem.h"
 
 PhysicsPlane::PhysicsPlane(String name): Cube(name, PHYSICS_PLANE)

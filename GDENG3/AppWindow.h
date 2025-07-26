@@ -38,7 +38,7 @@
 #include "IMGUI\imgui_impl_dx11.h"
 #include "IMGUI\imgui_impl_win32.h"
 
-#include "BaseSystem.h"
+#include "BaseComponentSystem.h"
 #include "EngineBackEnd.h"
 #include "ActionHistory.h"
 #include "Wireframe.h"

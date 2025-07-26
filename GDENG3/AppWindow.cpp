@@ -55,7 +55,7 @@ void AppWindow::onUpdate()
 	EngineBackEnd* backend = EngineBackEnd::getInstance();
 	if (backend->getMode() == EngineBackEnd::EditorMode::PLAY) 
 	{
-		BaseSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
+		BaseComponentSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
 		GameObjectManager::getInstance()->updateAll();
 	}
 	else if (backend->getMode() == EngineBackEnd::EditorMode::EDITOR) 
@@ -65,7 +65,7 @@ void AppWindow::onUpdate()
 	else if (backend->getMode() == EngineBackEnd::EditorMode::PAUSED) 
 	{
 		if (backend->insideFrameStep()) {
-			BaseSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
+			BaseComponentSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
 			GameObjectManager::getInstance()->updateAll();
 			backend->endFrameStep();
 		}
@@ -98,7 +98,7 @@ void AppWindow::onCreate()
 
 	m_wireframe = new Wireframe(GraphicsEngine::getInstance()->getD3Ddevice());
 
-	BaseSystem::initialize();
+	BaseComponentSystem::initialize();
 }
 
 // Initialize all Engine Systems
@@ -144,7 +144,7 @@ void AppWindow::onDestroy()
 	m_swap_chain->release();
 	GraphicsEngine::getInstance()->release();
 	TextureManager::destroy();
-	BaseSystem::destroy();
+	BaseComponentSystem::destroy();
 }
 
 void AppWindow::onFocus()

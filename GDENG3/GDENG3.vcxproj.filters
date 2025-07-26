@@ -30,7 +30,7 @@
     <ClCompile Include="main.cpp">
       <Filter>App</Filter>
     </ClCompile>
-    <ClCompile Include="BaseSystem.cpp">
+    <ClCompile Include="BaseComponentSystem.cpp">
       <Filter>BaseSystem</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsSystem.cpp">
@@ -227,7 +227,7 @@
     <ClInclude Include="AppWindow.h">
       <Filter>App</Filter>
     </ClInclude>
-    <ClInclude Include="BaseSystem.h">
+    <ClInclude Include="BaseComponentSystem.h">
       <Filter>BaseSystem</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsSystem.h">

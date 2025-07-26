@@ -1,14 +1,14 @@
 #include "PhysicsComponent.h"
-#include "BaseSystem.h"
+#include "BaseComponentSystem.h"
 #include "AGameObject.h"
 #include "Vector3D.h"
 
 PhysicsComponent::PhysicsComponent(String name, AGameObject* owner) : AComponent(name, ComponentType::Physics, owner)
 {
-	BaseSystem::getInstance()->getPhysicsSystem()->registerComponent(this);
+	BaseComponentSystem::getInstance()->getPhysicsSystem()->registerComponent(this);
 
-	PhysicsCommon* physicsCommon = BaseSystem::getInstance()->getPhysicsSystem()->getPhysicsCommon();
-	PhysicsWorld* physicsWorld = BaseSystem::getInstance()->getPhysicsSystem()->getPhysicsWorld();
+	PhysicsCommon* physicsCommon = BaseComponentSystem::getInstance()->getPhysicsSystem()->getPhysicsCommon();
+	PhysicsWorld* physicsWorld = BaseComponentSystem::getInstance()->getPhysicsSystem()->getPhysicsWorld();
 
 	Vector3D scale = this->getOwner()->getLocalScale();
 
@@ -65,5 +65,5 @@ RigidBody* PhysicsComponent::getRigidBody()
 
 PhysicsComponent::~PhysicsComponent()
 {
-	BaseSystem::getInstance()->getPhysicsSystem()->unregisterComponent(this);
+	BaseComponentSystem::getInstance()->getPhysicsSystem()->unregisterComponent(this);
 }
