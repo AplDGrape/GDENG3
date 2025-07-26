@@ -49,6 +49,8 @@ class AGameObject;
 class AppWindow : public Window, public InputListener
 {
 public:
+	//void update();
+
 	// Inherited via Window
 	void onCreate() override;
 	void onUpdate() override;

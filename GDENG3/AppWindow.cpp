@@ -1,15 +1,87 @@
 #include "AppWindow.h"
 #include "Debug.h"
 
+//struct vec3
+//{
+//	float x, y, z;
+//};
+//
+//struct vertex
+//{
+//	vec3 position;
+//	vec3 color;
+//};
+
+//struct InstanceData
+//{
+//	Matrix4x4 transform;
+//};
+//
+//__declspec(align(16))
+//struct constant
+//{
+//	Matrix4x4 m_world;
+//	Matrix4x4 m_view;
+//	Matrix4x4 m_proj;
+//	//unsigned int m_time;
+//	float m_time = 0.0f;
+//	float padding[3] = { 0.0f, 0.0f, 0.0f };
+//};
+
 AppWindow* AppWindow::sharedInstance = NULL;
+
 AppWindow::AppWindow()
 {
 }
 
-AppWindow::~AppWindow()
+//void AppWindow::update()
+void AppWindow::onUpdate()
 {
+	Window::onUpdate();
+
+	/*constant cc;
+	cc.m_time = ::GetTickCount();*/
+
+	this->ticks += EngineTime::getDeltaTime() * 1.0f;
+
+	InputSystem::getInstance()->update();
+	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
+		0.01, 0.01, 0.01, 0.01);
+	RECT rc = this->getClientWindowRect();
+	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
+
+	// Engine Backend
+	EngineBackEnd* backend = EngineBackEnd::getInstance();
+	if (backend->getMode() == EngineBackEnd::EditorMode::PLAY) 
+	{
+		BaseSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
+		GameObjectManager::getInstance()->updateAll();
+	}
+	else if (backend->getMode() == EngineBackEnd::EditorMode::EDITOR) 
+	{
+		GameObjectManager::getInstance()->updateAll();
+
+	}
+	else if (backend->getMode() == EngineBackEnd::EditorMode::PAUSED) 
+	{
+		if (backend->insideFrameStep()) {
+			BaseSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
+			GameObjectManager::getInstance()->updateAll();
+			backend->endFrameStep();
+		}
+	}
+
+	SceneCameraHandler::getInstance()->update();
+	GameObjectManager::getInstance()->renderAll(rc.right - rc.left, rc.bottom - rc.top);
+
+	UIManager::getInstance()->drawAllUI();
+
+	m_wireframe->set(GraphicsEngine::getInstance()->getD3DDeviceContext());
+
+	m_swap_chain->present(true);
 }
 
+// AppWindow singleton
 void AppWindow::initialize()
 {
 	sharedInstance = new AppWindow();
@@ -29,6 +101,7 @@ void AppWindow::onCreate()
 	BaseSystem::initialize();
 }
 
+// Initialize all Engine Systems
 void AppWindow::initializeEngine()
 {
 	//GraphicsEngine::initialize();
@@ -53,50 +126,14 @@ void AppWindow::initializeEngine()
 
 	m_swap_chain->init(this->m_hwnd, width, height);
 
+	// Def not hardcoded :) -> remind me to fix this
 	Debug::Log("Initialize");
 }
 
+// Initialize UI
 void AppWindow::createInterface()
 {
 	UIManager::initialize(this->m_hwnd);
-}
-
-void AppWindow::onUpdate()
-{
-	Window::onUpdate();
-	this->ticks += EngineTime::getDeltaTime() * 1.0f;
-
-	InputSystem::getInstance()->update();
-	GraphicsEngine::getInstance()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-		0.01, 0.01, 0.01, 0.01);
-	RECT rc = this->getClientWindowRect();
-	GraphicsEngine::getInstance()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
-
-	EngineBackEnd* backend = EngineBackEnd::getInstance();
-	if (backend->getMode() == EngineBackEnd::EditorMode::PLAY) {
-		BaseSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
-		GameObjectManager::getInstance()->updateAll();
-	}
-	else if (backend->getMode() == EngineBackEnd::EditorMode::EDITOR) {
-		GameObjectManager::getInstance()->updateAll();
-
-	}
-	else if (backend->getMode() == EngineBackEnd::EditorMode::PAUSED) {
-		if (backend->insideFrameStep()) {
-			BaseSystem::getInstance()->getPhysicsSystem()->updateAllComponents();
-			GameObjectManager::getInstance()->updateAll();
-			backend->endFrameStep();
-		}
-	}
-
-	SceneCameraHandler::getInstance()->update();
-	GameObjectManager::getInstance()->renderAll(rc.right - rc.left, rc.bottom - rc.top);
-
-	UIManager::getInstance()->drawAllUI();
-
-	m_wireframe->set(GraphicsEngine::getInstance()->getD3DDeviceContext());
-
-	m_swap_chain->present(true);
 }
 
 void AppWindow::onDestroy()
@@ -174,4 +211,8 @@ AppWindow* AppWindow::getInstance()
 	{
 		return sharedInstance;
 	}
+}
+
+AppWindow::~AppWindow()
+{
 }
